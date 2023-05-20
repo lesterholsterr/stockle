@@ -1,4 +1,4 @@
-import './Popup.css'
+import '../css/Popup.css'
 
 function Popup ({toggleMode, trigger, setPopup}) {
   if (trigger === 'instructions') {

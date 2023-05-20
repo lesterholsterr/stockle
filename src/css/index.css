@@ -63,31 +63,38 @@ header img {
   margin-top: 40px;
 }
 
-/* GUESSES */
-.guesses {
+/* BOARD */
+.game {
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  padding-top: 50px;
+  flex-direction: column;
+}
+
+.board {
+  width: 1000px;
+  height: 300px;
   display: flex;
   flex-direction: column;
-  background-color: lightcoral;
-  width: 1000px;
-  margin: auto;
-  margin-top: 30px;
 }
 
-.guess-table-label {
+.row {
+  flex: 33%;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  margin: 5px;
 }
 
-.guess-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  margin: 10px;
+.metric {
+  flex: 33%;
+  height: 100%;
+  border: 1px solid grey;
+  margin: 5px;
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  font-weight: bolder;
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
 }
-
-.guess-container div {
-  padding: 5px 25px 5px 25px;
-  background-color: lightgray;
-}
-

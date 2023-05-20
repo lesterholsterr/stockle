@@ -1,14 +1,14 @@
-.app {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .search-container {
+  margin-top: 20px;
   width: 280px;
   display: flex;
   flex-direction: column;
+}
+
+.dropdown-wrapper {
+  position: relative;
+  width: 0;
+  height: 0;
 }
 
 .dropdown {
@@ -16,6 +16,12 @@
   display: flex;
   flex-direction: column;
   border: 1px solid gray;
+
+  transform: scaleX(-1);
+  transform: scaleY(1);
+  position: absolute;
+  bottom: 0px;
+  width: 237px;
 }
 
 .dropdown:empty {
@@ -33,7 +39,7 @@
 }
 
 input {
-  width: 220px;
+  width: 250px;
 }
 
 .search-inner {
