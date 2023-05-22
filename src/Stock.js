@@ -1,5 +1,13 @@
 var stock_info = require("./stock_info.json")
 
+const num_to_emote = {
+  '-2': "⬆️",
+  '-1': "↗️",
+  0: "✅",
+  1: "↘️",
+  2: "⬇️"
+}
+
 // oop is js is so whack
 class Stock {
   #name
@@ -25,62 +33,80 @@ class Stock {
     this.summary = stock[0].summary
   }
 
-  // usage: s1 should be magicStock, s2 should be user guessed stock
-  // returns a list of the following format: [bool, bool, int, int, int, int]
-  // if bool is true, the player guessed the stock
-  // int is a scale from -2 to 2: ⬆️↗️🟩↘⬇️
-  // magnitude 2 = far away while magnitude 1 = close
-  // negative = s2 is lower than s1 while positive = s2 is higher than s1
-  compare(s1, s2) {
-    if (s1.name === s2.name) {
-      return [true, true, 0, 0, 0, 0]
+  // usage: s1 should be today's stock
+  // returns a list of the following format: [bool, bool, string, string, string, string]
+  // if the bool is true, the player guessed the stock/sector in question
+  // strings are what should be outputted on the board after user guesses this
+  // emoticons: see num_to_emote at the top of the file
+  // up/down = this is less/greater than s1 on this metric
+  // diagonal = this is within 30% of s1 on this metric
+  compare(s1) {
+    return [
+      s1.name === this.name, 
+      this.compare_sector(s1.sector, this.sector), 
+      this.compare_price(s1.share_price, this.share_price), 
+      this.compare_cap(s1.market_cap, this.market_cap), 
+      this.compare_revenue(s1.revenue, this.revenue), 
+      this.compare_income(s1.net_income, this.net_income)
+    ]
+  }
+
+  shorten_sector(s) {
+    if (s === 'Financial Services') return 'Financials'
+    else if (s === 'Consumer Defensive') return 'C. Staples'
+    else if (s === 'Consumer Cyclical') return 'C. Discretion'
+    else if (s === 'Communication Services') return 'Comms'
+    else if (s === 'Basic Materials') return 'Materials'
+    else return s
+  }
+
+  shorten_number(n) {
+    if (n < 1000000) {
+      return n
+    } else if (n < 1000000000) {
+      return `${Math.floor(n/10000)/100}M`
+    } else if (n < 1000000000000) {
+      return `${Math.floor(n/10000000)/100}B`
     } else {
-      return [
-        false, 
-        this.compare_sector(s1, s2), 
-        this.compare_cap(s1, s2), 
-        this.compare_price(s1, s2), 
-        this.compare_revenue(s1, s2), 
-        this.compare_income(s1, s2)
-      ]
+      return `${Math.floor(n/10000000000)/100}T`
     }
   }
 
   compare_sector(s1, s2) {
-    if (s1.sector === s2.sector) return true;
-    return false;
+    if (s1 === s2) return `${this.shorten_sector(s2)} ✅`;
+    return `${this.shorten_sector(s2)} ❌`;
   }
 
-  // define close as within 10M
-  compare_cap(s1, s2) {
-    var x = 1
-    if (s2 < s1) x *= -1
-    if (Math.abs(s2 - s1) > 10000000) x *= 2
-    return x
-  }
-
-  // define close as within $20
   compare_price(s1, s2) {
     var x = 1
+    if (s1 === s2) x = 0
     if (s2 < s1) x *= -1
-    if (Math.abs(s2 - s1) > 20) x *= 2
-    return x
+    if (Math.abs(s2 - s1)/s1 > 0.3) x *= 2
+    return `$${this.shorten_number(s2)} ${num_to_emote[x]}`
   }
 
-  // define close as within 100M (last quarter figure)
+  compare_cap(s1, s2) {
+    var x = 1
+    if (s1 === s2) x = 0
+    if (s2 < s1) x *= -1
+    if (Math.abs(s2 - s1)/s1 > 0.3) x *= 2
+    return `${this.shorten_number(s2)} ${num_to_emote[x]}`
+  }
+
   compare_revenue(s1, s2) {
     var x = 1
+    if (s1 === s2) x = 0
     if (s2 < s1) x *= -1
-    if (Math.abs(s2 - s1) > 100000000) x *= 2
-    return x
+    if (Math.abs(s2 - s1)/s1 > 0.3) x *= 2
+    return `${this.shorten_number(s2)} ${num_to_emote[x]}`
   }
 
-  // define close as within 10M (last quarter figure)
   compare_income(s1, s2) {
     var x = 1
+    if (s1 === s2) x = 0
     if (s2 < s1) x *= -1
-    if (Math.abs(s2 - s1) > 2000000) x *= 2
-    return x
+    if (Math.abs(s2 - s1)/s1 > 0.3) x *= 2
+    return `${this.shorten_number(s2)} ${num_to_emote[x]}`
   }
 }
 

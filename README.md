@@ -11,13 +11,20 @@ Board styling and use of AppContext: https://www.youtube.com/watch?v=WDTNwmXUz2c
 
 (Maybe) Dropdown menu: https://www.youtube.com/watch?v=jaMgXmrk29M
 
+### TODO
+"Share result" (copy message to clipboard)
 
-### Future Improvements
-Actually deploy the damn thing!
+Implement the graph (is an API required for this?)
+
+Make the stock automatically change each day (and make a list of "reasonable" stocks to choose from)
+
+Easy/Hard mode option (toggle stock chart)
 
 Dark/Light mode option
 
-Easy/Hard mode option (toggle stock chart)
+
+### Future Improvements
+Actually deploy the damn thing!
 
 Create an account and track statistics (will need to learn nodejs and choose a db)
 

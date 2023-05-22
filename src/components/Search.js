@@ -5,9 +5,9 @@ import '../css/Search.css'
 
 var stock_info = require("../stock_info.json")
 
-function Search() {
+function Search({ setPopup }) {
   const [searchValue, setSearchValue] = useState('')
-  const { board, setBoard, currAttempt, setCurrAttempt } = useContext(AppContext)
+  const { board, setBoard, currAttempt, setCurrAttempt, todayStock } = useContext(AppContext)
 
   const onChange = (event) => {
     setSearchValue(event.target.value)
@@ -15,16 +15,27 @@ function Search() {
   const onSearch = (searchTerm) => {
     setSearchValue('')
     const searchedStock = new Stock(searchTerm)
+    var results = searchedStock.compare(todayStock)
 
     const newBoard = [...board]
     newBoard[currAttempt][0] = searchedStock.ticker
-    newBoard[currAttempt][1] = searchedStock.sector
-    newBoard[currAttempt][2] = searchedStock.share_price
-    newBoard[currAttempt][3] = searchedStock.market_cap
-    newBoard[currAttempt][4] = searchedStock.revenue
-    newBoard[currAttempt][5] = searchedStock.net_income
-    setCurrAttempt(currAttempt + 1)
+    newBoard[currAttempt][1] = results[1]
+    newBoard[currAttempt][2] = results[2]
+    newBoard[currAttempt][3] = results[3]
+    newBoard[currAttempt][4] = results[4]
+    newBoard[currAttempt][5] = results[5]
     setBoard(newBoard)
+    setCurrAttempt(currAttempt + 1)
+
+    if (results[0]) {
+      console.log("win")
+      setPopup('win')
+    }
+    // NOT WORKING :/
+    if (currAttempt > 5) {
+      console.log("lose")
+      setPopup('lose')
+    }
   }
   
   return (

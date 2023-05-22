@@ -27,8 +27,7 @@ function App () {
   })
 
   // Today's stock
-  const magicStock = new Stock('Microsoft Corp')
-  console.log(magicStock)
+  const todayStock = new Stock('Meta Platforms Inc')
 
   // Board State
   const [board, setBoard] = useState(boardDefault)
@@ -36,6 +35,12 @@ function App () {
 
   return (
     <div className="App">
+      <AppContext.Provider 
+          value={{ 
+            board, setBoard, 
+            currAttempt, setCurrAttempt ,
+            todayStock
+        }}>
       <Header 
         mode={mode}
         setPopup={setPopup}
@@ -47,15 +52,10 @@ function App () {
       />
       <Graph />
       <div className="game">
-        <AppContext.Provider 
-        value={{ 
-          board, setBoard, 
-          currAttempt, setCurrAttempt 
-        }}>
           <Board />
-          <Search />
-        </AppContext.Provider>
+          <Search setPopup={setPopup} />
       </div>
+      </AppContext.Provider>
     </div>
   );
 } 

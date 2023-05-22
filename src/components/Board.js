@@ -7,6 +7,14 @@ const Board = () => {
     <div className="board">
       {" "}
       <div className="row">
+        <h3>Ticker</h3>
+        <h3>Sector</h3>
+        <h3>Share Price</h3>
+        <h3>Market Cap</h3>
+        <h3>Revenue (LTM)</h3>
+        <h3>Net Income (LTM)</h3>
+      </div>
+      <div className="row">
         <Metric metricPos={0} attemptVal={0} />
         <Metric metricPos={1} attemptVal={0} />
         <Metric metricPos={2} attemptVal={0} />
