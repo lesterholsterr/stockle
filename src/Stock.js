@@ -1,9 +1,12 @@
 var stock_info = require("./stock_info.json")
 
+// I have NO idea why, but the arrow emotes seem to take up
+// 4 bytes instead of 2, so to compensate, the checkbox emote
+// has a whitespace after it. not scuffed LOL
 const num_to_emote = {
   '-2': "⬆️",
   '-1': "↗️",
-  0: "✅",
+  0: "✅ ",
   1: "↘️",
   2: "⬇️"
 }
@@ -47,7 +50,7 @@ class Stock {
       this.compare_price(s1.share_price, this.share_price), 
       this.compare_cap(s1.market_cap, this.market_cap), 
       this.compare_revenue(s1.revenue, this.revenue), 
-      this.compare_income(s1.net_income, this.net_income)
+      this.compare_pe(s1.market_cap, s1.net_income, this.market_cap, this.net_income)
     ]
   }
 
@@ -101,12 +104,20 @@ class Stock {
     return `${this.shorten_number(s2)} ${num_to_emote[x]}`
   }
 
-  compare_income(s1, s2) {
+  compare_pe(s1mc, s1ni, s2mc, s2ni) {
     var x = 1
+    var s1 = (s1mc / s1ni > 0) ? s1mc / s1ni : -1
+    var s2 = (s2mc / s2ni > 0) ? s2mc / s2ni : -1
     if (s1 === s2) x = 0
-    if (s2 < s1) x *= -1
-    if (Math.abs(s2 - s1)/s1 > 0.3) x *= 2
-    return `${this.shorten_number(s2)} ${num_to_emote[x]}`
+    if (s1 === -1) {
+      return `${Math.floor(s2 * 100) / 100} ⬆️`
+    } else if (s2 === -1) {
+      return `N/A ⬇️`
+    } else {
+      if (s2 < s1) x *= -1
+      if (Math.abs(s2 - s1)/s1 > 0.3) x *= 2
+      return `${Math.floor(s2 * 100) / 100} ${num_to_emote[x]}`
+    }
   }
 }
 

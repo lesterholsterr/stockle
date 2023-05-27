@@ -5,9 +5,10 @@ import '../css/Search.css'
 
 var stock_info = require("../stock_info.json")
 
-function Search({ setPopup }) {
+function Search({ setPopup, share_results }) {
   const [searchValue, setSearchValue] = useState('')
-  const { board, setBoard, currAttempt, setCurrAttempt, todayStock } = useContext(AppContext)
+  const { board, setBoard, currAttempt, setCurrAttempt, 
+          todayStock, shareResults, setShareResults } = useContext(AppContext)
 
   const onChange = (event) => {
     setSearchValue(event.target.value)
@@ -27,14 +28,19 @@ function Search({ setPopup }) {
     setBoard(newBoard)
     setCurrAttempt(currAttempt + 1)
 
+    const shareResultRow = results[1].charAt(results[1].length - 1) +
+                           results[2].charAt(results[2].length - 2) +
+                           results[3].charAt(results[3].length - 2) +
+                           results[4].charAt(results[4].length - 2) +
+                           results[5].charAt(results[5].length - 2) + '\n'
     if (results[0]) {
-      console.log("win")
+      setShareResults(`Stockle ${currAttempt + 1}/6\n`.concat(shareResults).concat(shareResultRow))
       setPopup('win')
-    }
-    // NOT WORKING :/
-    if (currAttempt > 5) {
-      console.log("lose")
+    } else if (currAttempt === 5) {
+      setShareResults(`Stockle X/6\n`.concat(shareResults).concat(shareResultRow))
       setPopup('lose')
+    } else {
+      setShareResults(shareResults.concat(shareResultRow))
     }
   }
   

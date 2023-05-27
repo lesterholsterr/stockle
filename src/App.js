@@ -32,14 +32,16 @@ function App () {
   // Board State
   const [board, setBoard] = useState(boardDefault)
   const [currAttempt, setCurrAttempt] = useState(0)
+  const [shareResults, setShareResults] = useState('')
 
   return (
     <div className="App">
       <AppContext.Provider 
           value={{ 
             board, setBoard, 
-            currAttempt, setCurrAttempt ,
-            todayStock
+            currAttempt, setCurrAttempt,
+            todayStock,
+            shareResults, setShareResults
         }}>
       <Header 
         mode={mode}
@@ -53,7 +55,9 @@ function App () {
       <Graph />
       <div className="game">
           <Board />
-          <Search setPopup={setPopup} />
+          <Search 
+            setPopup={setPopup}
+          />
       </div>
       </AppContext.Provider>
     </div>

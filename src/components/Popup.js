@@ -1,10 +1,17 @@
 import '../css/Popup.css'
-import { useContext } from 'react'
+import React, { useContext } from 'react'
 import { AppContext } from '../App'
 
 
-function Popup ({toggleMode, trigger, setPopup}) {
-  const { currAttempt, todayStock } = useContext(AppContext)
+function Popup ({ toggleMode, trigger, setPopup }) {
+  const { currAttempt, todayStock, shareResults } = useContext(AppContext)
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(shareResults)
+      .then(() => {
+        alert("Copied to clipboard!")
+        console.log(shareResults)
+      })
+  }
 
   if (trigger === 'instructions') {
     return (
@@ -61,6 +68,9 @@ function Popup ({toggleMode, trigger, setPopup}) {
         <p>Guesses Used: {currAttempt}</p>
         <br />
         <p>{todayStock.summary}</p>
+        <button onClick={copyToClipboard}>
+          Share Results
+        </button>
         <button 
           className='close-popup'
           onClick={() => setPopup('none')}>
@@ -78,6 +88,9 @@ function Popup ({toggleMode, trigger, setPopup}) {
         <p>Today's Stock: {todayStock.name}</p>
         <br />
         <p>{todayStock.summary}</p>
+        <button onClick={copyToClipboard}>
+          Share Results
+        </button>
         <button 
           className='close-popup'
           onClick={() => setPopup('none')}>
