@@ -12,7 +12,7 @@ Board styling and use of AppContext: https://www.youtube.com/watch?v=WDTNwmXUz2c
 (Maybe) Dropdown menu: https://www.youtube.com/watch?v=jaMgXmrk29M
 
 ### TODO
-"Share result" (copy message to clipboard)
+Replace png images with react icons when possible
 
 Implement the graph (is an API required for this?)
 
