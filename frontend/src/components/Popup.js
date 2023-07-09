@@ -1,12 +1,16 @@
 import "../css/Popup.css";
 import React, { useContext } from "react";
 import { AppContext } from "../App";
+import { toast } from "react-toastify";
 
 function Popup({ toggleMode, trigger, setPopup }) {
   const { currAttempt, todayStock, shareResults } = useContext(AppContext);
+  
   const copyToClipboard = () => {
     navigator.clipboard.writeText(shareResults).then(() => {
-      alert("Copied to clipboard!");
+      toast.success("Copied to clipboard!", {
+        position: toast.POSITION.TOP_CENTER,
+      });
       console.log(shareResults);
     });
   };

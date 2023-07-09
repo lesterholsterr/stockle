@@ -14,11 +14,16 @@ const createUser = asyncHandler(async (req, res) => {
     throw new Error("Please add all fields");
   }
 
-  // Check if user exists
-  const userExists = await User.findOne({ email });
-  if (userExists) {
+  // Check for duplicates
+  const userEmailExists = await User.findOne({ email });
+  if (userEmailExists) {
     res.status(400);
-    throw new Error("User already exists");
+    throw new Error("Email already in use");
+  }
+  const usernameExists = await User.findOne({ username });
+  if (usernameExists) {
+    res.status(400);
+    throw new Error("Username taken");
   }
 
   // Hash password
@@ -49,12 +54,12 @@ const createUser = asyncHandler(async (req, res) => {
 // @route  POST /api/users/login
 // @access Public
 const loginUser = asyncHandler(async (req, res) => {
-  const { email, password } = req.body;
+  const { username, password } = req.body;
 
-  // Check for user email
-  const user = await User.findOne({ email });
+  // Check for username
+  const user = await User.findOne({ username });
 
-  // the user's password stored in Mongo is hashed, which is why we need the compare function
+  // Compare inputted password with the hashed password stored in DB
   if (user && (await bcrypt.compare(password, user.password))) {
     res.json({
       _id: user.id,

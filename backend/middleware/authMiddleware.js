@@ -11,7 +11,6 @@ const protect = asyncHandler(async (req, res, next) => {
   ) {
     try {
       // Get token from header
-      // In the header, the format is 'header ...
       token = req.headers.authorization.split(" ")[1];
 
       // Verify token

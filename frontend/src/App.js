@@ -1,5 +1,11 @@
 import { useState, useEffect, createContext } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Provider } from "react-redux";
+import { store } from "./store";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Popup from "./components/Popup";
+import Login from "./components/Login";
 import Header from "./components/Header";
 import Graph from "./components/Graph";
 import Board from "./components/Board";
@@ -34,27 +40,42 @@ function App() {
   const [currAttempt, setCurrAttempt] = useState(0);
   const [shareResults, setShareResults] = useState("");
 
+  // My god this is so ugly
   return (
     <div className="App">
-      <AppContext.Provider
-        value={{
-          board,
-          setBoard,
-          currAttempt,
-          setCurrAttempt,
-          todayStock,
-          shareResults,
-          setShareResults,
-        }}
-      >
-        <Header mode={mode} setPopup={setPopup} />
-        <Popup toggleMode={toggleMode} trigger={popup} setPopup={setPopup} />
-        <Graph />
-        <div className="game">
-          <Board />
-          <Search setPopup={setPopup} />
-        </div>
-      </AppContext.Provider>
+      <Router>
+        <Provider store={store}>
+          <AppContext.Provider
+            value={{
+              board,
+              setBoard,
+              currAttempt,
+              setCurrAttempt,
+              todayStock,
+              shareResults,
+              setShareResults,
+            }}
+          >
+            <Header mode={mode} setPopup={setPopup} />
+            <Popup
+              toggleMode={toggleMode}
+              trigger={popup}
+              setPopup={setPopup}
+            />
+            <Login
+              toggleMode={toggleMode}
+              trigger={popup}
+              setPopup={setPopup}
+            />
+            <Graph />
+            <div className="game">
+              <Board />
+              <Search setPopup={setPopup} />
+            </div>
+            <ToastContainer />
+          </AppContext.Provider>
+        </Provider>
+      </Router>
     </div>
   );
 }

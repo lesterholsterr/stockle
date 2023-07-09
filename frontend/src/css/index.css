@@ -36,12 +36,22 @@ header h1 {
 }
 
 .header-button-1 {
-  margin-left: 35%;
+  margin-left: 27vw;
 }
 
-header img {
+header button {
+  all: unset;
   cursor: pointer;
-  height: 60px;
+  font-size: 30px;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+header p {
+  margin-left: 5px;
+  font-size: 20px;
 }
 
 .header-light {

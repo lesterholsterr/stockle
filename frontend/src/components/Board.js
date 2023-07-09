@@ -1,6 +1,7 @@
 import React from "react";
 import Metric from "./Metric";
 
+// A board consists of 6 attempts (rows) and 6 metrics (columns)
 const Board = () => {
   return (
     <div className="board">
