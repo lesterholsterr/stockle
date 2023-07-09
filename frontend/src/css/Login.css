@@ -1,0 +1,58 @@
+.form {
+  width: 100%;
+}
+
+.form h3 {
+  font-size: 25px;
+  margin-bottom: 15px;
+}
+
+.form input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-family: inherit;
+}
+
+.submit-btn {
+  padding: 10px 20px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  background: black;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  margin-bottom: 20px;
+  transition-duration: 0.5s;
+}
+
+.submit-btn:hover {
+  transform: scale(0.97);
+  background: rgba(0, 0, 0, 0.8);
+  transition-duration: 0.5s;
+}
+
+.change-option-btn {
+  all: unset;
+  cursor: pointer;
+  display: inline-block;
+  padding-bottom: 0.25rem;
+  position: relative;
+}
+.change-option-btn::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: rgb(0, 0, 0, 0.8);
+  transition: width 0.25s ease-out;
+}
+.change-option-btn:hover::before {
+  width: 100%;
+}

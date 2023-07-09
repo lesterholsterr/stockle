@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 
 function Popup({ toggleMode, trigger, setPopup }) {
   const { currAttempt, todayStock, shareResults } = useContext(AppContext);
-  
+
   const copyToClipboard = () => {
     navigator.clipboard.writeText(shareResults).then(() => {
       toast.success("Copied to clipboard!", {
@@ -21,9 +21,10 @@ function Popup({ toggleMode, trigger, setPopup }) {
         <div className="popup-inner">
           <h3>Instructions</h3>
           <p>Figure it out yourself</p>
-          <button className="close-popup" onClick={() => setPopup("none")}>
-            Close
-          </button>
+          <div className="close-popup" onClick={() => setPopup("none")}>
+            <div className="close-line-1"></div>
+            <div className="close-line-2"></div>
+          </div>
         </div>
       </div>
     );
@@ -33,9 +34,10 @@ function Popup({ toggleMode, trigger, setPopup }) {
         <div className="popup-inner">
           <h3>Statistics</h3>
           <p>Coming Soon</p>
-          <button className="close-popup" onClick={() => setPopup("none")}>
-            Close
-          </button>
+          <div className="close-popup" onClick={() => setPopup("none")}>
+            <div className="close-line-1"></div>
+            <div className="close-line-2"></div>
+          </div>
         </div>
       </div>
     );
@@ -45,9 +47,10 @@ function Popup({ toggleMode, trigger, setPopup }) {
         <div className="popup-inner">
           <h3>Settings</h3>
           <button onClick={toggleMode}>Switch Mode</button>
-          <button className="close-popup" onClick={() => setPopup("none")}>
-            Close
-          </button>
+          <div className="close-popup" onClick={() => setPopup("none")}>
+            <div className="close-line-1"></div>
+            <div className="close-line-2"></div>
+          </div>
         </div>
       </div>
     );
@@ -62,9 +65,10 @@ function Popup({ toggleMode, trigger, setPopup }) {
           <br />
           <p>{todayStock.summary}</p>
           <button onClick={copyToClipboard}>Share Results</button>
-          <button className="close-popup" onClick={() => setPopup("none")}>
-            Close
-          </button>
+          <div className="close-popup" onClick={() => setPopup("none")}>
+            <div className="close-line-1"></div>
+            <div className="close-line-2"></div>
+          </div>
         </div>
       </div>
     );
@@ -78,9 +82,10 @@ function Popup({ toggleMode, trigger, setPopup }) {
           <br />
           <p>{todayStock.summary}</p>
           <button onClick={copyToClipboard}>Share Results</button>
-          <button className="close-popup" onClick={() => setPopup("none")}>
-            Close
-          </button>
+          <div className="close-popup" onClick={() => setPopup("none")}>
+            <div className="close-line-1"></div>
+            <div className="close-line-2"></div>
+          </div>
         </div>
       </div>
     );

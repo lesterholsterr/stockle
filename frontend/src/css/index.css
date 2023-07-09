@@ -28,15 +28,12 @@ header {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
   border-bottom: 1px solid rgba(0, 0, 0, 0.747);
 }
 
 header h1 {
-  margin-left: 45%;
-}
-
-.header-button-1 {
-  margin-left: 27vw;
+  margin-left: 43%;
 }
 
 header button {
@@ -60,6 +57,11 @@ header p {
 
 .header-dark {
   background-color: rgba(62, 54, 54, 0.915);
+}
+
+.menu-buttons {
+  display: flex;
+  flex-direction: row;
 }
 
 /* GRAPH */

@@ -11,7 +11,7 @@ const num_to_emote = {
   2: "⬇️",
 };
 
-// oop is js is so whack
+// oop in js is so whack
 class Stock {
   #name;
   #ticker;
@@ -38,7 +38,7 @@ class Stock {
 
   // usage: s1 should be today's stock
   // returns a list of the following format: [bool, bool, string, string, string, string]
-  // if the bool is true, the player guessed the stock/sector in question
+  // if the first bool is true, the player guessed the stock/sector in question
   // strings are what should be outputted on the board after user guesses this
   // emoticons: see num_to_emote at the top of the file
   // up/down = this is less/greater than s1 on this metric

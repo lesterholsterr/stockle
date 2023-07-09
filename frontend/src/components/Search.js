@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { AppContext } from "../App";
 import { Stock } from "../Stock";
 import "../css/Search.css";
@@ -17,13 +17,45 @@ function Search({ setPopup, share_results }) {
     setShareResults,
   } = useContext(AppContext);
 
+  useEffect(() => {
+    // Note to future me: The local storage thing pretty much works now. However, the results array that is
+    // returned by Stock.js contains a boolean as the first element, so the information of what ticker was
+    // guessed is permanently lost. Should replace the boolean with a string, and manually validate in Search.js 
+    // (this file) whether the player has won.
+    const newBoard = [...board];
+    console.log(newBoard);
+    const boardState = JSON.parse(localStorage.getItem("board state"));
+    var attempt = 0;
+    for (const key in boardState) {
+      if (boardState.hasOwnProperty(key)) {
+        const attemptResults = boardState[key];
+        console.log(`Key: ${key}, Value: ${attemptResults}`);
+        for (var i = 0; i < 6; i++) {
+          newBoard[attempt][i] = attemptResults[i];
+        }
+      }
+      attempt++;
+    }
+    setBoard(newBoard);
+    setCurrAttempt(attempt + 1);
+  }, []);
+
   const onChange = (event) => {
     setSearchValue(event.target.value);
   };
+
   const onSearch = (searchTerm) => {
     setSearchValue("");
     const searchedStock = new Stock(searchTerm);
-    var results = searchedStock.compare(todayStock);
+    const results = searchedStock.compare(todayStock);
+
+    var boardState = JSON.parse(localStorage.getItem("board state"));
+    if (boardState == null) {
+      localStorage.setItem("board state", JSON.stringify({ 0: results }));
+    } else {
+      Object.assign(boardState, { [currAttempt]: results });
+      localStorage.setItem("board state", JSON.stringify(boardState));
+    }
 
     const newBoard = [...board];
     newBoard[currAttempt][0] = searchedStock.ticker;
@@ -57,6 +89,7 @@ function Search({ setPopup, share_results }) {
     } else {
       setShareResults(shareResults.concat(shareResultRow));
     }
+    localStorage.setItem("share result", JSON.stringify(shareResults));
   };
 
   return (
