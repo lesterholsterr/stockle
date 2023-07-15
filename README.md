@@ -25,6 +25,9 @@ Local storage board state should refresh when switching between accounts (?)
 Add a stock chart (look into APIs)
 - https://canvasjs.com/javascript-stockcharts/line-stockchart-json/
 
+Add hint feature (logo)
+- https://www.benzinga.com/apis/cloud-product/company-logo-api/
+
 Easy/Hard mode (toggle graph on/off) and dark/light mode
 
 #### Back End

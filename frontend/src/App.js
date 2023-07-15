@@ -7,8 +7,8 @@ import Header from "./components/Header";
 import Graph from "./components/Graph";
 import Board from "./components/Board";
 import Search from "./components/Search";
-import { Stock } from "./Stock.js";
-import { boardDefault } from "./BoardState";
+import { Stock } from "./features/stock/Stock.js";
+import { boardDefault } from "./features/board/BoardState";
 
 export const AppContext = createContext();
 
@@ -29,7 +29,7 @@ function App() {
     document.body.className = mode;
   });
 
-  // Today's stock <-- HARD CODED, Need a datetime API to make it refresh each new day
+  // Today's stock <-- HARD CODED, Need a datetime library to make it refresh each new day
   const todayStock = new Stock("Meta Platforms Inc");
 
   // Board State

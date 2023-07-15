@@ -45,7 +45,7 @@ class Stock {
   // diagonal = this is within 30% of s1 on this metric
   compare(s1) {
     return [
-      s1.name === this.name,
+      this.ticker,
       this.compare_sector(s1.sector, this.sector),
       this.compare_price(s1.share_price, this.share_price),
       this.compare_cap(s1.market_cap, this.market_cap),

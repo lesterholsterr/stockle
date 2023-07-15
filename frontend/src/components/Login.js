@@ -96,7 +96,7 @@ function Login({ trigger, setPopup }) {
                 onChange={onChange}
               />
               <button className="submit-btn" type="submit">
-                Submit
+                Login
               </button>
             </form>
           </section>
@@ -154,7 +154,7 @@ function Login({ trigger, setPopup }) {
                 onChange={onChange}
               />
               <button className="submit-btn" type="submit">
-                Submit
+                Create Account
               </button>
             </form>
           </section>

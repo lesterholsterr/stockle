@@ -11,7 +11,6 @@ function Popup({ toggleMode, trigger, setPopup }) {
       toast.success("Copied to clipboard!", {
         position: toast.POSITION.TOP_CENTER,
       });
-      console.log(shareResults);
     });
   };
 
@@ -61,7 +60,7 @@ function Popup({ toggleMode, trigger, setPopup }) {
           <h3>You Win!</h3>
           <br />
           <p>Today's Stock: {todayStock.name}</p>
-          <p>Guesses Used: {currAttempt}</p>
+          <p>Guesses Used: {currAttempt - 1}</p>
           <br />
           <p>{todayStock.summary}</p>
           <button onClick={copyToClipboard}>Share Results</button>
