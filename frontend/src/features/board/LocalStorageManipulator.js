@@ -7,7 +7,6 @@ class LocalStorageManipulator {
   }
 
   setNewAttempt(results, currAttempt) {
-    console.log("local storage manipulator setting new attempt!");
     var boardState = JSON.parse(localStorage.getItem("board state"));
     if (boardState == null) {
       if (currAttempt !== 1) {

@@ -1,5 +1,5 @@
 const express = require("express");
-const connectDB = require('./db')
+const connectDB = require("./db");
 const { errorHandler } = require("./middleware/errorMiddleware");
 const dotenv = require("dotenv").config();
 const port = process.env.PORT || 3001;
@@ -13,6 +13,8 @@ app.use(express.urlencoded({ extended: false }));
 
 // Routers
 app.use("/api/users", require("./routes/userRoutes"));
+app.use("/api/stock", require("./routes/stockRoutes"));
+app.use("/api/history", require("./routes/historyRoutes"));
 
 // Error Handler
 app.use(errorHandler);

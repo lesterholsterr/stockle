@@ -19,7 +19,6 @@ function Search({ setPopup }) {
 
   useEffect(() => {
     const newBoard = [...board];
-    console.log("useEffect updating board with local storage!");
     const boardState = JSON.parse(localStorage.getItem("board state"));
     var attempt = 0;
     for (const key in boardState) {
