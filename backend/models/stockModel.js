@@ -9,7 +9,6 @@ const stockSchema = mongoose.Schema({
   name: {
     type: String,
     required: true,
-    unique: true,
   },
   sector: {
     type: String,

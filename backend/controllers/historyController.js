@@ -4,14 +4,11 @@ const HistoricalPrice = require("../models/historyModel");
 // @desc   Fetch all historical prices
 // @route  GET /api/history
 // @access Public
-const getAllHistory = asyncHandler(async (req, res) => {});
-
-// @desc   Create a new historical price
-// @route  POST /api/history
-// @access Public
-const postHistory = asyncHandler(async (req, res) => {});
+const getAllHistory = asyncHandler(async (req, res) => {
+  const allHistory = await HistoricalPrice.find({});
+  res.status(200).json(allHistory);
+});
 
 module.exports = {
   getAllHistory,
-  postHistory,
 };

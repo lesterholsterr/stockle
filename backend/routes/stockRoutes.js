@@ -2,10 +2,10 @@ const express = require("express");
 const router = express.Router();
 const {
   getStockData,
-  postStockData,
+  getAllStockData,
 } = require("../controllers/stockController");
 
+router.get("/all", getAllStockData);
 router.get("/:ticker", getStockData);
-router.post("/", postStockData);
 
 module.exports = router;

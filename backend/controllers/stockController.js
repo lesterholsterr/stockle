@@ -5,12 +5,13 @@ const Stock = require("../models/stockModel");
 // @route  GET /api/stock:id
 // @access Public
 const getStockData = asyncHandler(async (req, res) => {
-  const stockExists = await Stock.some({ ticker: req.params.ticker });
+  const stockExists = await Stock.findOne({ ticker: req.params.ticker });
 
   if (stockExists) {
+    const stocks = await Stock.find({});
     res
       .status(200)
-      .json(Stock.filter((stock) => stock.ticker === req.params.ticker));
+      .json(stocks.filter((stock) => stock.ticker === req.params.ticker));
   } else {
     res
       .status(400)
@@ -18,49 +19,12 @@ const getStockData = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc   Create a new stock (at daily reset)
-// @route  POST /api/stock
-// @access Public
-const postStockData = asyncHandler(async (req, res) => {
-  const {
-    ticker,
-    name,
-    sector,
-    market_cap,
-    share_price,
-    revenue,
-    net_income,
-    summary,
-  } = req.body;
-
-  if (
-    !ticker ||
-    !name ||
-    !sector ||
-    !market_cap ||
-    !share_price ||
-    !revenue ||
-    !net_income ||
-    !summary
-  ) {
-    res.status(400);
-    throw new Error("Missing fields");
-  } else {
-    const newStock = await Stock.create({
-      ticker,
-      name,
-      sector,
-      market_cap,
-      share_price,
-      revenue,
-      net_income,
-      summary,
-    });
-    res.status(201);
-  }
+const getAllStockData = asyncHandler(async (req, res) => {
+  const allStocks = await Stock.find({});
+  res.status(200).json(allStocks);
 });
 
 module.exports = {
   getStockData,
-  postStockData,
+  getAllStockData,
 };
