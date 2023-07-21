@@ -2,9 +2,14 @@ import { useState, useContext, useEffect } from "react";
 import { AppContext } from "../App";
 import { Stock } from "../features/stock/Stock";
 import { LocalStorageManipulator } from "../features/board/LocalStorageManipulator";
+import axios from "axios";
 import "../css/Search.css";
 
-var stock_info = require("../features/stock/stock_info.json");
+var stock_info = [];
+(async () => {
+  const response = await axios.get("/api/stock/all");
+  stock_info = response.data;
+})();
 
 function Search({ setPopup }) {
   const [searchValue, setSearchValue] = useState("");

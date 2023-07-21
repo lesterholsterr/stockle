@@ -1,4 +1,10 @@
-var stock_info = require("./stock_info.json");
+import axios from "axios";
+
+var stock_info = [];
+(async () => {
+  const response = await axios.get("/api/stock/all");
+  stock_info = response.data;
+})();
 
 // I have NO idea why, but the arrow emotes seem to take up
 // 4 bytes instead of 2, so to compensate, the checkbox emote
@@ -22,18 +28,35 @@ class Stock {
   #net_income;
   #summary;
 
-  // must pass the full name of the stock to initialize the object
-  constructor(name) {
-    const stock = stock_info.filter((s) => s.name === name);
+  // To avoid async problems of stock_info not being updated before the data is called
+  // there is an optional second parameter where we asynchronously request the stock's
+  // data from the DB and pass it here.
+  // IMPORTANT: Since JS does not allow multiple constructors in the same class, id takes
+  // on different values.
+  // If data == null, id represents the stock name
+  // If data != null, id represents the ticker
+  constructor(id, data = null) {
+    if (data == null) {
+      const stock = stock_info.filter((s) => s.name === id);
 
-    this.name = name;
-    this.ticker = stock[0].ticker;
-    this.sector = stock[0].sector;
-    this.market_cap = stock[0].market_cap;
-    this.share_price = stock[0].share_price;
-    this.revenue = stock[0].revenue;
-    this.net_income = stock[0].net_income;
-    this.summary = stock[0].summary;
+      this.name = stock[0].name;
+      this.ticker = stock[0].ticker;
+      this.sector = stock[0].sector;
+      this.market_cap = stock[0].market_cap;
+      this.share_price = stock[0].share_price;
+      this.revenue = stock[0].revenue;
+      this.net_income = stock[0].net_income;
+      this.summary = stock[0].summary;
+    } else {
+      this.name = data.name;
+      this.ticker = id;
+      this.sector = data.sector;
+      this.market_cap = data.market_cap;
+      this.share_price = data.share_price;
+      this.revenue = data.revenue;
+      this.net_income = data.net_income;
+      this.summary = data.summary;
+    }
   }
 
   // usage: s1 should be today's stock

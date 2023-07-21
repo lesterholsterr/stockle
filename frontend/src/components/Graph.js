@@ -2,6 +2,7 @@
 
 import React, { Component } from "react";
 import CanvasJSReact from "@canvasjs/react-stockcharts";
+import axios from "axios";
 
 var CanvasJSStockChart = CanvasJSReact.CanvasJSStockChart;
 
@@ -14,44 +15,52 @@ class Graph extends Component {
       isLoaded: false,
     };
 
+    // Might have to move the dates to a useEffect, so it resets on refresh?
     this.today = new Date();
     var dd = String(this.today.getDate()).padStart(2, "0");
     var mm = String(this.today.getMonth() + 1).padStart(2, "0"); //January is 0!
     var yyyy = this.today.getFullYear();
     this.today = mm + "/" + dd + "/" + yyyy;
+
+    this.oneYearAgo = new Date();
+    this.oneYearAgo = mm + "/" + dd + "/" + (yyyy - 1);
   }
 
   componentDidMount() {
     //Reference: https://reactjs.org/docs/faq-ajax.html#example-using-ajax-results-to-set-local-state
-
-
-    fetch("https://canvasjs.com/data/docs/ltcusd2018.json")
-      .then((res) => res.json())
-      .then((data) => {
-        var dps1 = [],
-          dps2 = [];
-        for (var i = 0; i < data.length; i++) {
-          dps1.push({
-            x: new Date(data[i].date),
-            y: [
-              Number(data[i].open),
-              Number(data[i].high),
-              Number(data[i].low),
-              Number(data[i].close),
-            ],
-          });
-          dps2.push({
-            x: new Date(data[i].date),
-            y: Number(data[i].volume_usd),
-          });
-        }
-        this.setState({
-          isLoaded: true,
-          dataPoints1: dps1,
-          dataPoints2: dps2,
-        });
-      });
+    this.fetchData();
   }
+
+  fetchData = async () => {
+    try {
+      const response = await axios.get("/api/history");
+      const data = response.data;
+      var dps1 = [];
+      var dps2 = [];
+      for (var i = 0; i < data.length; i++) {
+        dps1.push({
+          x: new Date(data[i].date),
+          y: [
+            Number(data[i].open),
+            Number(data[i].high),
+            Number(data[i].low),
+            Number(data[i].close),
+          ],
+        });
+        dps2.push({
+          x: new Date(data[i].date),
+          y: Number(data[i].volume),
+        });
+      }
+      this.setState({
+        isLoaded: true,
+        dataPoints1: dps1,
+        dataPoints2: dps2,
+      });
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   render() {
     const options = {
@@ -92,16 +101,18 @@ class Graph extends Component {
           },
         ],
         slider: {
-          minimum: new Date("2019-01-01"),
+          minimum: new Date(this.oneYearAgo),
           maximum: new Date(this.today),
         },
       },
     };
+
     const containerProps = {
       width: "100%",
       height: "320px",
       margin: "auto",
     };
+
     return (
       <div className="graph">
         <div>

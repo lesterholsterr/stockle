@@ -39,7 +39,14 @@ const csvToJSON = async (csv) => {
     var currentline = lines[i].split(",");
 
     for (var j = 0; j < headers.length; j++) {
-      obj[headers[j]] = currentline[j];
+      if (j === headers.length - 1) {
+        // Summaries contain commas, so csvToJSON cuts the summary off at the first comma.
+        // Hence the special treatment.
+        const summary = currentline.slice(headers.length - 1).join("");
+        obj[headers[j]] = summary;
+      } else {
+        obj[headers[j]] = currentline[j];
+      }
     }
 
     result.push(obj);
