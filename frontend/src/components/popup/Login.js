@@ -1,26 +1,21 @@
 import { React, useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { login, register, reset } from "../features/auth/authSlice";
-import Spinner from "./Spinner";
+import { login, logout, register, reset } from "../../features/auth/authSlice";
 
-import "../css/Popup.css";
-import "../css/Login.css";
+import Spinner from "../Spinner";
+import "../../css/Popup.css";
+import "../../css/Login.css";
 
 function Login({ trigger, setPopup }) {
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     username: "",
     email: "",
     password: "",
     password2: "",
   });
-
   const { username, email, password, password2 } = formData;
-
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
   const { user, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.auth
   );
@@ -39,7 +34,7 @@ function Login({ trigger, setPopup }) {
     }
 
     dispatch(reset());
-  }, [user, isError, isSuccess, message, setPopup, trigger, navigate, dispatch]);
+  }, [user, isError, isSuccess, message, setPopup, trigger, dispatch]);
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -66,6 +61,13 @@ function Login({ trigger, setPopup }) {
         dispatch(login(userData));
       }
     }
+  };
+
+  const onLogout = () => {
+    dispatch(logout());
+    dispatch(reset());
+    setPopup("none");
+    toast.success("Logged out");
   };
 
   if (isLoading) {
@@ -165,6 +167,21 @@ function Login({ trigger, setPopup }) {
           >
             Already have an account?
           </button>
+          <div className="close-popup" onClick={() => setPopup("none")}>
+            <div className="close-line-1"></div>
+            <div className="close-line-2"></div>
+          </div>
+        </div>
+      </div>
+    );
+  } else if (trigger === "logout") {
+    return (
+      <div className="popup">
+        <div className="popup-inner">
+          <h3>Logout</h3>
+          <p>Are you sure you want to log out?</p>
+          <button onClick={onLogout}>Yes</button>
+          <button onClick={() => setPopup("none")}>Cancel</button>
           <div className="close-popup" onClick={() => setPopup("none")}>
             <div className="close-line-1"></div>
             <div className="close-line-2"></div>

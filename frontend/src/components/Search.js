@@ -1,8 +1,12 @@
 import { useState, useContext, useEffect } from "react";
+import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { cloneDeep } from "lodash";
+
 import { AppContext } from "../App";
 import { Stock } from "../features/stock/Stock";
 import { LocalStorageManipulator } from "../features/board/LocalStorageManipulator";
-import axios from "axios";
+import { updateUser } from "../features/auth/authSlice";
 import "../css/Search.css";
 
 var stock_info = [];
@@ -21,6 +25,8 @@ function Search({ setPopup }) {
     todayStock,
     setShareResults,
   } = useContext(AppContext);
+  const { user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const newBoard = [...board];
@@ -72,6 +78,7 @@ function Search({ setPopup }) {
 
   const winLossCheck = (results, localStorageManipulator) => {
     if (results[0] === todayStock.ticker) {
+      updateStats(true);
       setShareResults(
         `Stockle ${currAttempt}/6\n`.concat(
           localStorageManipulator.shareResults
@@ -79,6 +86,7 @@ function Search({ setPopup }) {
       );
       setPopup("win");
     } else if (currAttempt === 6) {
+      updateStats(false);
       setShareResults(
         `Stockle X/6\n`.concat(localStorageManipulator.shareResults)
       );
@@ -86,6 +94,59 @@ function Search({ setPopup }) {
     } else {
       setShareResults(localStorageManipulator.shareResults);
     }
+  };
+
+  const updateStats = async (isWin) => {
+    var updatedUser = cloneDeep(user);
+    const points = calculatePoints(isWin);
+
+    updatedUser.gamesPlayed += 1;
+    if (isWin) {
+      updatedUser.gamesWon += 1;
+      updatedUser.dailyPoints += points;
+      updatedUser.totalWeeklyPoints -= updatedUser.weeklyPoints.shift();
+      updatedUser.weeklyPoints.push(points);
+      updatedUser.totalWeeklyPoints += points;
+      updatedUser.totalPoints += points;
+    } else {
+      updatedUser.dailyPoints += points;
+      updatedUser.totalWeeklyPoints -= updatedUser.weeklyPoints.shift();
+      updatedUser.weeklyPoints.push(points);
+      updatedUser.totalWeeklyPoints += points;
+      updatedUser.totalPoints += points;
+    }
+    updatedUser.playedYesterday
+      ? (updatedUser.currentStreak += 1)
+      : (updatedUser.currentStreak = 1);
+    updatedUser.maxStreak = Math.max(
+      updatedUser.maxStreak,
+      updatedUser.currentStreak
+    );
+    updatedUser.guessDistribution[currAttempt] += 1;
+    updatedUser.playedYesterday = true;
+
+    dispatch(updateUser(updatedUser));
+  };
+
+  // Scoring System:
+  // 800 - (guessesUsed * 100) +
+  // max(100, currentStreak * 20) +
+  // X if no logo hint used +
+  // Y if hard mode enabled
+  const calculatePoints = (isWin) => {
+    const pointsFromGuesses = isWin ? 800 - currAttempt * 100 : 0;
+    const pointsFromStreak = user.playedYesterday
+      ? Math.max(100, user.currentStreak * 20)
+      : 0;
+    const pointsFromNoHint = 0; // Not implemented yet
+    const pointsFromHardMode = 0; // Not implemented yet
+
+    return (
+      pointsFromGuesses +
+      pointsFromStreak +
+      pointsFromNoHint +
+      pointsFromHardMode
+    );
   };
 
   return (

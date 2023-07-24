@@ -32,8 +32,6 @@ class LocalStorageManipulator {
     this.shareResults += shareResultRow;
     localStorage.setItem("share result", JSON.stringify(this.shareResults));
   }
-
-  finaliseShareResult(currAttempt) {}
 }
 
 export { LocalStorageManipulator };

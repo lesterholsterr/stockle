@@ -42,7 +42,16 @@ const createUser = asyncHandler(async (req, res) => {
       _id: user.id,
       username: user.username,
       email: user.email,
-      token: generateToken(user._id),
+      gamesPlayed,
+      gamesWon,
+      dailyPoints,
+      weeklyPoints,
+      totalWeeklyPoints,
+      totalPoints,
+      playedYesterday,
+      currentStreak,
+      maxStreak,
+      guessDistribution,
     });
   } else {
     res.status(400);
@@ -65,7 +74,16 @@ const loginUser = asyncHandler(async (req, res) => {
       _id: user.id,
       username: user.username,
       email: user.email,
-      token: generateToken(user._id),
+      gamesPlayed: user.gamesPlayed,
+      gamesWon: user.gamesWon,
+      dailyPoints: user.dailyPoints,
+      weeklyPoints: user.weeklyPoints,
+      totalWeeklyPoints: user.totalWeeklyPoints,
+      totalPoints: user.totalPoints,
+      playedYesterday: user.playedYesterday,
+      currentStreak: user.currentStreak,
+      maxStreak: user.maxStreak,
+      guessDistribution: user.guessDistribution,
     });
   } else {
     res.status(400);
@@ -74,13 +92,62 @@ const loginUser = asyncHandler(async (req, res) => {
 });
 
 // Generate JWT
+// Seems like I won't end up needing this...
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: "30d",
   });
 };
 
+// @desc   Updates user statistics after a win/loss
+// @route  PUT /api/users/
+// @access Public
+const updateUser = asyncHandler(async (req, res) => {
+  console.log(req.body);
+  const {
+    _id: id,
+    gamesPlayed: updGP,
+    gamesWon: updGW,
+    dailyPoints: updDP,
+    weeklyPoints: updWP,
+    totalWeeklyPoints: updTWP,
+    totalPoints: updTP,
+    playedYesterday: updPY,
+    currentStreak: updCS,
+    maxStreak: updMS,
+    guessDistribution: updGD,
+  } = req.body;
+
+  const user = await User.findById(id);
+  if (!user) {
+    res.status(400);
+    throw new Error(`No user with the id ${id} found`);
+  }
+
+  const updatedUser = {
+    _id: id,
+    username: user.username,
+    email: user.email,
+    gamesPlayed: updGP,
+    gamesWon: updGW,
+    dailyPoints: updDP,
+    weeklyPoints: updWP,
+    totalWeeklyPoints: updTWP,
+    totalPoints: updTP,
+    playedYesterday: updPY,
+    currentStreak: updCS,
+    maxStreak: updMS,
+    guessDistribution: updGD,
+  };
+
+  const response = await User.findByIdAndUpdate(user.id, updatedUser, {
+    new: true,
+  });
+  res.status(200).json(response);
+});
+
 module.exports = {
   createUser,
   loginUser,
+  updateUser,
 };

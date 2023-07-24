@@ -2,27 +2,22 @@ import { useState, useEffect, createContext } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import Popup from "./components/Popup";
-import Login from "./components/Login";
+
+import Instructions from "./components/popup/Instructions";
+import Statistics from "./components/popup/Statistics";
+import Settings from "./components/popup/Settings";
+import Login from "./components/popup/Login";
+import WinLoss from "./components/popup/WinLoss";
+
 import Header from "./components/Header";
 import Graph from "./components/Graph";
 import Board from "./components/Board";
 import Search from "./components/Search";
+
 import { Stock } from "./features/stock/Stock.js";
 import { boardDefault } from "./features/board/BoardState";
 
 export const AppContext = createContext();
-// var todayTicker = "";
-// var todayStockData = null;
-// var todayStock = null;
-// (async () => {
-//   const response = await axios.get("/api/stock/today");
-//   todayTicker = response.data;
-//   todayStockData = await axios.get(`/api/stock/${todayTicker}`);
-//   todayStockData = todayStockData.data[0];
-//   todayStock = new Stock(todayTicker, todayStockData);
-//   console.log("Today stock in top async: ", todayStock);
-// })();
 
 function App() {
   // Popup window status
@@ -75,8 +70,11 @@ function App() {
         }}
       >
         <Header mode={mode} setPopup={setPopup} />
-        <Popup toggleMode={toggleMode} trigger={popup} setPopup={setPopup} />
+        <Instructions trigger={popup} setPopup={setPopup} />
+        <Statistics trigger={popup} setPopup={setPopup} />
+        <Settings trigger={popup} setPopup={setPopup} toggleMode={toggleMode} />
         <Login trigger={popup} setPopup={setPopup} />
+        <WinLoss trigger={popup} setPopup={setPopup} />
         <Graph />
         <div className="game">
           <Board />

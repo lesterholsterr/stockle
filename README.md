@@ -29,10 +29,7 @@ Find a new stock chart API since CanvasJS apparently costs money!!
 - https://developers.google.com/chart/interactive/docs/gallery/annotatedtimeline
 - https://code.google.com/archive/p/time-series-graph/
 
-User statistics and leaderboard
-
-Add hint feature (logo)
-- https://www.benzinga.com/apis/cloud-product/company-logo-api/
+User statistics CSS and leaderboard logic (might involve more backend work)
 
 Add easy/hard mode (toggle graph on/off) and dark/light mode
 
@@ -41,12 +38,11 @@ Add easy/hard mode (toggle graph on/off) and dark/light mode
 Work on reset.js
 - datetime library
 - figure out how to run ipynb scripts from JS
+- reset streaks for users who did not play by EOD
 
 Make a list of "reasonable" stocks to choose from
 
 Look into image hosters to store user profile pictures
-
-Schema and server-side logic for storing statistics
 
 #### Long Term
 
@@ -55,3 +51,6 @@ Deploy the damn thing!
 Search bar reccomendation priority
 - Order by relevance but also market cap of company
 - Account for typos
+
+Add hint feature (logo)
+- https://www.benzinga.com/apis/cloud-product/company-logo-api/

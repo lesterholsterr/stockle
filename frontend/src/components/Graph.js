@@ -118,13 +118,13 @@ class Graph extends Component {
         <div>
           {
             // Reference: https://reactjs.org/docs/conditional-rendering.html#inline-if-with-logical--operator
-            this.state.isLoaded && (
-              <CanvasJSStockChart
-                containerProps={containerProps}
-                options={options}
-                /* onRef = {ref => this.chart = ref} */
-              />
-            )
+            // this.state.isLoaded && (
+            //   <CanvasJSStockChart
+            //     containerProps={containerProps}
+            //     options={options}
+            //     /* onRef = {ref => this.chart = ref} */
+            //   />
+            // )
           }
         </div>
       </div>

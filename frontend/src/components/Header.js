@@ -5,17 +5,10 @@ import {
   FaSignInAlt,
   FaSignOutAlt,
 } from "react-icons/fa";
-import { useSelector, useDispatch } from "react-redux";
-import { logout, reset } from "../features/auth/authSlice";
+import { useSelector } from "react-redux";
 
 function Header({ mode, setPopup }) {
-  const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
-
-  const onLogout = () => {
-    dispatch(logout());
-    dispatch(reset());
-  };
 
   return (
     <header className={`header-${mode}`}>
@@ -33,7 +26,7 @@ function Header({ mode, setPopup }) {
         </button>
         {user ? (
           <>
-            <button onClick={onLogout}>
+            <button onClick={() => setPopup("logout")}>
               <FaSignOutAlt /> <p>Logout</p>
             </button>
           </>

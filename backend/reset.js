@@ -10,6 +10,9 @@
 // QUESTION: Should we clear the DB of all Stock schemas (from prior day) before doing this?
 // 5. iterate through stock_historical_data.csv, send POST requests to create HistoricalPrices in DB
 
+// 6. Iterate through all users in the DB and if anyone has a dailyPoints value of 0, set
+// playedYesterday to false to discontinue their streak
+
 const { promisify } = require("util");
 const fs = require("fs");
 const path = require("path");

@@ -1,9 +1,10 @@
-import "../css/Popup.css";
 import React, { useContext } from "react";
-import { AppContext } from "../App";
+import { AppContext } from "../../App";
 import { toast } from "react-toastify";
 
-function Popup({ toggleMode, trigger, setPopup }) {
+import "../../css/Popup.css";
+
+function WinLoss({ trigger, setPopup }) {
   const { currAttempt, todayStock, shareResults } = useContext(AppContext);
 
   const copyToClipboard = () => {
@@ -14,46 +15,7 @@ function Popup({ toggleMode, trigger, setPopup }) {
     });
   };
 
-  if (trigger === "instructions") {
-    return (
-      <div className="popup">
-        <div className="popup-inner">
-          <h3>Instructions</h3>
-          <p>Figure it out yourself</p>
-          <div className="close-popup" onClick={() => setPopup("none")}>
-            <div className="close-line-1"></div>
-            <div className="close-line-2"></div>
-          </div>
-        </div>
-      </div>
-    );
-  } else if (trigger === "statistics") {
-    return (
-      <div className="popup">
-        <div className="popup-inner">
-          <h3>Statistics</h3>
-          <p>Coming Soon</p>
-          <div className="close-popup" onClick={() => setPopup("none")}>
-            <div className="close-line-1"></div>
-            <div className="close-line-2"></div>
-          </div>
-        </div>
-      </div>
-    );
-  } else if (trigger === "settings") {
-    return (
-      <div className="popup">
-        <div className="popup-inner">
-          <h3>Settings</h3>
-          <button onClick={toggleMode}>Switch Mode</button>
-          <div className="close-popup" onClick={() => setPopup("none")}>
-            <div className="close-line-1"></div>
-            <div className="close-line-2"></div>
-          </div>
-        </div>
-      </div>
-    );
-  } else if (trigger === "win") {
+  if (trigger === "win") {
     return (
       <div className="popup">
         <div className="popup-inner">
@@ -93,4 +55,4 @@ function Popup({ toggleMode, trigger, setPopup }) {
   }
 }
 
-export default Popup;
+export default WinLoss;
