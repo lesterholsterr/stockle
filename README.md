@@ -18,20 +18,15 @@ Code block for converting csv to JSON: http://techslides.com/convert-csv-to-json
 
 Stock chart API: https://canvasjs.com/download-html5-charting-graphing-library/?f=npm
 
-(Maybe) Dropdown menu: https://www.youtube.com/watch?v=jaMgXmrk29M
-
 ### TODO
 
 #### Front End
 
-Find a new stock chart API since CanvasJS apparently costs money!!
-- https://humblesoftware.com/finance/index
-- https://developers.google.com/chart/interactive/docs/gallery/annotatedtimeline
-- https://code.google.com/archive/p/time-series-graph/
-
 User statistics CSS and leaderboard logic (might involve more backend work)
 
-Add easy/hard mode (toggle graph on/off) and dark/light mode
+Make it so the user cannot play without first logging in (temporary measure)
+
+Add easy/hard mode (toggle graph on/off)
 
 #### Back End
 
@@ -41,8 +36,6 @@ Work on reset.js
 - reset streaks for users who did not play by EOD
 
 Make a list of "reasonable" stocks to choose from
-
-Look into image hosters to store user profile pictures
 
 #### Long Term
 
@@ -54,3 +47,5 @@ Search bar reccomendation priority
 
 Add hint feature (logo)
 - https://www.benzinga.com/apis/cloud-product/company-logo-api/
+
+Look into image hosters to store user profile pictures

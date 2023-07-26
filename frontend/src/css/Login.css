@@ -16,26 +16,6 @@
   font-family: inherit;
 }
 
-.submit-btn {
-  padding: 10px 20px;
-  border: 1px solid #000;
-  border-radius: 5px;
-  background: black;
-  color: white;
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
-  text-align: center;
-  margin-bottom: 20px;
-  transition-duration: 0.5s;
-}
-
-.submit-btn:hover {
-  transform: scale(0.97);
-  background: rgba(0, 0, 0, 0.8);
-  transition-duration: 0.5s;
-}
-
 .change-option-btn {
   all: unset;
   cursor: pointer;
@@ -55,4 +35,9 @@
 }
 .change-option-btn:hover::before {
   width: 100%;
+}
+
+.logout-buttons button {
+  margin-right: 10px;
+  margin-top: 10px;
 }

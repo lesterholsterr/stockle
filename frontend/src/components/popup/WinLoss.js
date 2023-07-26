@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 
 import "../../css/Popup.css";
 
-function WinLoss({ trigger, setPopup }) {
+function WinLoss({ mode, trigger, setPopup }) {
   const { currAttempt, todayStock, shareResults } = useContext(AppContext);
 
   const copyToClipboard = () => {
@@ -18,7 +18,7 @@ function WinLoss({ trigger, setPopup }) {
   if (trigger === "win") {
     return (
       <div className="popup">
-        <div className="popup-inner">
+        <div className={`popup-inner ${mode}`}>
           <h3>You Win!</h3>
           <br />
           <p>Today's Stock: {todayStock.name}</p>
@@ -43,7 +43,7 @@ function WinLoss({ trigger, setPopup }) {
           <br />
           <p>{todayStock.summary}</p>
           <button onClick={copyToClipboard}>Share Results</button>
-          <div className="close-popup" onClick={() => setPopup("none")}>
+          <div className={`close-popup-${mode}`} onClick={() => setPopup("none")}>
             <div className="close-line-1"></div>
             <div className="close-line-2"></div>
           </div>

@@ -70,15 +70,15 @@ function App() {
         }}
       >
         <Header mode={mode} setPopup={setPopup} />
-        <Instructions trigger={popup} setPopup={setPopup} />
-        <Statistics trigger={popup} setPopup={setPopup} />
-        <Settings trigger={popup} setPopup={setPopup} toggleMode={toggleMode} />
-        <Login trigger={popup} setPopup={setPopup} />
-        <WinLoss trigger={popup} setPopup={setPopup} />
-        <Graph />
+        <Instructions mode={mode} trigger={popup} setPopup={setPopup} />
+        <Statistics mode={mode} trigger={popup} setPopup={setPopup} />
+        <Settings mode={mode} trigger={popup} setPopup={setPopup} toggleMode={toggleMode} />
+        <Login mode={mode} trigger={popup} setPopup={setPopup} />
+        <WinLoss mode={mode} trigger={popup} setPopup={setPopup} />
+        <Graph popupState={popup} />
         <div className="game">
-          <Board />
-          <Search setPopup={setPopup} />
+          <Board mode={mode} />
+          <Search mode={mode} setPopup={setPopup} />
         </div>
         <ToastContainer />
       </AppContext.Provider>

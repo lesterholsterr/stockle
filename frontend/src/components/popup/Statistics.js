@@ -3,13 +3,27 @@ import { useSelector } from "react-redux";
 import "../../css/Popup.css";
 import "../../css/Login.css";
 
-function Statistics({ trigger, setPopup }) {
+function Statistics({ mode, trigger, setPopup }) {
   const { user } = useSelector((state) => state.auth);
 
   if (trigger === "statistics") {
     return (
-      <div className="popup">
-        <div className="popup-inner">
+      <div className={"popup"}>
+        <div className={`popup-inner ${mode}`}>
+          <div className="button-row">
+            <button
+              className="menu-button"
+              onClick={() => setPopup("statistics")}
+            >
+              Statistics
+            </button>
+            <button
+              className="menu-button"
+              onClick={() => setPopup("leaderboard-week")}
+            >
+              Leaderboard
+            </button>
+          </div>
           {user ? (
             <>
               <h3>Statistics - {user.username}</h3>
@@ -39,7 +53,87 @@ function Statistics({ trigger, setPopup }) {
               </button>
             </>
           )}
-          <div className="close-popup" onClick={() => setPopup("none")}>
+          <div className={`close-popup-${mode}`} onClick={() => setPopup("none")}>
+            <div className="close-line-1"></div>
+            <div className="close-line-2"></div>
+          </div>
+        </div>
+      </div>
+    );
+  } else if (trigger === "leaderboard-week") {
+    return (
+      <div className="popup">
+        <div className={`popup-inner ${mode}`}>
+          <div className="button-row">
+            <button
+              className="menu-button"
+              onClick={() => setPopup("statistics")}
+            >
+              Statistics
+            </button>
+            <button
+              className="menu-button"
+              onClick={() => setPopup("leaderboard-week")}
+            >
+              Leaderboard
+            </button>
+          </div>
+          <h3>Weekly Leaderboard</h3>
+          <div className="button-row">
+            <button
+              className="menu-button"
+              onClick={() => setPopup("leaderboard-week")}
+            >
+              This Week
+            </button>
+            <button
+              className="menu-button"
+              onClick={() => setPopup("leaderboard-all")}
+            >
+              All Time
+            </button>
+          </div>
+          <div className={`close-popup-${mode}`} onClick={() => setPopup("none")}>
+            <div className="close-line-1"></div>
+            <div className="close-line-2"></div>
+          </div>
+        </div>
+      </div>
+    );
+  } else if (trigger === "leaderboard-all") {
+    return (
+      <div className="popup">
+        <div className={`popup-inner ${mode}`}>
+          <div className="button-row">
+            <button
+              className="menu-button"
+              onClick={() => setPopup("statistics")}
+            >
+              Statistics
+            </button>
+            <button
+              className="menu-button"
+              onClick={() => setPopup("leaderboard-week")}
+            >
+              Leaderboard
+            </button>
+          </div>
+          <h3>All Time Leaderboard</h3>
+          <div className="button-row">
+            <button
+              className="menu-button"
+              onClick={() => setPopup("leaderboard-week")}
+            >
+              This Week
+            </button>
+            <button
+              className="menu-button"
+              onClick={() => setPopup("leaderboard-all")}
+            >
+              All Time
+            </button>
+          </div>
+          <div className={`close-popup-${mode}`} onClick={() => setPopup("none")}>
             <div className="close-line-1"></div>
             <div className="close-line-2"></div>
           </div>

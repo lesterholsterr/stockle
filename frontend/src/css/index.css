@@ -17,7 +17,8 @@ body {
 }
 
 .dark {
-  background-color: darkgray;
+  background-color: rgb(28, 25, 25);
+  color: white;
 }
 
 /* HEADER */
@@ -56,7 +57,7 @@ header p {
 }
 
 .header-dark {
-  background-color: rgba(62, 54, 54, 0.915);
+  background-color: rgb(39, 34, 34);
 }
 
 .menu-buttons {
@@ -68,7 +69,7 @@ header p {
 .graph {
   height: 300px;
   width: 700px;
-  background-color: lightblue;
+  background-color: rgba(0, 0, 0, 0);
   margin-left: auto;
   margin-right: auto;
   margin-top: 40px;
@@ -95,6 +96,7 @@ header p {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  align-items: center;
   margin: 5px;
 }
 
@@ -112,6 +114,42 @@ header p {
   place-items: center;
   font-size: 20px;
   font-weight: bolder;
-  color: black;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Fancy button */
+.fancy-button-light {
+  padding: 10px 20px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  background: black;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  transition-duration: 0.5s;
+}
+.fancy-button-light:hover {
+  transform: scale(0.97);
+  background: rgba(0, 0, 0, 0.8);
+  transition-duration: 0.5s;
+}
+
+.fancy-button-dark {
+  padding: 10px 20px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  background: white;
+  color: black;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  transition-duration: 0.5s;
+}
+.fancy-button-dark:hover {
+  transform: scale(0.97);
+  background: whitesmoke;
+  transition-duration: 0.5s;
 }

@@ -7,7 +7,7 @@ import Spinner from "../Spinner";
 import "../../css/Popup.css";
 import "../../css/Login.css";
 
-function Login({ trigger, setPopup }) {
+function Login({ mode, trigger, setPopup }) {
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     username: "",
@@ -77,7 +77,7 @@ function Login({ trigger, setPopup }) {
   if (trigger === "login") {
     return (
       <div className="popup">
-        <div className="popup-inner">
+        <div className={`popup-inner ${mode}`}>
           <section className="form">
             <h3 className="form-group">Login</h3>
             <form onSubmit={onSubmit}>
@@ -97,7 +97,7 @@ function Login({ trigger, setPopup }) {
                 placeholder="Password"
                 onChange={onChange}
               />
-              <button className="submit-btn" type="submit">
+              <button className={`fancy-button-${mode}`} type="submit">
                 Login
               </button>
             </form>
@@ -109,7 +109,10 @@ function Login({ trigger, setPopup }) {
           >
             Create an account
           </button>
-          <div className="close-popup" onClick={() => setPopup("none")}>
+          <div
+            className={`close-popup-${mode}`}
+            onClick={() => setPopup("none")}
+          >
             <div className="close-line-1"></div>
             <div className="close-line-2"></div>
           </div>
@@ -119,7 +122,7 @@ function Login({ trigger, setPopup }) {
   } else if (trigger === "register") {
     return (
       <div className="popup">
-        <div className="popup-inner">
+        <div className={`popup-inner ${mode}`}>
           <section className="form">
             <h3 className="form-group">Register</h3>
             <form onSubmit={onSubmit}>
@@ -155,7 +158,7 @@ function Login({ trigger, setPopup }) {
                 placeholder="Confirm Password"
                 onChange={onChange}
               />
-              <button className="submit-btn" type="submit">
+              <button className={`fancy-button-${mode}`} type="submit">
                 Create Account
               </button>
             </form>
@@ -167,7 +170,10 @@ function Login({ trigger, setPopup }) {
           >
             Already have an account?
           </button>
-          <div className="close-popup" onClick={() => setPopup("none")}>
+          <div
+            className={`close-popup-${mode}`}
+            onClick={() => setPopup("none")}
+          >
             <div className="close-line-1"></div>
             <div className="close-line-2"></div>
           </div>
@@ -177,12 +183,24 @@ function Login({ trigger, setPopup }) {
   } else if (trigger === "logout") {
     return (
       <div className="popup">
-        <div className="popup-inner">
+        <div className={`popup-inner ${mode}`}>
           <h3>Logout</h3>
           <p>Are you sure you want to log out?</p>
-          <button onClick={onLogout}>Yes</button>
-          <button onClick={() => setPopup("none")}>Cancel</button>
-          <div className="close-popup" onClick={() => setPopup("none")}>
+          <div className="logout-buttons">
+            <button className={`fancy-button-${mode}`} onClick={onLogout}>
+              Yes
+            </button>
+            <button
+              className="change-option-btn"
+              onClick={() => setPopup("none")}
+            >
+              Cancel
+            </button>
+          </div>
+          <div
+            className={`close-popup-${mode}`}
+            onClick={() => setPopup("none")}
+          >
             <div className="close-line-1"></div>
             <div className="close-line-2"></div>
           </div>

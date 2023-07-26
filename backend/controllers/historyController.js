@@ -5,7 +5,7 @@ const HistoricalPrice = require("../models/historyModel");
 // @route  GET /api/history
 // @access Public
 const getAllHistory = asyncHandler(async (req, res) => {
-  const allHistory = await HistoricalPrice.find({});
+  const allHistory = await HistoricalPrice.find({}).sort({ date: 1 });
   res.status(200).json(allHistory);
 });
 

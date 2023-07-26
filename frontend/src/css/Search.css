@@ -1,6 +1,6 @@
 .search-container {
   margin-top: 20px;
-  width: 280px;
+  width: 325px;
   display: flex;
   flex-direction: column;
 }
@@ -15,7 +15,8 @@
   background-color: white;
   display: flex;
   flex-direction: column;
-  border: 1px solid gray;
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
 
   transform: scaleX(-1);
   transform: scaleY(1);
@@ -32,6 +33,7 @@
   cursor: pointer;
   text-align: start;
   margin: 2px 0;
+  font-family: inherit;
 }
 
 .dropdown-row:hover {
@@ -39,9 +41,17 @@
 }
 
 input {
-  width: 250px;
+  width: 237px;
+  padding: 10px;
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 16px;
 }
 
 .search-inner {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
 }
