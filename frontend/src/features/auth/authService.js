@@ -40,11 +40,25 @@ const updateUser = async (userData) => {
   return response.data;
 };
 
+// Get Weekly Leaderboard
+const getWeeklyLeaders = async () => {
+  const response = await axios.get(API_URL + "/leaderboard/week");
+  return response.data;
+};
+
+// Get All Time Leaderboard
+const getAllTimeLeaders = async () => {
+  const response = await axios.get(API_URL + "/leaderboard/all");
+  return response.data;
+};
+
 const authService = {
   register,
   logout,
   login,
   updateUser,
+  getWeeklyLeaders,
+  getAllTimeLeaders,
 };
 
 export default authService;

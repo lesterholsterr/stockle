@@ -77,9 +77,9 @@ function Login({ mode, trigger, setPopup }) {
   if (trigger === "login") {
     return (
       <div className="popup">
-        <div className={`popup-inner ${mode}`}>
+        <div className={`popup-inner ${mode} login-container`}>
           <section className="form">
-            <h3 className="form-group">Login</h3>
+            <h1 className="form-group">Login</h1>
             <form onSubmit={onSubmit}>
               <input
                 type="text"
@@ -104,10 +104,10 @@ function Login({ mode, trigger, setPopup }) {
           </section>
 
           <button
-            className="change-option-btn"
+            className="underline-btn"
             onClick={() => setPopup("register")}
           >
-            Create an account
+            Don't have an account?
           </button>
           <div
             className={`close-popup-${mode}`}
@@ -122,9 +122,9 @@ function Login({ mode, trigger, setPopup }) {
   } else if (trigger === "register") {
     return (
       <div className="popup">
-        <div className={`popup-inner ${mode}`}>
+        <div className={`popup-inner ${mode} login-container`}>
           <section className="form">
-            <h3 className="form-group">Register</h3>
+            <h1 className="form-group">Register</h1>
             <form onSubmit={onSubmit}>
               <input
                 type="text"
@@ -165,7 +165,7 @@ function Login({ mode, trigger, setPopup }) {
           </section>
 
           <button
-            className="change-option-btn"
+            className="underline-btn"
             onClick={() => setPopup("login")}
           >
             Already have an account?
@@ -184,14 +184,14 @@ function Login({ mode, trigger, setPopup }) {
     return (
       <div className="popup">
         <div className={`popup-inner ${mode}`}>
-          <h3>Logout</h3>
+          <h1>Logout</h1>
           <p>Are you sure you want to log out?</p>
           <div className="logout-buttons">
             <button className={`fancy-button-${mode}`} onClick={onLogout}>
               Yes
             </button>
             <button
-              className="change-option-btn"
+              className="underline-btn"
               onClick={() => setPopup("none")}
             >
               Cancel

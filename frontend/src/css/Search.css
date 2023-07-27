@@ -40,18 +40,18 @@
   font-weight: bold;
 }
 
-input {
+.search-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.search-inner input {
   width: 237px;
   padding: 10px;
   border: 1px solid #e6e6e6;
   border-radius: 8px;
   font-family: inherit;
   font-size: 16px;
-}
-
-.search-inner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
 }

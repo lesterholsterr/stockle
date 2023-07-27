@@ -16,28 +16,15 @@
   font-family: inherit;
 }
 
-.change-option-btn {
-  all: unset;
-  cursor: pointer;
-  display: inline-block;
-  padding-bottom: 0.25rem;
-  position: relative;
-}
-.change-option-btn::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 0;
-  height: 2px;
-  background-color: rgb(0, 0, 0, 0.8);
-  transition: 0.25s ease-out;
-}
-.change-option-btn:hover::before {
-  width: 100%;
-}
-
 .logout-buttons button {
   margin-right: 10px;
   margin-top: 10px;
+}
+
+.login-container h1 {
+  margin-bottom: 20px;
+}
+
+.login-container button {
+  margin-bottom: 10px;
 }

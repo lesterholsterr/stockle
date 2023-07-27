@@ -31,11 +31,6 @@ const userSchema = mongoose.Schema(
       required: true,
     },
     weeklyPoints: {
-      type: Array,
-      default: [0, 0, 0, 0, 0, 0, 0],
-      required: true,
-    },
-    totalWeeklyPoints: {
       type: Number,
       default: 0,
       required: true,

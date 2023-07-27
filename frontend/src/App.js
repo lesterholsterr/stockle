@@ -3,6 +3,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 
+import Alpha from "./components/popup/Alpha";
 import Instructions from "./components/popup/Instructions";
 import Statistics from "./components/popup/Statistics";
 import Settings from "./components/popup/Settings";
@@ -21,7 +22,7 @@ export const AppContext = createContext();
 
 function App() {
   // Popup window status
-  const [popup, setPopup] = useState("none");
+  const [popup, setPopup] = useState("alpha");
 
   // Dark/light mode status
   const [mode, setMode] = useState("light");
@@ -70,9 +71,15 @@ function App() {
         }}
       >
         <Header mode={mode} setPopup={setPopup} />
+        <Alpha mode={mode} trigger={popup} setPopup={setPopup} />
         <Instructions mode={mode} trigger={popup} setPopup={setPopup} />
         <Statistics mode={mode} trigger={popup} setPopup={setPopup} />
-        <Settings mode={mode} trigger={popup} setPopup={setPopup} toggleMode={toggleMode} />
+        <Settings
+          mode={mode}
+          trigger={popup}
+          setPopup={setPopup}
+          toggleMode={toggleMode}
+        />
         <Login mode={mode} trigger={popup} setPopup={setPopup} />
         <WinLoss mode={mode} trigger={popup} setPopup={setPopup} />
         <Graph popupState={popup} />

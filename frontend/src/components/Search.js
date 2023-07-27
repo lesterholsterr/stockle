@@ -104,15 +104,12 @@ function Search({ mode, setPopup }) {
     if (isWin) {
       updatedUser.gamesWon += 1;
       updatedUser.dailyPoints += points;
-      updatedUser.totalWeeklyPoints -= updatedUser.weeklyPoints.shift();
-      updatedUser.weeklyPoints.push(points);
-      updatedUser.totalWeeklyPoints += points;
+      updatedUser.weeklyPoints += points;
       updatedUser.totalPoints += points;
+      updatedUser.guessDistribution[currAttempt] += 1;
     } else {
       updatedUser.dailyPoints += points;
-      updatedUser.totalWeeklyPoints -= updatedUser.weeklyPoints.shift();
-      updatedUser.weeklyPoints.push(points);
-      updatedUser.totalWeeklyPoints += points;
+      updatedUser.weeklyPoints += points;
       updatedUser.totalPoints += points;
     }
     updatedUser.playedYesterday
@@ -122,7 +119,6 @@ function Search({ mode, setPopup }) {
       updatedUser.maxStreak,
       updatedUser.currentStreak
     );
-    updatedUser.guessDistribution[currAttempt] += 1;
     updatedUser.playedYesterday = true;
 
     dispatch(updateUser(updatedUser));

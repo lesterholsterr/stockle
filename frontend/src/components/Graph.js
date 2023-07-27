@@ -24,12 +24,10 @@ class Graph extends Component {
       const response = await axios.get("/api/history");
       const data = response.data;
       const curPrice = data[data.length - 1].close;
-      console.log(curPrice);
       var dps = [];
       for (var i = 0; i < data.length; i++) {
         const price = Number(data[i].close);
         const standardisedPrice = ((price / curPrice) * 100).toFixed(2);
-        console.log(standardisedPrice);
         dps.push({
           x: new Date(data[i].date),
           y: Number(standardisedPrice),
@@ -57,9 +55,9 @@ class Graph extends Component {
           dataPoints: this.state.dataPoints,
         },
       ],
-      title: {
-        text: "Relative Share Price Since Inception",
-      },
+      // title: {
+      //   text: "Relative Share Price Since Inception",
+      // },
       axisY: {
         // gridThickness: 0,
         // tickLength: 0,

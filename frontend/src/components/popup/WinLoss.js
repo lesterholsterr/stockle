@@ -15,18 +15,28 @@ function WinLoss({ mode, trigger, setPopup }) {
     });
   };
 
+  const user = JSON.parse(localStorage.getItem("user"));
+
   if (trigger === "win") {
     return (
       <div className="popup">
         <div className={`popup-inner ${mode}`}>
-          <h3>You Win!</h3>
+          <h1>You Win!</h1>
           <br />
-          <p>Today's Stock: {todayStock.name}</p>
+          <h3>Today's Stock: {todayStock.name}</h3>
           <p>Guesses Used: {currAttempt - 1}</p>
+          <p>Points Earned: {800 - currAttempt * 100}</p>
+          <p>Daily Reward: {Math.min(100, user.currentStreak * 20)}</p>
           <br />
           <p>{todayStock.summary}</p>
-          <button onClick={copyToClipboard}>Share Results</button>
-          <div className="close-popup" onClick={() => setPopup("none")}>
+          <br />
+          <button onClick={copyToClipboard} className={`fancy-button-${mode}`}>
+            Share Results
+          </button>
+          <div
+            className={`close-popup-${mode}`}
+            onClick={() => setPopup("none")}
+          >
             <div className="close-line-1"></div>
             <div className="close-line-2"></div>
           </div>
@@ -37,13 +47,22 @@ function WinLoss({ mode, trigger, setPopup }) {
     return (
       <div className="popup">
         <div className="popup-inner">
-          <h3>You Lose!</h3>
+          <h3>Out of Guesses!</h3>
           <br />
-          <p>Today's Stock: {todayStock.name}</p>
+          <h3>Today's Stock: {todayStock.name}</h3>
+          <p>Guesses Used: {currAttempt - 1}</p>
+          <p>Points Earned: {100}</p>
+          <p>Daily Reward: {Math.min(100, user.currentStreak * 20)}</p>
           <br />
           <p>{todayStock.summary}</p>
-          <button onClick={copyToClipboard}>Share Results</button>
-          <div className={`close-popup-${mode}`} onClick={() => setPopup("none")}>
+          <br />
+          <button onClick={copyToClipboard} className={`fancy-button-${mode}`}>
+            Share Results
+          </button>
+          <div
+            className={`close-popup-${mode}`}
+            onClick={() => setPopup("none")}
+          >
             <div className="close-line-1"></div>
             <div className="close-line-2"></div>
           </div>

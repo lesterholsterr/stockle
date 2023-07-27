@@ -6,10 +6,43 @@ function Settings({ mode, trigger, setPopup, toggleMode }) {
   if (trigger === "settings") {
     return (
       <div className="popup">
-        <div className={`popup-inner ${mode}`}>
-          <h3>Settings</h3>
-          <button className={`fancy-button-${mode}`} onClick={toggleMode}>Switch Mode</button>
-          <div className={`close-popup-${mode}`} onClick={() => setPopup("none")}>
+        <div className={`popup-inner ${mode} settings-container`}>
+          <h1>Settings</h1>
+          <hr />
+          <br />
+          <button
+            className={`fancy-button-${mode}`}
+            onClick={() => setPopup("alpha")}
+          >
+            Report a bug
+          </button>
+          <br />
+          <br />
+          <hr />
+          <br />
+          {mode === "light" ? (
+            <>
+              <button className={`fancy-button-${mode}`} onClick={toggleMode}>
+                Toggle Dark Mode
+              </button>
+            </>
+          ) : (
+            <>
+              <button className={`fancy-button-${mode}`} onClick={toggleMode}>
+                Toggle Light Mode
+              </button>
+            </>
+          )}
+          <br />
+          <br />
+          <hr />
+          <br />
+          <p>Version: Alpha 1.0.0</p>
+
+          <div
+            className={`close-popup-${mode}`}
+            onClick={() => setPopup("none")}
+          >
             <div className="close-line-1"></div>
             <div className="close-line-2"></div>
           </div>

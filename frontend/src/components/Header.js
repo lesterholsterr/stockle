@@ -4,6 +4,7 @@ import {
   FaQuestionCircle,
   FaSignInAlt,
   FaSignOutAlt,
+  FaWrench,
 } from "react-icons/fa";
 import { useSelector } from "react-redux";
 
@@ -12,9 +13,12 @@ function Header({ mode, setPopup }) {
 
   return (
     <header className={`header-${mode}`}>
+      <div className="filler"></div>
       <h1>Stockle</h1>
-
       <div className="menu-buttons">
+      <button onClick={() => setPopup("alpha")}>
+          <FaWrench />
+        </button>
         <button onClick={() => setPopup("instructions")}>
           <FaQuestionCircle />
         </button>

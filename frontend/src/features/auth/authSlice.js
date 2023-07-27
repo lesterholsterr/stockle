@@ -66,6 +66,42 @@ export const updateUser = createAsyncThunk(
   }
 );
 
+// Get Weekly Leaderboard
+export const getWeeklyLeaders = createAsyncThunk(
+  "auth/week",
+  async (thunkAPI) => {
+    try {
+      return await authService.getWeeklyLeaders();
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+// Get All Time Leaderboard
+export const getAllTimeLeaders = createAsyncThunk(
+  "auth/week",
+  async (thunkAPI) => {
+    try {
+      return await authService.getAllTimeLeaders();
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 export const authSlice = createSlice({
   name: "auth",
   initialState,

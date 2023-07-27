@@ -42,16 +42,15 @@ const createUser = asyncHandler(async (req, res) => {
       _id: user.id,
       username: user.username,
       email: user.email,
-      gamesPlayed,
-      gamesWon,
-      dailyPoints,
-      weeklyPoints,
-      totalWeeklyPoints,
-      totalPoints,
-      playedYesterday,
-      currentStreak,
-      maxStreak,
-      guessDistribution,
+      gamesPlayed: user.gamesPlayed,
+      gamesWon: user.gamesWon,
+      dailyPoints: user.dailyPoints,
+      weeklyPoints: user.weeklyPoints,
+      totalPoints: user.totalPoints,
+      playedYesterday: user.playedYesterday,
+      currentStreak: user.currentStreak,
+      maxStreak: user.maxStreak,
+      guessDistribution: user.guessDistribution,
     });
   } else {
     res.status(400);
@@ -78,7 +77,6 @@ const loginUser = asyncHandler(async (req, res) => {
       gamesWon: user.gamesWon,
       dailyPoints: user.dailyPoints,
       weeklyPoints: user.weeklyPoints,
-      totalWeeklyPoints: user.totalWeeklyPoints,
       totalPoints: user.totalPoints,
       playedYesterday: user.playedYesterday,
       currentStreak: user.currentStreak,
@@ -103,14 +101,12 @@ const generateToken = (id) => {
 // @route  PUT /api/users/
 // @access Public
 const updateUser = asyncHandler(async (req, res) => {
-  console.log(req.body);
   const {
     _id: id,
     gamesPlayed: updGP,
     gamesWon: updGW,
     dailyPoints: updDP,
     weeklyPoints: updWP,
-    totalWeeklyPoints: updTWP,
     totalPoints: updTP,
     playedYesterday: updPY,
     currentStreak: updCS,
@@ -132,7 +128,6 @@ const updateUser = asyncHandler(async (req, res) => {
     gamesWon: updGW,
     dailyPoints: updDP,
     weeklyPoints: updWP,
-    totalWeeklyPoints: updTWP,
     totalPoints: updTP,
     playedYesterday: updPY,
     currentStreak: updCS,
@@ -146,8 +141,34 @@ const updateUser = asyncHandler(async (req, res) => {
   res.status(200).json(response);
 });
 
+// @desc   Returns all users sorted in descending order by weekly points
+// @route  GET /api/users/leaderboard/week
+// @access Public
+const getWeeklyLeaders = asyncHandler(async (req, res) => {
+  try {
+    const leaders = await User.find({}).sort({ weeklyPoints: -1 }).limit(10);
+    res.status(200).json(leaders);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+// @desc   Returns all users sorted in descending order by total points
+// @route  GET /api/users/leaderboard/all
+// @access Public
+const getAllTimeLeaders = asyncHandler(async (req, res) => {
+  try {
+    const leaders = await User.find({}).sort({ totalPoints: -1 }).limit(10);
+    res.status(200).json(leaders);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
 module.exports = {
   createUser,
   loginUser,
   updateUser,
+  getWeeklyLeaders,
+  getAllTimeLeaders,
 };

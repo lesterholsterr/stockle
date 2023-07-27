@@ -22,11 +22,9 @@ Stock chart API: https://canvasjs.com/download-html5-charting-graphing-library/?
 
 #### Front End
 
-User statistics CSS and leaderboard logic (might involve more backend work)
+Clear board state and share result in local storage at EOD
 
-Make it so the user cannot play without first logging in (temporary measure)
-
-Add easy/hard mode (toggle graph on/off)
+Add a boolean state passed to search.js that disables once the user either wins or loses
 
 #### Back End
 
@@ -34,8 +32,7 @@ Work on reset.js
 - datetime library
 - figure out how to run ipynb scripts from JS
 - reset streaks for users who did not play by EOD
-
-Make a list of "reasonable" stocks to choose from
+- reset weekly scores by EOW (also update weeklypoints in user schema)
 
 #### Long Term
 
@@ -49,3 +46,9 @@ Add hint feature (logo)
 - https://www.benzinga.com/apis/cloud-product/company-logo-api/
 
 Look into image hosters to store user profile pictures
+
+Make light/dark mode persist through refresh
+
+Add easy/hard mode (toggle graph on/off)
+
+Expand list of "reasonable" stocks
