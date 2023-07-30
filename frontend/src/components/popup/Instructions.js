@@ -1,5 +1,4 @@
 import React from "react";
-import Metric from "../Metric";
 import "../../css/Popup.css";
 
 function Instructions({ mode, trigger, setPopup }) {

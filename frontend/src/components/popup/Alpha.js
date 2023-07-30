@@ -15,7 +15,10 @@ function Alpha({ mode, trigger, setPopup }) {
             <li>
               Please{" "}
               <b>
-                <a className="underline-btn" onClick={() => setPopup("register")}>
+                <a
+                  className="underline-btn"
+                  onClick={() => setPopup("register")}
+                >
                   create an account
                 </a>
               </b>{" "}
@@ -24,10 +27,11 @@ function Alpha({ mode, trigger, setPopup }) {
             </li>
             <li>
               Please have the window on full screen. I haven't added any dynamic
-              resizing.
+              resizing yet.
             </li>
             <li>
-              Your password is encrypted with SHA256 and I am unable to see it.
+              Your passwords are hashed with bcrypt, so all I can see in the
+              database is an arbitrary string of letters and numbers.
             </li>
             <li>
               Any feedback whatsoever is appreciated. Just fill out the form
@@ -53,12 +57,7 @@ function Alpha({ mode, trigger, setPopup }) {
             />
             <div className="input-group">
               <label>Name</label>
-              <input
-                type="text"
-                name="name"
-                placeholder="John Doe"
-                required
-              />
+              <input type="text" name="name" placeholder="John Doe" required />
             </div>
             <div className="input-group">
               <label>Email</label>

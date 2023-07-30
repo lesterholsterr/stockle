@@ -1,8 +1,17 @@
 import React from "react";
 import "../../css/Login.css";
 import "../../css/Popup.css";
+import { LocalStorageManipulator } from "../../features/board/LocalStorageManipulator";
 
 function Settings({ mode, trigger, setPopup, toggleMode }) {
+  const setMode = () => {
+    const newMode = mode === "light" ? "dark" : "light";
+    console.log(newMode);
+    const localStorageManipulator = new LocalStorageManipulator();
+    localStorageManipulator.setMode(newMode);
+    toggleMode();
+  };
+
   if (trigger === "settings") {
     return (
       <div className="popup">
@@ -22,13 +31,13 @@ function Settings({ mode, trigger, setPopup, toggleMode }) {
           <br />
           {mode === "light" ? (
             <>
-              <button className={`fancy-button-${mode}`} onClick={toggleMode}>
+              <button className={`fancy-button-${mode}`} onClick={setMode}>
                 Toggle Dark Mode
               </button>
             </>
           ) : (
             <>
-              <button className={`fancy-button-${mode}`} onClick={toggleMode}>
+              <button className={`fancy-button-${mode}`} onClick={setMode}>
                 Toggle Light Mode
               </button>
             </>

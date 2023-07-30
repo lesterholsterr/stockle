@@ -1,27 +1,57 @@
-// QUESTION: How can we trigger this once every 24 hours?
-
-// 1. run fetch_basic_data.ipynb (requires ticker_list_refactored.csv to be in same directory)
-// 2. select a random stock from valid.stock for today's answer
-// 3. run fetch_historical_data.ipynb (requires today.stock to be in same directory)
-
-// NOTE: we must await the above 2 scripts before proceeding
-
-// 4. iterate through stock_basic_data.csv, send POST requests to create Stocks in DB
-// QUESTION: Should we clear the DB of all Stock schemas (from prior day) before doing this?
-// 5. iterate through stock_historical_data.csv, send POST requests to create HistoricalPrices in DB
-
-// 6. Iterate through all users in the DB and if anyone has a dailyPoints value of 0, set
-// playedYesterday to false to discontinue their streak
-
 const { promisify } = require("util");
+const { spawn } = require("child_process");
 const fs = require("fs");
-const path = require("path");
-const Stock = require("./models/stockModel");
-const HistoricalPrice = require("./models/historyModel");
-const STOCK_DATA_PATH = "/scripts/stock_basic_data.csv";
-const HISTORICAL_DATA_PATH = "/scripts/stock_historical_data.csv";
-
 const readFileAsync = promisify(fs.readFile);
+const path = require("path");
+
+const Stock = require("./models/stockModel");
+const User = require("./models/userModel");
+const HistoricalPrice = require("./models/historyModel");
+const STOCK_DATA_SCRIPT = path.join(__dirname, "/scripts/fetch_basic_data.py");
+const STOCK_DATA_PATH = "./scripts/stock_basic_data.csv";
+const HISTORICAL_DATA_SCRIPT = path.join(__dirname, "/scripts/fetch_historical_data.py");
+const HISTORICAL_DATA_PATH = "./scripts/stock_historical_data.csv";
+
+const startDailyReset = async () => {
+  // Step 1 - run fetch_basic_data.ipynb (requires ticker_list_refactored.csv to be in same directory)
+  await runPythonScript(STOCK_DATA_SCRIPT);
+
+  // Step 2 - select a random stock from valid.stock and write it to today.stock
+  await chooseNewStock();
+
+  // Step 3 - run fetch_historical_data.ipynb (requires today.stock to be in same directory)
+  await runPythonScript(HISTORICAL_DATA_SCRIPT);
+
+  // Step 4 - iterate through stock_basic_data.csv, create Stocks in DB
+  // await postStockData();
+
+  // Step 5 - iterate through stock_historical_data.csv, create HistoricalPrices in DB
+  // await postHistoricalData();
+
+  // Step 6 - Iterate through all users in the DB, discontinue streaks and set dailyPoints to 0
+  await resetUserDaily();
+};
+
+const startWeeklyReset = async () => {
+  // Iterate through all users in the DB and set weeklyPoints to 0
+  // Since daily reset also runs at the end of the week, we don't need to do too much else
+  await resetUserWeekly();
+};
+
+const runPythonScript = async (executablePath) => {
+  console.log("RUNNING ", executablePath);
+  const childPython = spawn("python", [executablePath]);
+
+  childPython.stdout.on("data", (data) => {
+    console.log(`stdout: ${data}`);
+  });
+  childPython.stdout.on("err", (data) => {
+    console.log(`stderr: ${data}`);
+  });
+  childPython.stdout.on("close", (code) => {
+    console.log(`python script exited with code ${code}`);
+  });
+};
 
 const readCSV = async (filepath) => {
   try {
@@ -30,6 +60,22 @@ const readCSV = async (filepath) => {
   } catch (err) {
     throw new Error(err);
   }
+};
+
+const chooseNewStock = async () => {
+  const tickerData = await readCSV("valid.stock");
+  const tickers = tickerData
+    .split("\n")
+    .filter((ticker) => ticker.trim() !== "");
+  const randomIndex = Math.floor(Math.random() * tickers.length);
+  const todayStock = tickers[randomIndex];
+  fs.writeFile("./backend/scripts/today.stock", todayStock, (err) => {
+    if (err) {
+      console.error("Error writing to today.stock file: ", err);
+      return;
+    }
+    console.log(`Today's stock is $${todayStock}`);
+  });
 };
 
 const csvToJSON = async (csv) => {
@@ -148,9 +194,27 @@ const addHistoricalPrice = async (history) => {
   }
 };
 
-const resetStockAndHistoricalData = () => {
-  postStockData();
-  postHistoricalData();
+const resetUserDaily = async () => {
+  try {
+    const losers = await User.find({ dailyPoints: 0 });
+    const updateStreakPromises = losers.map((user) => {
+      user.playedYesterday = false;
+      return user.save();
+    });
+    await Promise.all(updateStreakPromises);
+
+    await User.updateMany({}, { $set: { dailyPoints: 0 } });
+  } catch (error) {
+    console.error("Error conducting daily reset of users: ", error);
+  }
 };
 
-module.exports = { resetStockAndHistoricalData };
+const resetUserWeekly = async () => {
+  try {
+    await User.updateMany({}, { $set: { weeklyPoints: 0 } });
+  } catch (error) {
+    console.error("Error conducting weekly reset of users: ", error);
+  }
+};
+
+module.exports = { startDailyReset, startWeeklyReset };

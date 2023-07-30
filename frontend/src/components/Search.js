@@ -15,7 +15,7 @@ var stock_info = [];
   stock_info = response.data;
 })();
 
-function Search({ mode, setPopup }) {
+function Search({ mode, setPopup, gameOver, setGameOver }) {
   const [searchValue, setSearchValue] = useState("");
   const {
     board,
@@ -78,6 +78,8 @@ function Search({ mode, setPopup }) {
 
   const winLossCheck = (results, localStorageManipulator) => {
     if (results[0] === todayStock.ticker) {
+      setGameOver(true);
+      localStorageManipulator.setGameOver(true);
       updateStats(true);
       setShareResults(
         `Stockle ${currAttempt}/6\n`.concat(
@@ -86,6 +88,8 @@ function Search({ mode, setPopup }) {
       );
       setPopup("win");
     } else if (currAttempt === 6) {
+      setGameOver(true);
+      localStorageManipulator.setGameOver(true);
       updateStats(false);
       setShareResults(
         `Stockle X/6\n`.concat(localStorageManipulator.shareResults)
@@ -126,7 +130,7 @@ function Search({ mode, setPopup }) {
 
   // Scoring System:
   // 800 - (guessesUsed * 100) +
-  // max(100, currentStreak * 20) +
+  // min(100, currentStreak * 20) +
   // X if no logo hint used +
   // Y if hard mode enabled
   const calculatePoints = (isWin) => {
@@ -148,7 +152,7 @@ function Search({ mode, setPopup }) {
   return (
     <div className="search-container">
       <div className="dropdown-wrapper">
-        <div className="dropdown">
+        <div className={`dropdown-${mode}`}>
           {stock_info
             .filter((item) => {
               const searchTerm = searchValue.toLowerCase();
@@ -175,8 +179,21 @@ function Search({ mode, setPopup }) {
         </div>
       </div>
       <div className="search-inner">
-        <input type="text" value={searchValue} onChange={onChange} />
-        <button className={`fancy-button-${mode}`} onClick={() => onSearch(searchValue)}>Guess</button>
+        {gameOver ? (
+          <>
+            <input type="text" disabled="disabled" />
+          </>
+        ) : (
+          <>
+            <input type="text" value={searchValue} onChange={onChange} />
+          </>
+        )}
+        <button
+          className={`fancy-button-${mode}`}
+          onClick={() => onSearch(searchValue)}
+        >
+          Guess
+        </button>
       </div>
     </div>
   );

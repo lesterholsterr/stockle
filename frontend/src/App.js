@@ -17,15 +17,19 @@ import Search from "./components/Search";
 
 import { Stock } from "./features/stock/Stock.js";
 import { boardDefault } from "./features/board/BoardState";
+import { LocalStorageManipulator } from "./features/board/LocalStorageManipulator";
 
 export const AppContext = createContext();
 
 function App() {
+  const localStorageManipulator = new LocalStorageManipulator();
+
   // Popup window status
   const [popup, setPopup] = useState("alpha");
 
   // Dark/light mode status
-  const [mode, setMode] = useState("light");
+  const initialMode = localStorageManipulator.getMode();
+  const [mode, setMode] = useState(initialMode);
   const toggleMode = () => {
     if (mode === "light") {
       setMode("dark");
@@ -41,7 +45,11 @@ function App() {
   const [board, setBoard] = useState(boardDefault);
   const [currAttempt, setCurrAttempt] = useState(0);
   const [shareResults, setShareResults] = useState("");
+
+  // Game State
   const [todayStock, setTodayStock] = useState(null);
+  const initialGameOver = localStorageManipulator.getGameOver();
+  const [gameOver, setGameOver] = useState(initialGameOver);
 
   useEffect(() => {
     // Fetch the data and set todayStock
@@ -85,7 +93,12 @@ function App() {
         <Graph popupState={popup} />
         <div className="game">
           <Board mode={mode} />
-          <Search mode={mode} setPopup={setPopup} />
+          <Search
+            mode={mode}
+            setPopup={setPopup}
+            gameOver={gameOver}
+            setGameOver={setGameOver}
+          />
         </div>
         <ToastContainer />
       </AppContext.Provider>

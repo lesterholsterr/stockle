@@ -7,7 +7,7 @@
     "start": "node backend/index.js",
     "server": "nodemon backend/index.js",
     "client": "npm start --prefix frontend",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run start\" \"npm run client\""
   },
   "author": "Matthew Yang",
   "license": "ISC",

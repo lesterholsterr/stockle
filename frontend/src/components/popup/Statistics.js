@@ -14,8 +14,6 @@ function Statistics({ mode, trigger, setPopup }) {
     const fetchLeaders = async () => {
       const weeklyLeaders = await axios.get("/api/users/leaderboard/week");
       const allTimeLeaders = await axios.get("/api/users/leaderboard/all");
-      console.log(weeklyLeaders.data);
-      console.log(allTimeLeaders.data);
       setWeeklyLeaders(weeklyLeaders.data);
       setAllTimeLeaders(allTimeLeaders.data);
     };
@@ -29,13 +27,13 @@ function Statistics({ mode, trigger, setPopup }) {
         <div className={`popup-inner ${mode} statistics-container`}>
           <div className="button-row">
             <button
-              className="menu-button"
+              className={`menu-button-${mode}`}
               onClick={() => setPopup("statistics")}
             >
               <b>Statistics</b>
             </button>
             <button
-              className="menu-button"
+              className={`menu-button-${mode}`}
               onClick={() => setPopup("leaderboard-week")}
             >
               Leaderboard
@@ -100,13 +98,13 @@ function Statistics({ mode, trigger, setPopup }) {
         <div className={`popup-inner ${mode} statistics-container`}>
           <div className="button-row">
             <button
-              className="menu-button"
+              className={`menu-button-${mode}`}
               onClick={() => setPopup("statistics")}
             >
               Statistics
             </button>
             <button
-              className="menu-button"
+              className={`menu-button-${mode}`}
               onClick={() => setPopup("leaderboard-week")}
             >
               <b>Leaderboard</b>
@@ -114,13 +112,13 @@ function Statistics({ mode, trigger, setPopup }) {
           </div>
           <div className="button-row">
             <button
-              className="menu-button"
+              className={`menu-button-${mode}`}
               onClick={() => setPopup("leaderboard-week")}
             >
               <b>This Week</b>
             </button>
             <button
-              className="menu-button"
+              className={`menu-button-${mode}`}
               onClick={() => setPopup("leaderboard-all")}
             >
               All Time
@@ -131,8 +129,12 @@ function Statistics({ mode, trigger, setPopup }) {
           {weeklyLeaders.map((user) => (
             <>
               <div className="leader-row">
-                <div className="leader-name">{`${user.username}`}</div>
-                <div className="leader-points">{`${user.weeklyPoints}`}</div>
+                <div
+                  className={`leader-name-${mode}`}
+                >{`${user.username}`}</div>
+                <div
+                  className={`leader-points-${mode}`}
+                >{`${user.weeklyPoints}`}</div>
               </div>
             </>
           ))}
@@ -152,13 +154,13 @@ function Statistics({ mode, trigger, setPopup }) {
         <div className={`popup-inner ${mode} statistics-container`}>
           <div className="button-row">
             <button
-              className="menu-button"
+              className={`menu-button-${mode}`}
               onClick={() => setPopup("statistics")}
             >
               Statistics
             </button>
             <button
-              className="menu-button"
+              className={`menu-button-${mode}`}
               onClick={() => setPopup("leaderboard-all")}
             >
               <b>Leaderboard</b>
@@ -166,13 +168,13 @@ function Statistics({ mode, trigger, setPopup }) {
           </div>
           <div className="button-row">
             <button
-              className="menu-button"
+              className={`menu-button-${mode}`}
               onClick={() => setPopup("leaderboard-week")}
             >
               This Week
             </button>
             <button
-              className="menu-button"
+              className={`menu-button-${mode}`}
               onClick={() => setPopup("leaderboard-all")}
             >
               <b>All Time</b>
@@ -181,11 +183,15 @@ function Statistics({ mode, trigger, setPopup }) {
           <h1>All Time Leaderboard</h1>
           {allTimeLeaders.map((user) => (
             <>
-            <div className="leader-row">
-              <div className="leader-name">{`${user.username}`}</div>
-              <div className="leader-points">{`${user.totalPoints}`}</div>
-            </div>
-          </>
+              <div className="leader-row">
+                <div
+                  className={`leader-name-${mode}`}
+                >{`${user.username}`}</div>
+                <div
+                  className={`leader-points-${mode}`}
+                >{`${user.totalPoints}`}</div>
+              </div>
+            </>
           ))}
           <div
             className={`close-popup-${mode}`}
