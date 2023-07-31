@@ -2,3 +2,5 @@ node_modules
 venv
 .env
 backend/.ipynb_checkpoints
+rootkey.csv
+stockle.pem

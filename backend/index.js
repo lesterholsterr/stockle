@@ -64,4 +64,3 @@ const scheduleReset = () => {
 startDBAndServer();
 scheduleReset();
 diagnostic.testVenvImport();
-reset.startDailyReset();

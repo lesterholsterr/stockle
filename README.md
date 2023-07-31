@@ -1,6 +1,12 @@
-# Stockle
+# Stockle v1.0.1
 
-A stock market themed wordle parody I am attempting to build.
+A stock market-themed wordle parody currently in open Alpha.
+
+Feel free to check it out at http://stockle.ca!
+
+### Deployment
+
+Stockle runs on Node, but the Yahoo Finance web scraping API I'm using is written for Python. I used Docker to containerise this app into a Python virtual environment inside a node based image (please do not ask how long this took). The Docker image was pushed to Amazon's Elastic Container Registry and run on an EC2 instance. I used Nginx to reverse proxy HTTP requests to port 8080, where Stockle is running. The domain is being leased from Google for $17/year. I'm pretty sure I'm within the limits of AWS' free tier, but Jeff Bezos is a capitalist pig and AWS doesn't actually warn you if you exceed their free limits. So I guess I'll find out once my monthly bill arrives.
 
 ### Sources
 
@@ -18,15 +24,13 @@ Code block for converting csv to JSON: http://techslides.com/convert-csv-to-json
 
 Stock chart Library: https://canvasjs.com/download-html5-charting-graphing-library/?f=npm
 
-And of course the MVP, ChatGPT.
+Deploying to AWS: https://www.youtube.com/watch?v=YDNSItBN15w&t=139s
 
-### TODO
+<b>And of course the MVP, ChatGPT.</b>
 
-#### Immediate
+### Coming Soon
 
-Deploy!
-
-#### Long Term
+Enable HTTPS
 
 Add hint feature (logo)
 - https://www.benzinga.com/apis/cloud-product/company-logo-api/
@@ -40,3 +44,6 @@ Search bar reccomendation priority
 - Account for typos
 
 Expand list of "reasonable" stocks
+
+Look for alternatives to Yahoo Finance API that return more consistent info
+- Requried: ~6000 requests/day for little-to-no cost

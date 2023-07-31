@@ -46,7 +46,15 @@ function Settings({ mode, trigger, setPopup, toggleMode }) {
           <br />
           <hr />
           <br />
-          <p>Version: Alpha 1.0.0</p>
+          <a href="https://github.com/lesterholsterr/stockle" target="_blank">
+            <button className={`fancy-button-${mode}`}>View Git Repo</button>
+          </a>
+
+          <br />
+          <br />
+          <hr />
+          <br />
+          <p>Version: Alpha 1.0.1</p>
 
           <div
             className={`close-popup-${mode}`}

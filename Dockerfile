@@ -1,5 +1,5 @@
 # Stage 1: Build the React frontend
-FROM node:20-alpine as frontend
+FROM --platform=linux/amd64 node:20-alpine as frontend
 
 WORKDIR /app/frontend
 
@@ -14,7 +14,7 @@ COPY frontend/ .
 RUN npm run build
 
 # Stage 2: Build the Node.js backend
-FROM node:20-alpine as backend
+FROM --platform=linux/amd64 node:20-alpine as backend
 
 WORKDIR /app/backend
 
@@ -26,7 +26,7 @@ RUN npm install
 COPY backend/ .
 
 # Stage 3: Create the production image
-FROM node:20-slim
+FROM --platform=linux/amd64 node:20-slim
 
 # Set the working directory
 WORKDIR /app

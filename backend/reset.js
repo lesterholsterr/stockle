@@ -9,47 +9,60 @@ const User = require("./models/userModel");
 const HistoricalPrice = require("./models/historyModel");
 const STOCK_DATA_SCRIPT = path.join(__dirname, "/scripts/fetch_basic_data.py");
 const STOCK_DATA_PATH = "./scripts/stock_basic_data.csv";
-const HISTORICAL_DATA_SCRIPT = path.join(__dirname, "/scripts/fetch_historical_data.py");
+const HISTORICAL_DATA_SCRIPT = path.join(
+  __dirname,
+  "/scripts/fetch_historical_data.py"
+);
 const HISTORICAL_DATA_PATH = "./scripts/stock_historical_data.csv";
 
 const startDailyReset = async () => {
+  console.log("Starting daily reset...");
   // Step 1 - run fetch_basic_data.ipynb (requires ticker_list_refactored.csv to be in same directory)
   await runPythonScript(STOCK_DATA_SCRIPT);
 
-  // Step 2 - select a random stock from valid.stock and write it to today.stock
+  // Step 2 - iterate through stock_basic_data.csv, create Stocks in DB
+  await postStockData();
+
+  // Step 3 - select a random stock from valid.stock and write it to today.stock
   await chooseNewStock();
 
-  // Step 3 - run fetch_historical_data.ipynb (requires today.stock to be in same directory)
+  // Step 4 - run fetch_historical_data.ipynb (requires today.stock to be in same directory)
   await runPythonScript(HISTORICAL_DATA_SCRIPT);
 
-  // Step 4 - iterate through stock_basic_data.csv, create Stocks in DB
-  // await postStockData();
-
   // Step 5 - iterate through stock_historical_data.csv, create HistoricalPrices in DB
-  // await postHistoricalData();
+  await postHistoricalData();
 
   // Step 6 - Iterate through all users in the DB, discontinue streaks and set dailyPoints to 0
   await resetUserDaily();
+  console.log("Daily reset successful!");
 };
 
 const startWeeklyReset = async () => {
   // Iterate through all users in the DB and set weeklyPoints to 0
   // Since daily reset also runs at the end of the week, we don't need to do too much else
   await resetUserWeekly();
+  console.log("Weekly reset successful!");
 };
 
-const runPythonScript = async (executablePath) => {
-  console.log("RUNNING ", executablePath);
-  const childPython = spawn("python", [executablePath]);
+const runPythonScript = (executablePath) => {
+  console.log("Running ", executablePath, "...");
+  return new Promise((resolve, reject) => {
+    const childPython = spawn("python", [executablePath]);
 
-  childPython.stdout.on("data", (data) => {
-    console.log(`stdout: ${data}`);
-  });
-  childPython.stdout.on("err", (data) => {
-    console.log(`stderr: ${data}`);
-  });
-  childPython.stdout.on("close", (code) => {
-    console.log(`python script exited with code ${code}`);
+    childPython.stdout.on("data", (data) => {
+      console.log(`stdout: ${data}`);
+    });
+    childPython.stderr.on("data", (data) => {
+      console.log(`stderr: ${data}`);
+    });
+    childPython.on("close", (code) => {
+      console.log(`${executablePath} exited with code ${code}`);
+      resolve();
+    });
+    childPython.on("error", (err) => {
+      console.error(`Error executing ${executablePath}:`, err);
+      reject(err);
+    });
   });
 };
 
@@ -67,15 +80,41 @@ const chooseNewStock = async () => {
   const tickers = tickerData
     .split("\n")
     .filter((ticker) => ticker.trim() !== "");
-  const randomIndex = Math.floor(Math.random() * tickers.length);
-  const todayStock = tickers[randomIndex];
-  fs.writeFile("./backend/scripts/today.stock", todayStock, (err) => {
-    if (err) {
-      console.error("Error writing to today.stock file: ", err);
+
+  let foundStock = false;
+  let todayStock;
+
+  while (!foundStock && tickers.length > 0) {
+    const randomIndex = Math.floor(Math.random() * tickers.length);
+    todayStock = tickers[randomIndex];
+    tickers.splice(randomIndex, 1); // Remove the selected stock from the list to avoid duplicates
+
+    // Check if the stock exists in the database
+    try {
+      const stockExists = await Stock.exists({ ticker: todayStock });
+      if (stockExists) {
+        foundStock = true;
+      }
+    } catch (error) {
+      console.error(
+        `${todayStock} is not in the database, choosing a new stock...`,
+        err
+      );
       return;
     }
-    console.log(`Today's stock is $${todayStock}`);
-  });
+  }
+
+  if (foundStock) {
+    fs.writeFile("./backend/scripts/today.stock", todayStock, (err) => {
+      if (err) {
+        console.error("Error writing to today.stock file: ", err);
+        return;
+      }
+      console.log(`Today's stock is $${todayStock}`);
+    });
+  } else {
+    console.log("No valid stock found in the database. Yikes.");
+  }
 };
 
 const csvToJSON = async (csv) => {

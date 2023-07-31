@@ -134,9 +134,9 @@ function Search({ mode, setPopup, gameOver, setGameOver }) {
   // X if no logo hint used +
   // Y if hard mode enabled
   const calculatePoints = (isWin) => {
-    const pointsFromGuesses = isWin ? 800 - currAttempt * 100 : 0;
+    const pointsFromGuesses = isWin ? 800 - currAttempt * 100 : 100;
     const pointsFromStreak = user.playedYesterday
-      ? Math.max(100, user.currentStreak * 20)
+      ? Math.min(100, user.currentStreak * 20)
       : 0;
     const pointsFromNoHint = 0; // Not implemented yet
     const pointsFromHardMode = 0; // Not implemented yet
