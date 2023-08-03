@@ -6,7 +6,6 @@ import { LocalStorageManipulator } from "../../features/board/LocalStorageManipu
 function Settings({ mode, trigger, setPopup, toggleMode }) {
   const setMode = () => {
     const newMode = mode === "light" ? "dark" : "light";
-    console.log(newMode);
     const localStorageManipulator = new LocalStorageManipulator();
     localStorageManipulator.setMode(newMode);
     toggleMode();

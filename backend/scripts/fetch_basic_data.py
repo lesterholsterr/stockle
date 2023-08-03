@@ -11,10 +11,8 @@ stock_info['ticker'] = tickers
 
 # Remove commas from company names to not fuck up the CSV file
 for index, row in stock_info.iterrows():
-    company_name = names[index]
-    if "," in company_name:
-        company_name = company_name.replace(",", " ")
-    row['name'] = company_name
+    company_name = names[index].replace(",", " ")
+    stock_info.at[index, 'name'] = company_name
 
 # Runtime: ~30 minutes
 for i in range(len(tickers)):

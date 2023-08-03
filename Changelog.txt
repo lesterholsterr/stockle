@@ -10,3 +10,13 @@ Alpha 1.0.1
 - Added meta data to the HTML page
 - Added a "View Git Repo" button in the settings popup
 - Updated README and added Changelog.txt
+
+Alpha 1.0.2
+- As a temporary measure: In order to make guesses, the user must be logged in
+- Fixed sector name overflowing to a second line
+- Improved sector naming:
+    - C. Staples is now Consumer Staples
+    - C. Discretion is now Consumer Cyclical
+    - Comms is now Communications
+- Fixed persistent autocomplete bug (there was a problem with duplicate indexing that somehow made its way to the front-end)
+- Fixed data manipulation problem in fetch_basic_data.py which often cleared all info from the stock info database

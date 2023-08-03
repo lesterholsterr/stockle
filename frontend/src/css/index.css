@@ -117,6 +117,18 @@ header p {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.metric-sector {
+  flex: 33%;
+  height: 100%;
+  border: 1px solid grey;
+  margin: 5px;
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+  font-weight: bolder;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 /* Fancy buttons */
 .fancy-button-light {
   padding: 10px 20px;

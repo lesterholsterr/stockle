@@ -84,9 +84,9 @@ class Stock {
 
   shorten_sector(s) {
     if (s === "Financial Services") return "Financials";
-    else if (s === "Consumer Defensive") return "C. Staples";
-    else if (s === "Consumer Cyclical") return "C. Discretion";
-    else if (s === "Communication Services") return "Comms";
+    else if (s === "Consumer Defensive") return "Consumer Staples";
+    // else if (s === "Consumer Cyclical") return "C. Discretion";
+    else if (s === "Communication Services") return "Communications";
     else if (s === "Basic Materials") return "Materials";
     else return s;
   }

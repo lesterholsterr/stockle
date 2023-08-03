@@ -1,4 +1,4 @@
-# Stockle v1.0.1
+# Stockle v1.0.2
 
 A stock market-themed wordle parody currently in open Alpha.
 

@@ -6,6 +6,7 @@ import { cloneDeep } from "lodash";
 import { AppContext } from "../App";
 import { Stock } from "../features/stock/Stock";
 import { LocalStorageManipulator } from "../features/board/LocalStorageManipulator";
+import { toast } from "react-toastify";
 import { updateUser } from "../features/auth/authSlice";
 import "../css/Search.css";
 
@@ -50,6 +51,12 @@ function Search({ mode, setPopup, gameOver, setGameOver }) {
   };
 
   const onSearch = (searchTerm) => {
+    if (!user) {
+      toast.error("Please log in to play", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+      return;
+    }
     setSearchValue("");
     const searchedStock = new Stock(searchTerm);
     const results = searchedStock.compare(todayStock);
@@ -155,7 +162,7 @@ function Search({ mode, setPopup, gameOver, setGameOver }) {
         <div className={`dropdown-${mode}`}>
           {stock_info
             .filter((item) => {
-              const searchTerm = searchValue.toLowerCase();
+              const searchTerm = searchValue !== "" ? searchValue.toLowerCase() : null;
               const stockName = item.name.toLowerCase();
               const stockTicker = item.ticker.toLowerCase();
 

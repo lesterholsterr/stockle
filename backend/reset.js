@@ -34,7 +34,7 @@ const startDailyReset = async () => {
 
   // Step 6 - Iterate through all users in the DB, discontinue streaks and set dailyPoints to 0
   await resetUserDaily();
-  console.log("Daily reset successful!");
+  console.log("Daily reset complete!");
 };
 
 const startWeeklyReset = async () => {
