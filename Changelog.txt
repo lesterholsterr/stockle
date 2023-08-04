@@ -18,5 +18,8 @@ Alpha 1.0.2
     - C. Staples is now Consumer Staples
     - C. Discretion is now Consumer Cyclical
     - Comms is now Communications
-- Fixed persistent autocomplete bug (there was a problem with duplicate indexing that somehow made its way to the front-end)
+- Removed all duplicates from ticker list (there was a problem with duplicate indexing that somehow made its way to the front-end)
 - Fixed data manipulation problem in fetch_basic_data.py which often cleared all info from the stock info database
+- Fixed loss screen being incompatible with dark mode
+- Fixed general interactions when the stock has negative earnings
+- Share prices are now always rounded to 2 decimals

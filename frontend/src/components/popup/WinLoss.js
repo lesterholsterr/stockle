@@ -46,7 +46,7 @@ function WinLoss({ mode, trigger, setPopup }) {
   } else if (trigger === "lose") {
     return (
       <div className="popup">
-        <div className="popup-inner">
+        <div className={`popup-inner ${mode}`}>
           <h3>Out of Guesses!</h3>
           <br />
           <h3>Today's Stock: {todayStock.name}</h3>

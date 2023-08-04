@@ -161,7 +161,6 @@ AGIO,Agios Pharmaceuticals
 AGL,agilon health
 AGLE,Aeglea BioTherapeutics
 AGM,Federal Agricultural Mortgage
-AGM.A,Federal Agricultural Mortgage
 AGMH,AGM Group Holdings
 AGNC,AGNC Investment
 AGO,Assured Guaranty
@@ -209,7 +208,6 @@ AKAN,Akanda
 AKBA,Akebia Therapeutics
 AKLI,Akili
 AKO.A,Embotelladora Andina
-AKO.B,Embotelladora Andina
 AKR,Acadia Realty Trust
 AKRO,Akero Therapeutics
 AKTS,Akoustis Technologies
@@ -686,7 +684,6 @@ BEDU,Bright Scholar Education Holdings
 BEEM,Beam Global
 BEKE,KE Holdings
 BELFA,Bel Fuse
-BELFB,Bel Fuse
 BEN,Franklin Resources
 BENF,Beneficient
 BEP,Brookfield Renewable Partners L.P.
@@ -694,7 +691,6 @@ BEPC,Brookfield Renewable
 BERY,Berry Global Group
 BEST,BEST Inc.
 BF.A,Brown-Forman
-BF.B,Brown-Forman
 BFAC,Battery Future Acquisition
 BFAM,Bright Horizons Family Solutions
 BFC,Bank First
@@ -716,7 +712,6 @@ BGS,B&G Foods
 BGSF,"BGSF, Inc."
 BGXX,Bright Green
 BH,Biglari Holdings
-BH.A,Biglari Holdings
 BHAC,Crixus BH3 Acquisition Company
 BHAT,Fujian Blue Hat Interactive Entertainment Technology
 BHB,Bar Harbor Bankshares
@@ -861,7 +856,6 @@ BRFH,Barfresh Food Group
 BRFS,BRF S.A.
 BRID,Bridgford Foods
 BRK.A,Berkshire Hathaway
-BRK.B,Berkshire Hathaway
 BRKH,Burtech Acquisition
 BRKL,Brookline Bancorp
 BRKR,Bruker
@@ -1075,7 +1069,6 @@ CELU,Celularity
 CELZ,Creative Medical Technology Holdings
 CENN,Cenntro Electric Group
 CENT,Central Garden & Pet Company
-CENTA,Central Garden & Pet Company
 CENX,Century Aluminum Company
 CEPU,Central Puerto
 CEQP,Crestwood Equity Partners LP
@@ -1337,7 +1330,6 @@ CRBU,Caribou Biosciences
 CRC,California Resources
 CRCT,Cricut
 CRD.A,Crawford & Company
-CRD.B,Crawford & Company
 CRDF,Cardiff Oncology
 CRDL,Cardiol Therapeutics
 CRDO,Credo Technology Group Holding
@@ -1455,7 +1447,6 @@ CWBR,CohBar
 CWCO,Consolidated Water
 CWD,CaliberCos
 CWEN,Clearway Energy
-CWEN.A,Clearway Energy
 CWH,Camping World Holdings
 CWK,Cushman & Wakefield
 CWST,Casella Waste Systems
@@ -1543,7 +1534,6 @@ DFS,Discover Financial Services
 DG,Dollar General
 DGHI,Digihost Technology
 DGICA,Donegal Group
-DGICB,Donegal Group
 DGII,Digi International
 DGLY,Digital Ally
 DGX,Quest Diagnostics
@@ -1936,7 +1926,6 @@ FARM,Farmer Bros. Co.
 FARO,FARO Technologies
 FAST,Fastenal Company
 FAT,FAT Brands
-FATBB,FAT Brands
 FATE,Fate Therapeutics
 FATH,Fathom Digital Manufacturing
 FATP,Fat Projects Acquisition
@@ -2075,7 +2064,6 @@ FORTY,Formula Systems (1985)
 FOSL,Fossil Group
 FOUR,Shift4 Payments
 FOX,Fox Corporation
-FOXA,Fox Corporation
 FOXF,Fox Factory Holding
 FOXO,FOXO Technologies
 FPAY,FlexShopper
@@ -2210,7 +2198,6 @@ GDYN,Grid Dynamics Holdings
 GE,General Electric Company
 GECC,Great Elm Capital
 GEF,Greif
-GEF.B,Greif
 GEG,Great Elm Group
 GEHC,GE HealthCare Technologies
 GEHI,Gravitas Education Holdings
@@ -2323,7 +2310,6 @@ GOLD,Barrick Gold
 GOLF,Acushnet Holdings
 GOOD,Gladstone Commercial
 GOOG,Alphabet
-GOOGL,Alphabet
 GOOS,Canada Goose Holdings
 GORO,Gold Resource
 GOSS,Gossamer Bio
@@ -2393,7 +2379,6 @@ GTIM,Good Times Restaurants
 GTLB,GitLab
 GTLS,Chart Industries
 GTN,Gray Television
-GTN.A,Gray Television
 GTX,Garrett Motion
 GTY,Getty Realty
 GURE,Gulf Resources
@@ -2449,7 +2434,6 @@ HE,Hawaiian Electric Industries
 HEAR,Turtle Beach
 HEES,H&E Equipment Services
 HEI,HEICO
-HEI.A,HEICO
 HELE,Helen of Troy
 HEP,"Holly Energy Partners,"
 HEPA,Hepion Pharmaceuticals
@@ -2919,7 +2903,6 @@ KDNY,Chinook Therapeutics
 KDP,Keurig Dr Pepper
 KE,Kimball Electronics
 KELYA,Kelly Services
-KELYB,Kelly Services
 KEN,Kenon Holdings
 KEP,Korea Electric Power
 KEQU,Kewaunee Scientific
@@ -3042,11 +3025,8 @@ LBBB,Lakeshore Acquisition II
 LBC,Luther Burbank
 LBPH,Longboard Pharmaceuticals
 LBRDA,Liberty Broadband
-LBRDK,Liberty Broadband
 LBRT,Liberty Energy
 LBTYA,Liberty Global
-LBTYB,Liberty Global
-LBTYK,Liberty Global
 LC,LendingClub
 LCA,Landcadia Holdings IV
 LCAA,L Catterton Asia Acquisition
@@ -3069,7 +3049,6 @@ LEGH,Legacy Housing
 LEGN,Legend Biotech
 LEJU,Leju Holdings
 LEN,Lennar
-LEN.B,Lennar
 LESL,Leslie's
 LEU,Centrus Energy
 LEV,The Lion Electric Company
@@ -3084,7 +3063,6 @@ LFT,Lument Finance Trust
 LFUS,Littelfuse
 LFVN,LifeVantage
 LGF.A,Lions Gate Entertainment
-LGF.B,Lions Gate Entertainment
 LGHL,Lion Group Holding
 LGIH,LGI Homes
 LGL,The LGL Group
@@ -3107,7 +3085,6 @@ LIFE,aTyr Pharma
 LIFW,MSP Recovery
 LII,Lennox International
 LILA,Liberty Latin America
-LILAK,Liberty Latin America
 LILM,Lilium
 LIN,Linde
 LINC,Lincoln Educational Services
@@ -3193,7 +3170,6 @@ LTH,Life Time Group Holdings
 LTHM,Livent
 LTRN,Lantern Pharma
 LTRPA,Liberty TripAdvisor Holdings
-LTRPB,Liberty TripAdvisor Holdings
 LTRX,Lantronix
 LTRY,Lottery.com
 LU,Lufax Holding
@@ -3335,7 +3311,6 @@ MESO,Mesoblast
 MET,MetLife
 META,Meta Platforms
 METC,Ramaco Resources
-METCB,Ramaco Resources
 METX,Meten Holding Group
 MF,Missfresh
 MFA,MFA Financial
@@ -3440,7 +3415,6 @@ MODN,Model N
 MODV,ModivCare
 MOFG,MidWestOne Financial Group
 MOG.A,Moog Inc.
-MOG.B,Moog Inc.
 MOGO,Mogo Inc.
 MOGU,MOGU Inc.
 MOH,Molina Healthcare
@@ -3562,7 +3536,7 @@ MYPS,PLAYSTUDIOS
 MYRG,MYR Group
 MYSZ,My Size
 MYTE,MYT Netherlands Parent B.V.
-NA,Nano Labs
+,Nano Labs
 NAAS,NaaS Technology
 NABL,N-able
 NAII,Natural Alternatives International
@@ -3799,7 +3773,6 @@ NWLI,National Western Life Group
 NWN,Northwest Natural Holding Company
 NWPX,Northwest Pipe Company
 NWS,News Corporation
-NWSA,News Corporation
 NWTN,NWTN Inc.
 NX,Quanex Building Products
 NXE,NexGen Energy
@@ -4002,7 +3975,6 @@ PANL,Pangaea Logistics Solutions
 PANW,Palo Alto Networks
 PAR,PAR Technology
 PARA,Paramount Global
-PARAA,Paramount Global
 PARR,Par Pacific Holdings
 PASG,Passage Bio
 PATH,UiPath
@@ -4028,7 +4000,6 @@ PBI,Pitney Bowes
 PBLA,Panbela Therapeutics
 PBPB,Potbelly
 PBR,Petróleo Brasileiro S.A. - Petrobras
-PBR.A,Petróleo Brasileiro S.A. - Petrobras
 PBT,Permian Basin Royalty Trust
 PBTS,Powerbridge Technologies Co.
 PBYI,Puma Biotechnology
@@ -4334,7 +4305,6 @@ QNST,QuinStreet
 QOMO,Qomolangma Acquisition
 QRHC,Quest Resource Holding
 QRTEA,Qurate Retail
-QRTEB,Qurate Retail
 QRVO,Qorvo
 QS,QuantumScape
 QSG,QuantaSing Group
@@ -4389,7 +4359,6 @@ RDCM,RADCOM
 RDFN,Redfin
 RDHL,RedHill Biopharma
 RDI,Reading International
-RDIB,Reading International
 RDN,Radian Group
 RDNT,RadNet
 RDVT,Red Violet
@@ -4530,7 +4499,6 @@ RTX,Raytheon Technologies
 RUM,Rumble
 RUN,Sunrun
 RUSHA,Rush Enterprises
-RUSHB,Rush Enterprises
 RVLP,RVL Pharmaceuticals
 RVLV,Revolve Group
 RVMD,Revolution Medicines
@@ -4658,7 +4626,6 @@ SELF,Global Self Storage
 SEM,Select Medical Holdings
 SEMR,Semrush Holdings
 SENEA,Seneca Foods
-SENEB,Seneca Foods
 SENS,Senseonics Holdings
 SEPA,SEP Acquisition
 SERA,Sera Prognostics
@@ -5323,7 +5290,6 @@ TYRA,Tyra Biosciences
 TZOO,Travelzoo
 U,Unity Software
 UA,Under Armour
-UAA,Under Armour
 UAL,United Airlines Holdings
 UAMY,United States Antimony
 UAN,"CVR Partners, LP"
@@ -5381,7 +5347,6 @@ UNP,Union Pacific
 UNTY,Unity Bancorp
 UNVR,Univar Solutions
 UONE,Urban One
-UONEK,Urban One
 UP,Wheels Up Experience
 UPBD,Upbound Group
 UPC,Universe Pharmaceuticals INC
@@ -5674,7 +5639,6 @@ WLK,Westlake
 WLKP,Westlake Chemical Partners LP
 WLMS,Williams Industrial Services Group
 WLY,John Wiley & Sons
-WLYB,John Wiley & Sons
 WM,Waste Management
 WMB,The Williams Companies
 WMC,Western Asset Mortgage Capital

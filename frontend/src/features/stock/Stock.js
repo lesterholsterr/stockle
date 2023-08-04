@@ -113,7 +113,7 @@ class Stock {
     if (s1 === s2) x = 0;
     if (s2 < s1) x *= -1;
     if (Math.abs(s2 - s1) / s1 > 0.3) x *= 2;
-    return `$${this.shorten_number(s2)} ${num_to_emote[x]}`;
+    return `$${s2.toFixed(2)} ${num_to_emote[x]}`;
   }
 
   compare_cap(s1, s2) {
@@ -133,6 +133,12 @@ class Stock {
   }
 
   compare_pe(s1mc, s1ni, s2mc, s2ni) {
+    if (s1ni <= 0) {
+      if (s2ni <= 0) {
+        return `N/A ${num_to_emote[0]}`;
+      }
+      return `${Math.floor(s2 * 100) / 100} ${num_to_emote[-2]}`;
+    }
     var x = 1;
     var s1 = s1mc / s1ni > 0 ? s1mc / s1ni : -1;
     var s2 = s2mc / s2ni > 0 ? s2mc / s2ni : -1;
