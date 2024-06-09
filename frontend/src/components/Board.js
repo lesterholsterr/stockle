@@ -11,8 +11,8 @@ const Board = ({ mode }) => {
         <h3>Sector</h3>
         <h3>Share Price</h3>
         <h3>Market Cap</h3>
-        <h3>Revenue (TTM)</h3>
-        <h3>P/E Ratio (TTM)</h3>
+        <h3>Revenue (LTM)</h3>
+        <h3>P/E Ratio (LTM)</h3>
       </div>
       <div className="row">
         <Metric metricPos={0} attemptVal={0} mode={mode} />

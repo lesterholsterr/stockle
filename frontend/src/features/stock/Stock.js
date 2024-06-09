@@ -133,24 +133,26 @@ class Stock {
   }
 
   compare_pe(s1mc, s1ni, s2mc, s2ni) {
-    if (s1ni <= 0) {
-      if (s2ni <= 0) {
-        return `N/A ${num_to_emote[0]}`;
-      }
-      return `${Math.floor(s2 * 100) / 100} ${num_to_emote[-2]}`;
-    }
-    var x = 1;
     var s1 = s1mc / s1ni > 0 ? s1mc / s1ni : -1;
     var s2 = s2mc / s2ni > 0 ? s2mc / s2ni : -1;
-    if (s1 === s2) x = 0;
-    if (s1 === -1) {
-      return `${Math.floor(s2 * 100) / 100} ⬆️`;
+
+    if (s1 === -1 && s2 === -1) {
+      // Both companies are unprofitable, so N/A is the correct answer
+      return `N/A ${num_to_emote[0]}`;
+    } else if (s1 === -1) {
+      // Today's stock is not profitable. Say the PE ratio is higher (might be misleading, but I would view it as infinite PE)
+      return `${Math.round(s2)} ${num_to_emote[-2]}`;
     } else if (s2 === -1) {
-      return `N/A ⬇️`;
+      // Guessed company is not profitable. Say N/A and lower.
+      return `N/A ${num_to_emote[2]}`;
+    } else if (Math.round(s1) === Math.round(s2)) {
+      // Round PE to the nearest integer
+      return `${Math.round(s2)} ${num_to_emote[0]}`;
     } else {
+      var x = 1;
       if (s2 < s1) x *= -1;
       if (Math.abs(s2 - s1) / s1 > 0.3) x *= 2;
-      return `${Math.floor(s2 * 100) / 100} ${num_to_emote[x]}`;
+      return `${Math.round(s2)} ${num_to_emote[x]}`;
     }
   }
 }
