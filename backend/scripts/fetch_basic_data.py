@@ -1,5 +1,10 @@
 import yfinance as yf
 import pandas as pd
+import ftblib # https://docs.python.org/3/library/ftplib.html
+import os
+
+# https://quant.stackexchange.com/questions/1640/where-to-download-list-of-all-common-stocks-traded-on-nyse-nasdaq-and-amex
+# https://www.nasdaqtrader.com/trader.aspx?id=symboldirdefs
 
 ticker_df = pd.read_csv("./backend/scripts/ticker_list_refactored.csv")
 tickers = ticker_df['Symbol'].tolist()

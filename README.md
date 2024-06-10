@@ -1,12 +1,14 @@
-# Stockle v1.0.2
+# Stockle v0.1.0 - Bear Trap
 
-A stock market-themed wordle parody currently in open Alpha.
+A stock market-themed wordle parody currently in open Alpha. After almost a year hiatus, I'm back. You thought this project was left for dead, but it was just a [bear trap](https://www.investopedia.com/terms/b/beartrap.asp) 😉.
 
-Feel free to check it out at http://stockle.ca!
+Check it out at https://playstockle.com.
+
+*Currently down for maintenance. Hoping to have a stable release by June 16th, 2024.
 
 ### Deployment
 
-Stockle runs on Node, but the Yahoo Finance web scraping API I'm using is written for Python. I used Docker to containerise this app into a Python virtual environment inside a node based image (please do not ask how long this took). The Docker image was pushed to Amazon's Elastic Container Registry and run on an EC2 instance. I used Nginx to reverse proxy HTTP requests to port 8080, where Stockle is running. The domain is being leased from Google for $17/year. I'm pretty sure I'm within the limits of AWS' free tier, but Jeff Bezos is a capitalist pig and AWS doesn't actually warn you if you exceed their free limits. So I guess I'll find out once my monthly bill arrives.
+Stockle runs on Node, but it scrapes financial data from the web using Python. I used Docker to containerise this app into a Python virtual environment inside a node based image (please do not ask how long this took). The Docker image was pushed to Amazon's Elastic Container Registry. An ECS container is running this image on a single EC2 t2.micro instance, so please don't DDOS me. The domain is registered with Amazon's Route 53 and points to a Cloudfront distribution that has the EC2 instance as its origin. Nginx reverse proxies HTTP requests to port 8080, where the server is listening for inbound traffic.
 
 ### Sources
 
@@ -26,11 +28,13 @@ Stock chart Library: https://canvasjs.com/download-html5-charting-graphing-libra
 
 Deploying to AWS: https://www.youtube.com/watch?v=YDNSItBN15w&t=139s
 
-<b>And of course the MVP, ChatGPT.</b>
+<b>And the MVPs: GPT-3.5, Github co-pilot, and Claude 3.</b>
 
 ### Coming Soon
 
-Enable HTTPS
+Fix daily reset mechanics
+
+Fix point system
 
 Add hint feature (logo)
 - https://www.benzinga.com/apis/cloud-product/company-logo-api/
@@ -39,11 +43,6 @@ Look into image hosters to store user profile pictures
 
 Add easy/hard mode (toggle graph on/off, bonus points)
 
-Search bar reccomendation priority
-- Order by relevance but also market cap of company
+Improved search bar
+- Order by relevance and market cap of company
 - Account for typos
-
-Expand list of "reasonable" stocks
-
-Look for alternatives to Yahoo Finance API that return more consistent info
-- Requried: ~6000 requests/day for little-to-no cost

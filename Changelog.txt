@@ -1,9 +1,9 @@
 CHANGE LOG (There's probably a better way to do changelogs on Github... but I'm too lazy to find it. So for now, this will have to do.)
 
-Alpha 1.0.0
+v0.0.1
 - Hello World!
 
-Alpha 1.0.1
+v0.0.2
 - Fixed losing not being able to earn you any points
 - Fixed asynchronicity problems resulting in daily reset tasks being executed out of order
 - If the randomly generated stock of the day is missing information on Yahoo Finance, it now re-generates one to avoid the white screen of death
@@ -11,7 +11,7 @@ Alpha 1.0.1
 - Added a "View Git Repo" button in the settings popup
 - Updated README and added Changelog.txt
 
-Alpha 1.0.2
+v0.0.3
 - As a temporary measure: In order to make guesses, the user must be logged in
 - Fixed sector name overflowing to a second line
 - Improved sector naming:
@@ -23,3 +23,6 @@ Alpha 1.0.2
 - Fixed loss screen being incompatible with dark mode
 - Fixed general interactions when the stock has negative earnings
 - Share prices are now always rounded to 2 decimals
+
+v0.1.0 - Bear Trap
+- Coming soon
