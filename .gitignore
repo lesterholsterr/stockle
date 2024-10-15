@@ -4,3 +4,5 @@ venv
 backend/.ipynb_checkpoints
 rootkey.csv
 stockle.pem
+.vscode
+.DS_Store

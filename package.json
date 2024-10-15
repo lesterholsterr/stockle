@@ -1,6 +1,6 @@
 {
   "name": "stockle",
-  "version": "1.0.2",
+  "version": "0.1.0 - Bear Trap",
   "description": "A stock-themed wordle clone",
   "main": "index.js",
   "scripts": {

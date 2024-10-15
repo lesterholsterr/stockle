@@ -25,4 +25,6 @@ v0.0.3
 - Share prices are now always rounded to 2 decimals
 
 v0.1.0 - Bear Trap
-- Coming soon
+- Daily update of security universe from Nasdaq FTP
+- Replaced Yahoo Finance web scraper (yfinance) with API wrapper (yahooquery)
+- Added threading to bring reset time down to ~4 minutes

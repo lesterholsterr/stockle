@@ -1,0 +1,10 @@
+NASDAQ_FTP = 'ftp.nasdaqtrader.com'
+SYMBOL_DIRECTORY = 'Symboldirectory'
+NASDAQ_NAMES = 'nasdaqlisted.txt'
+NYSE_NAMES = 'otherlisted.txt'
+
+LOCAL_DIR = './backend/scripts/'
+TICKER_LIST = 'universe.csv'
+TODAY_STOCK = 'today.stock'
+TODAY_STOCK_RETURNS = 'today_stock_return.csv'
+UNIVERSE_DATA = 'universe_data.json'
