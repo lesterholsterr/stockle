@@ -285,6 +285,7 @@ ARE|Alexandria Real Estate Equities, Inc. Common Stock|N|ARE|N|100|N|ARE
 AREA|Harbor ETF Trust Harbor AlphaEdge Next Generation REITs ETF|P|AREA|Y|100|N|AREA
 AREN|The Arena Group Holdings, Inc. Common Stock|A|AREN|N|100|N|AREN
 ARES|Ares Management Corporation Class A Common Stock|N|ARES|N|100|N|ARES
+ARES$B|Ares Management Corporation 6.75% Series B Mandatory Convertible Preferred Stock|N|ARESpB|N|100|N|ARES-B
 ARGD|Argo Group International Holdings, Ltd. 6.5% Senior Notes Due 2042|N|ARGD|N|100|N|ARGD
 ARGO$A|Argo Group International Holdings, Inc. Depositary Shares, Each Representing a 1/1,000th Interest in a 7.00% Resettable Fixed Rate Preference Share, Series A|N|ARGOpA|N|100|N|ARGO-A
 ARGT|Global X MSCI Argentina ETF|P|ARGT|Y|100|N|ARGT
@@ -2036,7 +2037,7 @@ FI|Fiserv, Inc. Common Stock|N|FI|N|100|N|FI
 FIAT|Tidal Trust II YieldMax Short COIN Option Income Strategy ETF|P|FIAT|Y|100|N|FIAT
 FIAX|Tidal ETF Trust II Nicholas Fixed Income Alternative ETF|P|FIAX|Y|100|N|FIAX
 FIBR|iShares U.S. Fixed Income Balanced Risk Systematic ETF|Z|FIBR|Y|100|N|FIBR
-FICO|Fair Isaac Corproation Common Stock|N|FICO|N|100|N|FICO
+FICO|Fair Isaac Corporation Common Stock|N|FICO|N|100|N|FICO
 FIDI|Fidelity International High Dividend ETF|P|FIDI|Y|100|N|FIDI
 FIDU|Fidelity MSCI Industrials Index ETF|P|FIDU|Y|100|N|FIDU
 FIG|Simplify Exchange Traded Funds Simplify Macro Strategy ETF|P|FIG|Y|100|N|FIG
@@ -2772,7 +2773,6 @@ IBHH|iShares Trust iShares iBonds 2028 Term High Yield and Income ETF|Z|IBHH|Y|1
 IBHI|iShares Trust iShares iBonds 2029 Term High Yield and Income ETF|Z|IBHI|Y|100|N|IBHI
 IBHJ|iShares Trust iShares iBonds 2030 Term High Yield and Income ETF|Z|IBHJ|Y|100|N|IBHJ
 IBHK|iShares Trust iShares iBonds 2031 Term High Yield and Income ETF|Z|IBHK|Y|100|N|IBHK
-IBIA|iShares Trust iShares iBonds Oct 2024 Term TIPS ETF|P|IBIA|Y|100|N|IBIA
 IBIB|iShares Trust iShares iBonds Oct 2025 Term TIPS ETF|P|IBIB|Y|100|N|IBIB
 IBIC|iShares Trust iShares iBonds Oct 2026 Term TIPS ETF|P|IBIC|Y|100|N|IBIC
 IBID|iShares Trust iShares iBonds Oct 2027 Term TIPS ETF|P|IBID|Y|100|N|IBID
@@ -3290,6 +3290,7 @@ KLMT|Invesco Exchange-Traded Fund Trust II Invesco MSCI Global Climate 500 ETF|P
 KLXY|KraneShares Trust KraneShares Global Luxury Index ETF|P|KLXY|Y|100|N|KLXY
 KMB|Kimberly-Clark Corporation Common Stock|N|KMB|N|100|N|KMB
 KMI|Kinder Morgan, Inc. Common Stock|N|KMI|N|100|N|KMI
+KMID|Virtus ETF Trust II Virtus KAR Mid-Cap ETF|P|KMID|Y|100|N|KMID
 KMLM|KraneShares Mount Lucas Managed Futures Index Strategy ETF|P|KMLM|Y|100|N|KMLM
 KMPB|Kemper Corporation 5.875% Fixed-Rate Reset Junior Subordinated Debentures due 2062|N|KMPB|N|100|N|KMPB
 KMPR|Kemper Corporation|N|KMPR|N|100|N|KMPR
@@ -4454,7 +4455,6 @@ PP|Tidal ETF Trust II The Meet Kevin Pricing Power ETF|P|PP|Y|100|N|PP
 PPA|Invesco Aerospace & Defense ETF |P|PPA|Y|100|N|PPA
 PPEM|Putnam ETF Trust Putnam PanAgora ESG Emerging Markets Equity ETF|P|PPEM|Y|100|N|PPEM
 PPG|PPG Industries, Inc. Common Stock|N|PPG|N|100|N|PPG
-PPI|Investment Managers Series Trust II AXS Astoria Inflation Sensitive ETF|P|PPI|Y|100|N|PPI
 PPIE|Putnam ETF Trust Putnam PanAgora ESG International Equity ETF|P|PPIE|Y|100|N|PPIE
 PPL|PPL Corporation Common Stock|N|PPL|N|100|N|PPL
 PPLT|abrdn Physical Platinum Shares ETF|P|PPLT|Y|100|N|PPLT
@@ -4671,14 +4671,13 @@ RAYE|Rayliant Quantamental Emerging Market ex-China Equity ETF|P|RAYE|Y|100|N|RA
 RAYJ|The Advisors' Inner Circle Fund III Rayliant SMDAM Japan Equity ETF|P|RAYJ|Y|100|N|RAYJ
 RBA|RB Global, Inc. Common Stock|N|RBA|N|100|N|RBA
 RBC|RBC Bearings Incorporated Common Stock|N|RBC|N|100|N|RBC
-RBCP|RBC Bearings Incorporated 5.00% Series A Mandatory Convertible Preferred Stock|N|RBCP|N|100|N|RBCP
 RBLD|First Trust Alerian US NextGen Infrastructure ETF|P|RBLD|Y|100|N|RBLD
 RBLX|Roblox Corporation Class A Common Stock|N|RBLX|N|100|N|RBLX
 RBOT|Vicarious Surgical Inc. Class A Common Stock|N|RBOT|N|100|N|RBOT
 RBOT.W|Vicarious Surgical Inc. Warrants, each whole warrant exercisable for one share of Class A Common Stock at an exercise price of $11.50 per share|N|RBOT.WS|N|100|N|RBOT+
 RBRK|Rubrik, Inc. Class A Common Stock|N|RBRK|N|100|N|RBRK
 RBUF|SHL Telemedicine Ltd Innovator U.S. Small Cap 10 Buffer ETF - Quarterly|Z|RBUF|Y|100|N|RBUF
-RC|Ready Capital Corproation Common Stock|N|RC|N|100|N|RC
+RC|Ready Capital Corporation Common Stock|N|RC|N|100|N|RC
 RC$C|Ready Capital Corporation 6.25% Series C Cumulative Convertible Preferred Stock|N|RCpC|N|100|N|RC-C
 RC$E|Ready Capital Corporation 6.50% Series E Cumulative Redeemable Preferred Stock|N|RCpE|N|100|N|RC-E
 RCB|Ready Capital Corporation 6.20% Senior Notes due 2026|N|RCB|N|100|N|RCB
@@ -6310,4 +6309,4 @@ ZVIA|Zevia PBC Class A Common Stock|N|ZVIA|N|100|N|ZVIA
 ZVV|NYSE ARCA test stock|P|ZVV|N|100|Y|ZVV
 ZWS|Zurn Elkay Water Solutions Corporation Common Stock|N|ZWS|N|100|N|ZWS
 ZXIET|IEX Test Company Test Symbol Three for IEX|V|ZXIET|N|100|Y|ZXIET
-File Creation Time: 1014202418:01||||||
+File Creation Time: 1016202421:31||||||

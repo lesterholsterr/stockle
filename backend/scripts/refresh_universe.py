@@ -48,3 +48,5 @@ df = df[(~df["ACT Symbol"].str.contains(pattern, regex=True)) &
         (df["ETF"] == "N")]
 tickers = df[['ACT Symbol']]
 tickers.to_csv(LOCAL_DIR + TICKER_LIST, mode='a', header=False, index=False)
+
+print("Refreshed universe.csv")

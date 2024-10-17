@@ -4,7 +4,7 @@ A stock market-themed wordle parody currently in open Alpha. After almost a year
 
 Check it out at https://playstockle.com.
 
-*Currently down for maintenance. Hoping to have a stable release by June 16th, 2024.
+*Currently down for maintenance. Hoping to have a stable release by Halloween.
 
 ### Deployment
 
