@@ -1,25 +1,40 @@
 const mongoose = require("mongoose");
 
-const historicalPriceSchema = mongoose.Schema({
+const dailyReturnsSchema = new mongoose.Schema({
+  _id: {
+    type: String,
+    required: true,
+  },
+  adjclose: {
+    type: Number,
+    required: true,
+  },
+  close: {
+    type: Number,
+    required: true,
+  },
   date: {
     type: Date,
-    required: true,
-    unique: true,
-  },
-  open: {
-    type: Number,
     required: true,
   },
   high: {
     type: Number,
     required: true,
   },
+  lastModified: {
+    type: Date,
+    required: true,
+  },
   low: {
     type: Number,
     required: true,
   },
-  close: {
+  open: {
     type: Number,
+    required: true,
+  },
+  ticker: {
+    type: String,
     required: true,
   },
   volume: {
@@ -28,4 +43,4 @@ const historicalPriceSchema = mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("HistoricalPrice", historicalPriceSchema);
+module.exports = mongoose.model("DailyReturn", dailyReturnsSchema, "dailyreturns");
