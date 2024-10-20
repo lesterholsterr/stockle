@@ -27,6 +27,9 @@ print(f"Fetched historical data for {ticker}")
 hist.reset_index(inplace=True)
 records = hist.to_dict('records')
 
+# Clear the database
+collection.delete_many({})
+
 # Prepare bulk upsert operations
 operations = []
 for record in records:

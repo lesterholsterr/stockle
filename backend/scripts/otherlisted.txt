@@ -157,7 +157,6 @@ AKO.A|Embotelladora Andina S.A. Common Stock|N|AKO.A|N|100|N|AKO.A
 AKO.B|Embotelladora Andina S.A. Common Stock|N|AKO.B|N|100|N|AKO.B
 AKR|Acadia Realty Trust Common Stock|N|AKR|N|100|N|AKR
 AL|Air Lease Corporation Class A Common Stock|N|AL|N|100|N|AL
-AL$A|Air Lease Corporation 6.150% Fixed-to-Floating Rate Non-Cumulative Perpetual Preferred Stock, Series A|N|ALpA|N|100|N|AL-A
 ALAI|The Alger ETF Trust Alger AI Enablers & Adopters ETF|P|ALAI|Y|100|N|ALAI
 ALB|Albemarle Corporation Common Stock|N|ALB|N|100|N|ALB
 ALB$A|Albemarle Corporation Depositary Shares each representing a 1/20th of 7.25% Series A Mandatory Convertible Preferred Stock|N|ALBpA|N|100|N|ALB-A
@@ -397,7 +396,6 @@ AVIE|American Century ETF Trust Avantis Inflation Focused Equity ETF|P|AVIE|Y|10
 AVIG|Avantis Core Fixed Income ETF|P|AVIG|Y|100|N|AVIG
 AVIV|Avantis International Large Cap Value ETF|P|AVIV|Y|100|N|AVIV
 AVK|Advent Convertible and Income Fund|N|AVK|N|100|N|AVK
-AVK.R|Advent Convertible and Income Fund Rights (expiring October 17, 2024) Rights|N|AVKr|N|100|N|AVK^
 AVLC|American Century ETF Trust Avantis U.S. Large Cap Equity ETF|P|AVLC|Y|100|N|AVLC
 AVLV|Avantis U.S. Large Cap Value ETF|P|AVLV|Y|100|N|AVLV
 AVMA|American Century ETF Trust Avantis Moderate Allocation ETF|P|AVMA|Y|100|N|AVMA
@@ -778,6 +776,7 @@ BSX|Boston Scientific Corporation Common Stock|N|BSX|N|100|N|BSX
 BTA|BlackRock Long-Term Municipal Advantage Trust Common Shares of Beneficial Interest|N|BTA|N|100|N|BTA
 BTAL|AGF U.S. Market Neutral Anti-Beta Fund|P|BTAL|Y|100|N|BTAL
 BTC|Grayscale Bitcoin Mini Trust (BTC) Common units of fractional undivided beneficial interest|P|BTC|Y|100|N|BTC
+BTCI|NEOS ETF Trust NEOS Bitcoin High Income ETF|Z|BTCI|Y|100|N|BTCI
 BTCL|T-Rex 2X Long Bitcoin Daily Target ETF T-Rex 2X Long Bitcoin Daily Target ETF|Z|BTCL|Y|100|N|BTCL
 BTCM|BIT Mining Limited ADS|N|BTCM|N|100|N|BTCM
 BTCO|Invesco Galaxy Bitcoin ETF Common Shares of Beneficial Interest|Z|BTCO|Y|100|N|BTCO
@@ -1021,7 +1020,6 @@ CLBR.U|Colombier Acquisition Corp. II Units, each consisting of one Class A ordi
 CLBR.W|Colombier Acquisition Corp. II Warrants, each whole warrant exercisable for one Class A Ordinary Share at an exercise price of $11.50 per share|N|CLBR.WS|N|100|N|CLBR+
 CLCO|Cool Company Ltd. Common Shares|N|CLCO|N|100|N|CLCO
 CLDI|Calidi Biotherapeutics, Inc. Common Stock|A|CLDI|N|100|N|CLDI
-CLDI.W|Calidi Biotherapeutics, Inc. Redeemable Warrants, each whole warrant exercisable for one share of Class A common stock at an exercise price of $11.50 per share|A|CLDI.WS|N|100|N|CLDI+
 CLDL|Direxion Daily Cloud Computing Bull 2X Shares|P|CLDL|Y|100|N|CLDL
 CLDT|Chatham Lodging Trust (REIT) Common Shares of Beneficial Interest|N|CLDT|N|100|N|CLDT
 CLDT$A|Chatham Lodging Trust (REIT) 6.625% Series A Cumulative Redeemable Preferred Shares of Beneficial Interest|N|CLDTpA|N|100|N|CLDT-A
@@ -1444,7 +1442,6 @@ DMAY|FT Vest U.S. Equity Deep Buffer ETF - May|Z|DMAY|Y|100|N|DMAY
 DMB|BNY Mellon Municipal Bond Infrastructure Fund, Inc. Common Stock|N|DMB|N|100|N|DMB
 DMBS|DoubleLine ETF Trust DoubleLine Mortgage ETF|P|DMBS|Y|100|N|DMBS
 DMCY|Democracy International Fund|P|DMCY|Y|100|N|DMCY
-DMDV|AAM S&P Developed Markets High Dividend Value ETF|P|DMDV|Y|100|N|DMDV
 DMF|BNY Mellon Municipal Income Inc. Common Stock|A|DMF|N|100|N|DMF
 DMO|Western Asset Mortgage Opportunity Fund Inc. Common Stock|N|DMO|N|100|N|DMO
 DMYY|dMY Squared Technology Group, Inc. Class A Common Stock|A|DMYY|N|100|N|DMYY
@@ -1618,7 +1615,6 @@ EE|Excelerate Energy, Inc. Class A Common Stock|N|EE|N|100|N|EE
 EEA|The European Equity Fund, Inc. Common Stock|N|EEA|N|100|N|EEA
 EELV|Invesco S&P Emerging Markets Low Volatility ETF|P|EELV|Y|100|N|EELV
 EEM|iShares MSCI Emerging Index Fund|P|EEM|Y|100|N|EEM
-EEMD|AAM S&P Emerging Markets High Dividend Value ETF|P|EEMD|Y|100|N|EEMD
 EEMO|Invesco S&P Emerging Markets Momentum ETF|P|EEMO|Y|100|N|EEMO
 EEMS|Ishares MSCI Emerging Markets Small Cap Index Fund|P|EEMS|Y|100|N|EEMS
 EEMV|iShares MSCI Emerging Markets Min Vol Factor ETF|Z|EEMV|Y|100|N|EEMV
@@ -1667,6 +1663,7 @@ EICB|Eagle Point Income Company Inc. 7.75% Series B Term Preferred Stock Due 202
 EICC|Eagle Point Income Company Inc. 8.00% Series C Term Preferred Stock due 2029|N|EICC|N|100|N|EICC
 EIDO|iShares MSCI Indonesia ETF|P|EIDO|Y|100|N|EIDO
 EIG|Employers Holdings Inc Common Stock|N|EIG|N|100|N|EIG
+EIIA|Eagle Point Institutional Income Fund 8.125% Series A Term Preferred Shares Due 2029|N|EIIA|N|100|N|EIIA
 EIM|Eaton Vance Municipal Bond Fund Common Shares of Beneficial Interest, $.01 par value|A|EIM|N|100|N|EIM
 EINC|VanEck Energy Income ETF|P|EINC|Y|100|N|EINC
 EIPI|First Trust Exchange-Traded Fund VIII FT Energy Income Partners Enhanced Income ETF|P|EIPI|Y|100|N|EIPI
@@ -3198,7 +3195,6 @@ JQC|Nuveen Credit Strategies Income Fund Shares of Beneficial Interest|N|JQC|N|1
 JQUA|JPMorgan U.S. Quality Factor ETF|P|JQUA|Y|100|N|JQUA
 JRE|Janus Henderson U.S. Real Estate ETF|P|JRE|Y|100|N|JRE
 JRI|Nuveen Real Asset Income and Growth Fund Common Shares of Beneficial Interest|N|JRI|N|100|N|JRI
-JRNY|ALPS Global Travel Beneficiaries ETF|P|JRNY|Y|100|N|JRNY
 JRS|Nuveen Real Estate Income Fund Common Shares of Beneficial Interest|N|JRS|N|100|N|JRS
 JSCP|JPMorgan Short Duration Core Plus ETF|P|JSCP|Y|100|N|JSCP
 JSI|Janus Detroit Street Trust Janus Henderson Securitized Income ETF|P|JSI|Y|100|N|JSI
@@ -4192,7 +4188,6 @@ OPTT|Ocean Power Technologies, Inc. Common Stock|A|OPTT|N|100|N|OPTT
 OPY|Oppenheimer Holdings, Inc. Class A Common Stock (DE)|N|OPY|N|100|N|OPY
 OR|Osisko Gold Royalties Ltd Common Shares|N|OR|N|100|N|OR
 ORA|Ormat Technologies, Inc. Common Stock|N|ORA|N|100|N|ORA
-ORAN|Orange|N|ORAN|N|100|N|ORAN
 ORC|Orchid Island Capital, Inc. Common Stock|N|ORC|N|100|N|ORC
 ORCL|Oracle Corporation Common Stock|N|ORCL|N|100|N|ORCL
 ORI|Old Republic International Corporation Common Stock|N|ORI|N|100|N|ORI
@@ -5307,7 +5302,6 @@ SQ|Block, Inc. Class A Common Stock,|N|SQ|N|100|N|SQ
 SQEW|LeaderShares Equity Skew ETF|P|SQEW|Y|100|N|SQEW
 SQM|Sociedad Quimica y Minera S.A. Common Stock|N|SQM|N|100|N|SQM
 SQNS|Sequans Communications S.A. American Depositary Shares (each representing ten (10) Ordinary Shares)|N|SQNS|N|100|N|SQNS
-SQSP|Squarespace, Inc. Class A Common Stock|N|SQSP|N|100|N|SQSP
 SQY|Tidal Trust II YieldMax SQ Option Income Strategy ETF|P|SQY|Y|100|N|SQY
 SR|Spire Inc. Common Stock|N|SR|N|100|N|SR
 SR$A|Spire Inc. Depositary Shares, each representing a 1/1,000th interest in a share of 5.90% Series A Cumulative Redeemable Perpetual Preferred Stock|N|SRpA|N|100|N|SR-A
@@ -6309,4 +6303,4 @@ ZVIA|Zevia PBC Class A Common Stock|N|ZVIA|N|100|N|ZVIA
 ZVV|NYSE ARCA test stock|P|ZVV|N|100|Y|ZVV
 ZWS|Zurn Elkay Water Solutions Corporation Common Stock|N|ZWS|N|100|N|ZWS
 ZXIET|IEX Test Company Test Symbol Three for IEX|V|ZXIET|N|100|Y|ZXIET
-File Creation Time: 1016202421:31||||||
+File Creation Time: 1018202421:31||||||

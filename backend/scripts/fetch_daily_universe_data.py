@@ -1,5 +1,4 @@
 import os
-import json
 from dotenv import load_dotenv
 from datetime import datetime, timezone
 import pandas as pd
@@ -7,7 +6,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from yahooquery import Ticker
 from pymongo import MongoClient, UpdateOne
 from pymongo.errors import BulkWriteError
-from config import LOCAL_DIR, TICKER_LIST, UNIVERSE_DATA
+from config import LOCAL_DIR, TICKER_LIST
 
 load_dotenv('../../.env')
 MONGO_URI = os.getenv('MONGO_URI')

@@ -10,9 +10,14 @@ Description:
 - Save the tickers to ticker_list.csv
 '''
 
-ftp = FTP(NASDAQ_FTP)
-ftp.login()
-ftp.cwd(SYMBOL_DIRECTORY)
+try:
+    ftp = FTP(NASDAQ_FTP)
+    ftp.login()
+    ftp.cwd(SYMBOL_DIRECTORY)
+    print("Connected to NASDAQ FTP")
+except:
+    print("Failed to connect to NASDAQ FTP")
+    exit()
 
 # NASDAQ listings
 with open(LOCAL_DIR + NASDAQ_NAMES, 'wb') as local_file:
@@ -25,6 +30,7 @@ df = df[(df["Market Category"] == "Q") &
         (df["ETF"] == "N")]
 
 tickers = df[['Symbol']]
+print(f"{len(tickers)} names from NASDAQ Global Select")
 tickers.to_csv(LOCAL_DIR + TICKER_LIST, index=False)
 
 # NYSE listings
@@ -47,6 +53,5 @@ df = df[(~df["ACT Symbol"].str.contains(pattern, regex=True)) &
         (df["Test Issue"] == "N") & 
         (df["ETF"] == "N")]
 tickers = df[['ACT Symbol']]
+print(f"{len(tickers)} names from NYSE")
 tickers.to_csv(LOCAL_DIR + TICKER_LIST, mode='a', header=False, index=False)
-
-print("Refreshed universe.csv")
