@@ -6,23 +6,21 @@ const path = require("path");
 const readFileAsync = promisify(fs.readFile);
 
 // @desc   Fetch stock data for a particular ticker
-// @route  GET /api/stock:id
+// @route  GET /api/stock/:id
 // @access Public
 const getStockData = asyncHandler(async (req, res) => {
-  const stockExists = await Stock.findOne({ ticker: req.params.ticker });
+  const stock = await Stock.findOne({ _id: req.params.ticker });
 
-  if (stockExists) {
-    const stocks = await Stock.find({});
-    res
-      .status(200)
-      .json(stocks.filter((stock) => stock.ticker === req.params.ticker));
+  if (stock) {
+    res.status(200).json(stock);
   } else {
-    res
-      .status(400)
-      .json({ msg: `No stock with the ticker of ${req.params.ticker}` });
+    res.status(400).json({ msg: `No stock with the ticker of ${req.params.ticker}` });
   }
 });
 
+// @desc   Fetch stock data for today's stock
+// @route  GET /api/stock/today
+// @access Public
 const getTodayTicker = asyncHandler(async (req, res) => {
   const FILE_PATH = "../scripts/today.stock";
 
@@ -38,13 +36,26 @@ const getTodayTicker = asyncHandler(async (req, res) => {
   }
 });
 
-const getAllStockData = asyncHandler(async (req, res) => {
-  const allStocks = await Stock.find({});
-  res.status(200).json(allStocks);
+// @desc   Fetch list of names and tickers for all stocks in stockpile
+// @route  GET /api/stock/list
+// @access Public
+const getTickerList = asyncHandler(async (req, res) => {
+  try {
+    const allStocks = await Stock.find({}).select(
+      "price.shortName price.symbol -_id"
+    );
+    const tickerList = allStocks.map((stock) => ({
+      name: stock.price.shortName,
+      ticker: stock.price.symbol,
+    }));
+    res.status(200).json(tickerList);
+  } catch (error) {
+    res.status(500).json({ msg: "Unable to fetch ticker list" });
+  }
 });
 
 module.exports = {
   getStockData,
   getTodayTicker,
-  getAllStockData,
+  getTickerList,
 };

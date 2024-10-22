@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { useState, useEffect, createContext } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -30,16 +31,12 @@ function App() {
   // Dark/light mode status
   const initialMode = localStorageManipulator.getMode();
   const [mode, setMode] = useState(initialMode);
-  const toggleMode = () => {
-    if (mode === "light") {
-      setMode("dark");
-    } else {
-      setMode("light");
-    }
-  };
+  const toggleMode = useCallback(() => {
+    setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
+  }, []);
   useEffect(() => {
     document.body.className = mode;
-  });
+  }, [mode]);
 
   // Board State
   const [board, setBoard] = useState(boardDefault);
@@ -57,7 +54,7 @@ function App() {
       const response = await axios.get("/api/stock/today");
       const todayTicker = response.data;
       const todayStockData = await axios.get(`/api/stock/${todayTicker}`);
-      const todayStockDataItem = todayStockData.data[0];
+      const todayStockDataItem = todayStockData.data;
       const stock = new Stock(todayTicker, todayStockDataItem);
       setTodayStock(stock);
     };
@@ -66,30 +63,25 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <AppContext.Provider
-        value={{
-          board,
-          setBoard,
-          currAttempt,
-          setCurrAttempt,
-          todayStock,
-          shareResults,
-          setShareResults,
-        }}
-      >
+    <AppContext.Provider
+      value={{
+        board,
+        setBoard,
+        currAttempt,
+        setCurrAttempt,
+        todayStock,
+        shareResults,
+        setShareResults,
+      }}
+    >
+      <div className="App">
         <Header mode={mode} setPopup={setPopup} />
-        <Alpha mode={mode} trigger={popup} setPopup={setPopup} />
-        <Instructions mode={mode} trigger={popup} setPopup={setPopup} />
-        <Statistics mode={mode} trigger={popup} setPopup={setPopup} />
-        <Settings
+        <PopupComponents
           mode={mode}
-          trigger={popup}
+          popup={popup}
           setPopup={setPopup}
           toggleMode={toggleMode}
         />
-        <Login mode={mode} trigger={popup} setPopup={setPopup} />
-        <WinLoss mode={mode} trigger={popup} setPopup={setPopup} />
         <Graph popupState={popup} />
         <div className="game">
           <Board mode={mode} />
@@ -101,9 +93,25 @@ function App() {
           />
         </div>
         <ToastContainer />
-      </AppContext.Provider>
-    </div>
+      </div>
+    </AppContext.Provider>
   );
 }
+
+const PopupComponents = ({ mode, popup, setPopup, toggleMode }) => (
+  <>
+    <Alpha mode={mode} trigger={popup} setPopup={setPopup} />
+    <Instructions mode={mode} trigger={popup} setPopup={setPopup} />
+    <Statistics mode={mode} trigger={popup} setPopup={setPopup} />
+    <Settings
+      mode={mode}
+      trigger={popup}
+      setPopup={setPopup}
+      toggleMode={toggleMode}
+    />
+    <Login mode={mode} trigger={popup} setPopup={setPopup} />
+    <WinLoss mode={mode} trigger={popup} setPopup={setPopup} />
+  </>
+);
 
 export default App;

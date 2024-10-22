@@ -28,3 +28,4 @@ v0.1.0 - Bear Trap
 - Daily update of security universe from Nasdaq FTP
 - Replaced Yahoo Finance web scraper (yfinance) with API wrapper (yahooquery)
 - Added threading to bring reset time down to ~4 minutes
+- More efficient API calls made by React App

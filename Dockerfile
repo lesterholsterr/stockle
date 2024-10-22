@@ -58,7 +58,7 @@ ENV PATH="${VIRTUAL_ENV}/bin:$PATH"
 RUN pip install --upgrade pip
 
 # Install Python packages using pip within the virtual environment
-RUN pip install pandas yfinance
+RUN pip install pandas python-dotenv pymongo pytz yahooquery
 
 # Expose the desired port (change this to the port your backend listens on)
 EXPOSE 3001

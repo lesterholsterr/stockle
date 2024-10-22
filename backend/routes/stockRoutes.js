@@ -3,10 +3,10 @@ const router = express.Router();
 const {
   getStockData,
   getTodayTicker,
-  getAllStockData,
+  getTickerList,
 } = require("../controllers/stockController");
 
-router.get("/all", getAllStockData);
+router.get("/list", getTickerList);
 router.get("/today", getTodayTicker);
 router.get("/:ticker", getStockData);
 

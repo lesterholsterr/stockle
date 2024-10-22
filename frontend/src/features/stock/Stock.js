@@ -1,11 +1,3 @@
-import axios from "axios";
-
-var stock_info = [];
-(async () => {
-  const response = await axios.get("/api/stock/all");
-  stock_info = response.data;
-})();
-
 // I have NO idea why, but the arrow emotes seem to take up
 // 4 bytes instead of 2, so to compensate, the checkbox emote
 // has a whitespace after it. not scuffed LOL
@@ -30,33 +22,26 @@ class Stock {
 
   // To avoid async problems of stock_info not being updated before the data is called
   // there is an optional second parameter where we asynchronously request the stock's
-  // data from the DB and pass it here.
-  // IMPORTANT: Since JS does not allow multiple constructors in the same class, id takes
-  // on different values.
-  // If data == null, id represents the stock name
-  // If data != null, id represents the ticker
-  constructor(id, data = null) {
-    if (data == null) {
-      const stock = stock_info.filter((s) => s.name === id);
-
-      this.name = stock[0].name;
-      this.ticker = stock[0].ticker;
-      this.sector = stock[0].sector;
-      this.market_cap = stock[0].market_cap;
-      this.share_price = stock[0].share_price;
-      this.revenue = stock[0].revenue;
-      this.net_income = stock[0].net_income;
-      this.summary = stock[0].summary;
-    } else {
-      this.name = data.name;
-      this.ticker = id;
-      this.sector = data.sector;
-      this.market_cap = data.market_cap;
-      this.share_price = data.share_price;
-      this.revenue = data.revenue;
-      this.net_income = data.net_income;
-      this.summary = data.summary;
+  // data from the DB and pass it here. <-- what the fuck does this mean matthew???
+  constructor(id, data) {
+    if (
+      !data ||
+      !data.price ||
+      !data.summaryProfile ||
+      !data.financialData ||
+      !data.defaultKeyStatistics
+    ) {
+      throw new Error("Invalid data object passed to Stock constructor");
     }
+
+    this.name = data.price.shortName;
+    this.ticker = id;
+    this.sector = data.summaryProfile.sector;
+    this.market_cap = data.price.marketCap;
+    this.share_price = data.price.regularMarketPrice;
+    this.revenue = data.financialData.totalRevenue;
+    this.net_income = data.defaultKeyStatistics.netIncomeToCommon;
+    this.summary = data.summaryProfile.longBusinessSummary;
   }
 
   // usage: s1 should be today's stock
@@ -68,7 +53,7 @@ class Stock {
   // diagonal = this is within 30% of s1 on this metric
   compare(s1) {
     return [
-      this.ticker,
+      this.ticker.toUpperCase(),
       this.compare_sector(s1.sector, this.sector),
       this.compare_price(s1.share_price, this.share_price),
       this.compare_cap(s1.market_cap, this.market_cap),

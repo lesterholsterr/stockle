@@ -10,14 +10,10 @@ import { toast } from "react-toastify";
 import { updateUser } from "../features/auth/authSlice";
 import "../css/Search.css";
 
-var stock_info = [];
-(async () => {
-  const response = await axios.get("/api/stock/all");
-  stock_info = response.data;
-})();
-
 function Search({ mode, setPopup, gameOver, setGameOver }) {
   const [searchValue, setSearchValue] = useState("");
+  const [universeList, setUniverseList] = useState([]);
+  const [clickedSuggestion, setClickedSuggestion] = useState(false);
   const {
     board,
     setBoard,
@@ -30,27 +26,43 @@ function Search({ mode, setPopup, gameOver, setGameOver }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const newBoard = [...board];
+    const fetchUniverseList = async () => {
+      const response = await axios.get("/api/stock/list");
+      setUniverseList(response.data);
+    };
+
+    if (!clickedSuggestion) {
+      fetchUniverseList();
+    }
+  }, [clickedSuggestion]);
+
+  useEffect(() => {
     const boardState = JSON.parse(localStorage.getItem("board state"));
-    var attempt = 0;
-    for (const key in boardState) {
-      if (boardState.hasOwnProperty(key)) {
-        const attemptResults = boardState[key];
-        for (var i = 0; i < 6; i++) {
-          newBoard[attempt][i] = attemptResults[i];
+    const newBoard = [...board];
+    var line = 0;
+    if (boardState) {
+      for (const key in boardState) {
+        if (boardState.hasOwnProperty(key)) {
+          const attemptResults = boardState[key];
+          for (var i = 0; i < 6; i++) {
+            newBoard[line][i] = attemptResults[i];
+          }
         }
+        line++;
       }
-      attempt++;
     }
     setBoard(newBoard);
-    setCurrAttempt(attempt + 1);
+    setCurrAttempt(line);
   }, []);
 
   const onChange = (event) => {
     setSearchValue(event.target.value);
+    if (clickedSuggestion) {
+      setClickedSuggestion(false);
+    }
   };
 
-  const onSearch = (searchTerm) => {
+  const onSearch = async (searchTerm) => {
     if (!user) {
       toast.error("Please log in to play", {
         position: toast.POSITION.TOP_CENTER,
@@ -58,28 +70,47 @@ function Search({ mode, setPopup, gameOver, setGameOver }) {
       return;
     }
     setSearchValue("");
-    const searchedStock = new Stock(searchTerm);
-    const results = searchedStock.compare(todayStock);
 
-    setBoard(generateNewBoard(results));
-    setCurrAttempt(currAttempt + 1);
+    let results;
+    try {
+      const response = await axios.get(
+        `/api/stock/${searchTerm.toUpperCase()}`
+      );
+      const stockData = response.data;
+      const searchedStock = new Stock(searchTerm, stockData);
+      results = searchedStock.compare(todayStock);
+    } catch (error) {
+      toast.error("Failed to fetch stock data", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+      return;
+    }
 
+    const newBoard = generateNewBoard(results);
+    setBoard(newBoard);
     const localStorageManipulator = new LocalStorageManipulator();
-    localStorageManipulator.setNewAttempt(results, currAttempt);
-    localStorageManipulator.setShareResult(results);
 
-    winLossCheck(results, localStorageManipulator);
+    setCurrAttempt(currAttempt + 1);
+    try {
+      localStorageManipulator.setUserGuess(results, currAttempt);
+      localStorageManipulator.setShareResult(results);
+    } catch (error) {
+      console.error("Error updating local storage:", error);
+    }
+
+    setTimeout(() => {
+      winLossCheck(results, localStorageManipulator);
+    }, 100);
   };
 
   const generateNewBoard = (results) => {
     const newBoard = [...board];
-    newBoard[currAttempt - 1][0] = results[0];
-    newBoard[currAttempt - 1][1] = results[1];
-    newBoard[currAttempt - 1][2] = results[2];
-    newBoard[currAttempt - 1][3] = results[3];
-    newBoard[currAttempt - 1][4] = results[4];
-    newBoard[currAttempt - 1][5] = results[5];
-
+    newBoard[currAttempt][0] = results[0];
+    newBoard[currAttempt][1] = results[1];
+    newBoard[currAttempt][2] = results[2];
+    newBoard[currAttempt][3] = results[3];
+    newBoard[currAttempt][4] = results[4];
+    newBoard[currAttempt][5] = results[5];
     return newBoard;
   };
 
@@ -89,12 +120,12 @@ function Search({ mode, setPopup, gameOver, setGameOver }) {
       localStorageManipulator.setGameOver(true);
       updateStats(true);
       setShareResults(
-        `Stockle ${currAttempt}/6\n`.concat(
+        `Stockle ${currAttempt + 1}/6\n`.concat(
           localStorageManipulator.shareResults
         )
       );
       setPopup("win");
-    } else if (currAttempt === 6) {
+    } else if (currAttempt === 5) {
       setGameOver(true);
       localStorageManipulator.setGameOver(true);
       updateStats(false);
@@ -160,24 +191,33 @@ function Search({ mode, setPopup, gameOver, setGameOver }) {
     <div className="search-container">
       <div className="dropdown-wrapper">
         <div className={`dropdown-${mode}`}>
-          {stock_info
+          {universeList
             .filter((item) => {
-              const searchTerm = searchValue !== "" ? searchValue.toLowerCase() : null;
+              if (!item.name || !item.ticker) {
+                return false;
+              }
+              const searchTerm =
+                searchValue !== "" ? searchValue.toLowerCase() : null;
               const stockName = item.name.toLowerCase();
               const stockTicker = item.ticker.toLowerCase();
 
               return (
                 searchTerm &&
-                (stockTicker.startsWith(searchTerm) ||
+                ((stockTicker.startsWith(searchTerm) &&
+                  stockTicker !== searchTerm.toLowerCase()) ||
                   (stockName.startsWith(searchTerm) &&
-                    stockName !== searchTerm))
+                    stockName !== searchTerm.toLowerCase()))
               );
             })
             .slice(0, 10)
             .map((item) => (
               <div
                 className="dropdown-row"
-                onClick={() => setSearchValue(item.name)}
+                onClick={() => {
+                  setSearchValue(item.ticker);
+                  setClickedSuggestion(true);
+                  setUniverseList([]);
+                }}
                 key={item.name}
               >
                 {`${item.name} (${item.ticker})`}

@@ -1426,6 +1426,7 @@ ESLA|Estrella Immunopharma, Inc. - Common Stock|S|N|N|100|N|N
 ESLAW|Estrella Immunopharma, Inc. - Warrant|S|N|N|100|N|N
 ESLT|Elbit Systems Ltd. - Ordinary Shares|Q|N|N|100|N|N
 ESMV|iShares ESG MSCI USA Min Vol Factor ETF|G|N|N|100|Y|N
+ESN|Essential 40 Stock ETF|G|N|N|100|Y|N
 ESOA|Energy Services of America Corporation - Common Stock|S|N|N|100|N|N
 ESPO|VanEck Video Gaming and eSports ETF|G|N|N|100|Y|N
 ESPR|Esperion Therapeutics, Inc. - Common Stock|G|N|N|100|N|N
@@ -2319,9 +2320,9 @@ IUSV|iShares Core S&P U.S. Value ETF|G|N|N|100|Y|N
 IVA|Inventiva S.A. - American Depository Shares|G|N|N|100|N|N
 IVAC|Intevac, Inc. - Common Stock|Q|N|N|100|N|N
 IVAL|Alpha Architect International Quantitative Value ETF|G|N|N|100|Y|N
-IVCA|Investcorp India Acquisition Corp. - Class A Ordinary Shares|G|N|N|100|N|N
-IVCAU|Investcorp India Acquisition Corp. - Unit|G|N|N|100|N|N
-IVCAW|Investcorp India Acquisition Corp. - Warrant|G|N|N|100|N|N
+IVCA|Investcorp AI Acquisition Corp. - Class A Ordinary Shares|G|N|N|100|N|N
+IVCAU|Investcorp AI Acquisition Corp. - Unit|G|N|N|100|N|N
+IVCAW|Investcorp AI Acquisition Corp. - Warrant|G|N|N|100|N|N
 IVCB|Investcorp Europe Acquisition Corp I - Class A Ordinary Shares|G|N|N|100|N|N
 IVCBU|Investcorp Europe Acquisition Corp I - Unit|G|N|N|100|N|N
 IVCBW|Investcorp Europe Acquisition Corp I - Warrant|G|N|D|100|N|N
@@ -3222,7 +3223,6 @@ OPXS|Optex Systems Holdings, Inc. - Common Stock|S|N|N|100|N|N
 ORGN|Origin Materials, Inc. - Class A Common Stock|S|N|N|100|N|N
 ORGNW|Origin Materials, Inc. - Warrant|S|N|N|100|N|N
 ORGO|Organogenesis Holdings Inc.  - Class A |S|N|N|100|N|N
-ORGS|Orgenesis Inc. - Common Stock|S|N|N|100|N|N
 ORIC|Oric Pharmaceuticals, Inc. - Common Stock|Q|N|N|100|N|N
 ORIS|Oriental Rise Holdings Limited - Ordinary Shares|S|N|N|100|N|N
 ORKA|Oruka Therapeutics, Inc. - Common Stock|G|N|N|100|N|N
@@ -3527,7 +3527,6 @@ PXDT|Pixie Dust Technologies, Inc. - ADS, each representing one common share|S|N
 PXI|Invesco Dorsey Wright Energy Momentum ETF|G|N|N|100|Y|N
 PXLW|Pixelworks, Inc. - Common Stock|G|N|D|100|N|N
 PXS|Pyxis Tankers Inc. - Common Stock|S|N|N|100|N|N
-PXSAP|Pyxis Tankers Inc. - 7.75% Series A Cumulative Convertible Preferred Shares|S|N|N|100|N|N
 PXSAW|Pyxis Tankers Inc. - Warrant|S|N|N|100|N|N
 PY|Principal Value ETF|G|N|N|100|Y|N
 PYCR|Paycor HCM, Inc. - Common Stock|Q|N|N|100|N|N
@@ -4202,7 +4201,6 @@ TCBPW|TC BioPharm (Holdings) plc - Warrants|S|N|N|100|N|N
 TCBS|Texas Community Bancshares, Inc. - Common Stock|S|N|N|100|N|N
 TCBX|Third Coast Bancshares, Inc. - Common Stock|Q|N|N|100|N|N
 TCHI|iShares MSCI China Multisector Tech ETF|G|N|N|100|Y|N
-TCJH|Top KingWin Ltd - Class A Ordinary Shares|S|N|D|100|N|N
 TCMD|Tactile Systems Technology, Inc. - Common Stock|G|N|N|100|N|N
 TCOM|Trip.com Group Limited - American Depositary Shares|Q|N|N|100|N|N
 TCPC|BlackRock TCP Capital Corp. - Closed End Fund|Q|N|N|100|N|N
@@ -4620,6 +4618,7 @@ WABF|Western Asset Bond ETF|G|N|N|100|Y|N
 WAFD|WaFd, Inc. - Common Stock|Q|N|N|100|N|N
 WAFDP|WaFd, Inc. - Depositary Shares|Q|N|N|100|N|N
 WAFU|Wah Fu Education Group Limited - Ordinary Shares|S|N|N|100|N|N
+WAI|Top KingWin Ltd - Class A Ordinary Shares|S|N|D|100|N|N
 WALD|Waldencast plc - Class A Ordinary Share|S|N|N|100|N|N
 WALDW|Waldencast plc - Warrant|S|N|N|100|N|N
 WASH|Washington Trust Bancorp, Inc. - Common Stock|Q|N|N|100|N|N
@@ -4828,4 +4827,4 @@ ZXZZT|NASDAQ TEST STOCK|G|Y|N|100||N
 ZYME|Zymeworks Inc. - Common Stock|Q|N|N|100|N|N
 ZYXI|Zynex, Inc. - Common Stock|Q|N|N|100|N|N
 ZZZ|Cyber Hornet S&P 500 and Bitcoin 75/25 Strategy ETF|G|N|N|100|Y|N
-File Creation Time: 1018202421:31|||||||
+File Creation Time: 1021202418:01|||||||

@@ -73,7 +73,7 @@ function Alpha({ mode, trigger, setPopup }) {
               type="text"
               name="message"
               rows="5"
-              placeholder="Flame the fuck out of this website"
+              placeholder="Any and all feedback is appreciated!"
               required
             ></textarea>
             <button type="submit" className={`fancy-button-${mode}`}>

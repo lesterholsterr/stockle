@@ -32,18 +32,20 @@ class LocalStorageManipulator {
 
   getResetTime() {
     const resetTime = localStorage.getItem("reset");
-    return resetTime ? JSON.parse(localStorage.getItem("reset")).nextResetTime : null;
+    return resetTime
+      ? JSON.parse(localStorage.getItem("reset")).nextResetTime
+      : null;
   }
 
-  setNewAttempt(results, currAttempt) {
+  setUserGuess(results, currAttempt) {
     var boardState = JSON.parse(localStorage.getItem("board state"));
     if (boardState == null) {
-      if (currAttempt !== 1) {
+      if (currAttempt !== 0) {
         throw new Error(
           "Unexpected discrepancy between local storage and currAttempt"
         );
       }
-      localStorage.setItem("board state", JSON.stringify({ 1: results }));
+      localStorage.setItem("board state", JSON.stringify({ 0: results }));
     } else {
       Object.assign(boardState, { [currAttempt]: results });
       localStorage.setItem("board state", JSON.stringify(boardState));

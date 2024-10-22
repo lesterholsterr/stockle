@@ -2,13 +2,13 @@
 
 A stock market-themed wordle parody currently in open Alpha. After almost a year hiatus, I'm back. You thought this project was left for dead, but it was just a [bear trap](https://www.investopedia.com/terms/b/beartrap.asp) 😉.
 
-Check it out at https://playstockle.com.
+Check it out at https://playstockle.com*.
 
-*Currently down for maintenance. Hoping to have a stable release by Halloween.
+Dev Note (10/21/2024): The front-end looks exactly the same as it did a year ago, but there has been a significant overhaul of the backend and database that paves the way for new features including power-ups and a reworked points system. Stay tuned!
 
 ### Deployment
 
-Stockle runs on Node, but it scrapes financial data from the web using Python. I used Docker to containerise this app into a Python virtual environment inside a node based image (please do not ask how long this took). The Docker image was pushed to Amazon's Elastic Container Registry. An ECS container is running this image on a single EC2 t2.micro instance, so please don't DDOS me. The domain is registered with Amazon's Route 53 and points to a Cloudfront distribution that has the EC2 instance as its origin. Nginx reverse proxies HTTP requests to port 8080, where the server is listening for inbound traffic.
+Stockle runs on Node, but the Yahoo Finance API wrapper I use is written for Python. I used Docker to containerise this app into a Python virtual environment inside a node based image (please do not ask how long this took). The Docker image was pushed to Amazon's Elastic Container Registry. An ECS container is running this image on a single EC2 t2.micro instance, so please don't DDOS me. The domain is registered with Amazon's Route 53 and points to a Cloudfront distribution that has the EC2 instance as its origin. Nginx reverse proxies HTTP requests to port 8080, where the server is listening for inbound traffic.
 
 ### Sources
 
@@ -28,21 +28,22 @@ Stock chart Library: https://canvasjs.com/download-html5-charting-graphing-libra
 
 Deploying to AWS: https://www.youtube.com/watch?v=YDNSItBN15w&t=139s
 
-<b>And the MVPs: GPT-3.5, Github co-pilot, and Claude 3.</b>
+<b>And the MVPs: ChatGPT, Github Copilot, and Claude Sonnet.</b>
 
 ### Coming Soon
 
-Fix daily reset mechanics
+- Find a better library for graphs (hopefully)
 
-Fix point system
+- Overhaul points system
 
-Add hint feature (logo)
-- https://www.benzinga.com/apis/cloud-product/company-logo-api/
+- Powerups
+  - Logo: https://www.benzinga.com/apis/cloud-product/company-logo-api/
+  - Filter out all stocks that don't meet current criteria
+  - Add a metric to the board
+  - Reveal a metric about the company
 
-Look into image hosters to store user profile pictures
+- Image hoster to store user profile pictures
 
-Add easy/hard mode (toggle graph on/off, bonus points)
-
-Improved search bar
-- Order by relevance and market cap of company
-- Account for typos
+- Improved search bar
+  - Order by relevance and market cap of company
+  - Account for typos

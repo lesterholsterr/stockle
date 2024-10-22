@@ -24,7 +24,7 @@ function WinLoss({ mode, trigger, setPopup }) {
           <h1>You Win!</h1>
           <br />
           <h3>Today's Stock: {todayStock.name}</h3>
-          <p>Guesses Used: {currAttempt - 1}</p>
+          <p>Guesses Used: {currAttempt}</p>
           <p>Points Earned: {800 - currAttempt * 100}</p>
           <p>Daily Reward: {Math.min(100, user.currentStreak * 20)}</p>
           <br />
@@ -50,7 +50,7 @@ function WinLoss({ mode, trigger, setPopup }) {
           <h3>Out of Guesses!</h3>
           <br />
           <h3>Today's Stock: {todayStock.name}</h3>
-          <p>Guesses Used: {currAttempt - 1}</p>
+          <p>Guesses Used: {currAttempt}</p>
           <p>Points Earned: {100}</p>
           <p>Daily Reward: {Math.min(100, user.currentStreak * 20)}</p>
           <br />
