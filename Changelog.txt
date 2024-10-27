@@ -29,3 +29,5 @@ v0.1.0 - Bear Trap
 - Replaced Yahoo Finance web scraper (yfinance) with API wrapper (yahooquery)
 - Added threading to bring reset time down to ~4 minutes
 - More efficient API calls made by React App
+- Search bar bug fixes and only show autocompletions when the text field is selected
+- Points system and daily reward bug fixes

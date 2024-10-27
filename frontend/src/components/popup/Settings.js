@@ -53,7 +53,7 @@ function Settings({ mode, trigger, setPopup, toggleMode }) {
           <br />
           <hr />
           <br />
-          <p>Version: Alpha 1.0.2</p>
+          <p>Version: Alpha 0.1.0 — Bear Trap</p>
 
           <div
             className={`close-popup-${mode}`}

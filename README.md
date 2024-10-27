@@ -2,7 +2,7 @@
 
 A stock market-themed wordle parody currently in open Alpha. After almost a year hiatus, I'm back. You thought this project was left for dead, but it was just a [bear trap](https://www.investopedia.com/terms/b/beartrap.asp) 😉.
 
-Check it out at https://playstockle.com*.
+Check it out at https://playstockle.com.
 
 Dev Note (10/21/2024): The front-end looks exactly the same as it did a year ago, but there has been a significant overhaul of the backend and database that paves the way for new features including power-ups and a reworked points system. Stay tuned!
 

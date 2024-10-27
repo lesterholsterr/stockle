@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { cloneDeep } from "lodash";
@@ -12,8 +12,11 @@ import "../css/Search.css";
 
 function Search({ mode, setPopup, gameOver, setGameOver }) {
   const [searchValue, setSearchValue] = useState("");
-  const [universeList, setUniverseList] = useState([]);
+  const [stockList, setStockList] = useState([]);
+  const [filteredList, setFilteredList] = useState([]);
   const [clickedSuggestion, setClickedSuggestion] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+  const dropdownRef = useRef(null);
   const {
     board,
     setBoard,
@@ -26,15 +29,54 @@ function Search({ mode, setPopup, gameOver, setGameOver }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchUniverseList = async () => {
-      const response = await axios.get("/api/stock/list");
-      setUniverseList(response.data);
+    const fetchStockList = async () => {
+      try {
+        const response = await axios.get("/api/stock/list");
+        setStockList(response.data);
+      } catch (error) {
+        console.error("Failed to fetch stock list:", error);
+      }
     };
 
-    if (!clickedSuggestion) {
-      fetchUniverseList();
+    fetchStockList();
+  }, []);
+
+  useEffect(() => {
+    if (searchValue.length > 0 && !clickedSuggestion && isFocused) {
+      const filteredStocks = stockList
+        .filter((item) => {
+          if (!item.name || !item.ticker) {
+            return false;
+          }
+          const searchTerm = searchValue.toLowerCase();
+          const stockName = item.name.toLowerCase();
+          const stockTicker = item.ticker.toLowerCase();
+
+          return (
+            (stockTicker.startsWith(searchTerm) &&
+              stockTicker !== searchTerm) ||
+            (stockName.startsWith(searchTerm) && stockName !== searchTerm)
+          );
+        })
+        .slice(0, 10);
+
+      setFilteredList(filteredStocks);
+    } else {
+      setFilteredList([]);
     }
-  }, [clickedSuggestion]);
+  }, [searchValue, clickedSuggestion, stockList, isFocused]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setFilteredList([]);
+        setIsFocused(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   useEffect(() => {
     const boardState = JSON.parse(localStorage.getItem("board state"));
@@ -56,9 +98,13 @@ function Search({ mode, setPopup, gameOver, setGameOver }) {
   }, []);
 
   const onChange = (event) => {
-    setSearchValue(event.target.value);
+    setSearchValue(event.target.value || "");
+    setIsFocused(true);
     if (clickedSuggestion) {
       setClickedSuggestion(false);
+    }
+    if (!event.target.value) {
+      setFilteredList([]);
     }
   };
 
@@ -70,6 +116,7 @@ function Search({ mode, setPopup, gameOver, setGameOver }) {
       return;
     }
     setSearchValue("");
+    setFilteredList([]);
 
     let results;
     try {
@@ -120,9 +167,9 @@ function Search({ mode, setPopup, gameOver, setGameOver }) {
       localStorageManipulator.setGameOver(true);
       updateStats(true);
       setShareResults(
-        `Stockle ${currAttempt + 1}/6\n`.concat(
-          localStorageManipulator.shareResults
-        )
+        `Stockle ${currAttempt + 1}/6\n`
+          .concat(localStorageManipulator.shareResults)
+          .concat("\nhttps://playstockle.com/")
       );
       setPopup("win");
     } else if (currAttempt === 5) {
@@ -130,7 +177,9 @@ function Search({ mode, setPopup, gameOver, setGameOver }) {
       localStorageManipulator.setGameOver(true);
       updateStats(false);
       setShareResults(
-        `Stockle X/6\n`.concat(localStorageManipulator.shareResults)
+        `Stockle X/6\n`
+          .concat(localStorageManipulator.shareResults)
+          .concat("\nhttps://playstockle.com/")
       );
       setPopup("lose");
     } else {
@@ -139,42 +188,48 @@ function Search({ mode, setPopup, gameOver, setGameOver }) {
   };
 
   const updateStats = async (isWin) => {
-    var updatedUser = cloneDeep(user);
     const points = calculatePoints(isWin);
 
-    updatedUser.gamesPlayed += 1;
+    const newGuessDistribution = [...user.guessDistribution];
     if (isWin) {
-      updatedUser.gamesWon += 1;
-      updatedUser.dailyPoints += points;
-      updatedUser.weeklyPoints += points;
-      updatedUser.totalPoints += points;
-      updatedUser.guessDistribution[currAttempt] += 1;
-    } else {
-      updatedUser.dailyPoints += points;
-      updatedUser.weeklyPoints += points;
-      updatedUser.totalPoints += points;
+      newGuessDistribution[currAttempt + 1] =
+        newGuessDistribution[currAttempt + 1] + 1;
     }
-    updatedUser.playedYesterday
-      ? (updatedUser.currentStreak += 1)
-      : (updatedUser.currentStreak = 1);
-    updatedUser.maxStreak = Math.max(
-      updatedUser.maxStreak,
-      updatedUser.currentStreak
-    );
-    updatedUser.playedYesterday = true;
 
-    dispatch(updateUser(updatedUser));
+    const updatedUser = {
+      ...cloneDeep(user),
+      gamesPlayed: user.gamesPlayed + 1,
+      dailyPoints: points,
+      weeklyPoints: points,
+      totalPoints: points,
+      gamesWon: isWin ? user.gamesWon + 1 : user.gamesWon,
+      guessDistribution: newGuessDistribution,
+      currentStreak:
+        user.playedYesterday || user.currentStreak === 0
+          ? 1
+          : -user.currentStreak,
+      maxStreak: Math.max(
+        user.maxStreak,
+        user.playedYesterday || user.currentStreak === 0
+          ? user.currentStreak + 1
+          : 1
+      ),
+      playedYesterday: true,
+    };
+
+    console.log("Sending updated user to Redux:", updatedUser);
+    await dispatch(updateUser(updatedUser)).unwrap();
   };
 
   // Scoring System:
   // 800 - (guessesUsed * 100) +
-  // min(100, currentStreak * 20) +
+  // min(200, currentStreak * 20) +
   // X if no logo hint used +
   // Y if hard mode enabled
   const calculatePoints = (isWin) => {
-    const pointsFromGuesses = isWin ? 800 - currAttempt * 100 : 100;
+    const pointsFromGuesses = isWin ? 800 - (currAttempt + 1) * 100 : 100;
     const pointsFromStreak = user.playedYesterday
-      ? Math.min(100, user.currentStreak * 20)
+      ? Math.min(200, user.currentStreak * 20)
       : 0;
     const pointsFromNoHint = 0; // Not implemented yet
     const pointsFromHardMode = 0; // Not implemented yet
@@ -189,51 +244,39 @@ function Search({ mode, setPopup, gameOver, setGameOver }) {
 
   return (
     <div className="search-container">
-      <div className="dropdown-wrapper">
+      <div className="dropdown-wrapper" ref={dropdownRef}>
         <div className={`dropdown-${mode}`}>
-          {universeList
-            .filter((item) => {
-              if (!item.name || !item.ticker) {
-                return false;
-              }
-              const searchTerm =
-                searchValue !== "" ? searchValue.toLowerCase() : null;
-              const stockName = item.name.toLowerCase();
-              const stockTicker = item.ticker.toLowerCase();
-
-              return (
-                searchTerm &&
-                ((stockTicker.startsWith(searchTerm) &&
-                  stockTicker !== searchTerm.toLowerCase()) ||
-                  (stockName.startsWith(searchTerm) &&
-                    stockName !== searchTerm.toLowerCase()))
-              );
-            })
-            .slice(0, 10)
-            .map((item) => (
-              <div
-                className="dropdown-row"
-                onClick={() => {
-                  setSearchValue(item.ticker);
-                  setClickedSuggestion(true);
-                  setUniverseList([]);
-                }}
-                key={item.name}
-              >
-                {`${item.name} (${item.ticker})`}
-              </div>
-            ))}
+          {filteredList.map((item) => (
+            <div
+              className="dropdown-row"
+              onClick={() => {
+                setSearchValue(item.ticker);
+                setClickedSuggestion(true);
+                setFilteredList([]);
+                setIsFocused(false);
+              }}
+              key={item.ticker}
+            >
+              {`${item.name} (${item.ticker})`}
+            </div>
+          ))}
         </div>
       </div>
       <div className="search-inner">
         {gameOver ? (
-          <>
-            <input type="text" disabled="disabled" />
-          </>
+          <input type="text" disabled="disabled" />
         ) : (
-          <>
-            <input type="text" value={searchValue} onChange={onChange} />
-          </>
+          <input
+            type="text"
+            value={searchValue ?? ""}
+            onChange={onChange}
+            onFocus={() => {
+              if (searchValue.length > 0) {
+                setIsFocused(true);
+                setClickedSuggestion(false);
+              }
+            }}
+          />
         )}
         <button
           className={`fancy-button-${mode}`}
