@@ -7,19 +7,33 @@ import "../../css/Login.css";
 
 function Statistics({ mode, trigger, setPopup }) {
   const { user } = useSelector((state) => state.auth);
+  const token = localStorage.getItem("token");
   const [weeklyLeaders, setWeeklyLeaders] = useState([]);
   const [allTimeLeaders, setAllTimeLeaders] = useState([]);
 
   useEffect(() => {
     const fetchLeaders = async () => {
-      const weeklyLeaders = await axios.get("/api/users/leaderboard/week");
-      const allTimeLeaders = await axios.get("/api/users/leaderboard/all");
+      const authHeader = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      const weeklyLeaders = await axios.get(
+        "/api/users/leaderboard/week",
+        authHeader
+      );
+      const allTimeLeaders = await axios.get(
+        "/api/users/leaderboard/all",
+        authHeader
+      );
       setWeeklyLeaders(weeklyLeaders.data);
       setAllTimeLeaders(allTimeLeaders.data);
     };
-
-    fetchLeaders();
-  }, []);
+    if (token) {
+      fetchLeaders();
+    }
+  }, [trigger, token]);
 
   if (trigger === "statistics") {
     return (
@@ -127,8 +141,7 @@ function Statistics({ mode, trigger, setPopup }) {
           <h1>Weekly Leaderboard</h1>
 
           {weeklyLeaders.map((user) => (
-            <>
-              <div className="leader-row">
+              <div key={user._id} className="leader-row">
                 <div
                   className={`leader-name-${mode}`}
                 >{`${user.username}`}</div>
@@ -136,7 +149,6 @@ function Statistics({ mode, trigger, setPopup }) {
                   className={`leader-points-${mode}`}
                 >{`${user.weeklyPoints}`}</div>
               </div>
-            </>
           ))}
           <div
             className={`close-popup-${mode}`}
@@ -182,8 +194,7 @@ function Statistics({ mode, trigger, setPopup }) {
           </div>
           <h1>All Time Leaderboard</h1>
           {allTimeLeaders.map((user) => (
-            <>
-              <div className="leader-row">
+              <div key={user._id} className="leader-row">
                 <div
                   className={`leader-name-${mode}`}
                 >{`${user.username}`}</div>
@@ -191,7 +202,6 @@ function Statistics({ mode, trigger, setPopup }) {
                   className={`leader-points-${mode}`}
                 >{`${user.totalPoints}`}</div>
               </div>
-            </>
           ))}
           <div
             className={`close-popup-${mode}`}

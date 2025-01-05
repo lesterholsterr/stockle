@@ -4,8 +4,8 @@ import { toast } from "react-toastify";
 
 import "../../css/Popup.css";
 
-function WinLoss({ mode, trigger, setPopup }) {
-  const { currAttempt, todayStock, shareResults } = useContext(AppContext);
+function WinLoss({ mode, trigger, setPopup, shareResults }) {
+  const { currAttempt, todayStock } = useContext(AppContext);
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(shareResults).then(() => {

@@ -19,7 +19,8 @@ except:
     exit()
 
 try:
-    y = Ticker('AAPL')
+    aapl = Ticker('AAPL')
+    data = aapl.summary_detail
 except:
     print("yahooquery not functioning")
     exit()

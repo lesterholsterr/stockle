@@ -31,3 +31,12 @@ v0.1.0 - Bear Trap
 - More efficient API calls made by React App
 - Search bar bug fixes and only show autocompletions when the text field is selected
 - Points system and daily reward bug fixes
+
+v0.1.1
+- Choose daily stock based on analyst coverage and market cap to avoid obscure companies
+- JWT authentication + better error messages for user registration
+
+In Progress
+- Play without creating an account
+- Reworked points system
+- Basic hint feature

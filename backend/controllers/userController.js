@@ -3,31 +3,42 @@ const bcrypt = require("bcryptjs");
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
 
+// Token format: { "id": str, "iat": int, "exp": int}
+const generateToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
+    expiresIn: "30d",
+  });
+};
+
 // @desc   Register a new user
 // @route  POST /api/users
 // @access Public
 const createUser = asyncHandler(async (req, res) => {
+  console.log("Creating user...");
   // Validate input
   const { username, email, password } = req.body;
   if (!username || !email || !password) {
-    res.status(400);
-    throw new Error("Please add all fields");
+    // <-- should be caught by the front-end
+    res.status(400).json({ message: "Please add all fields" });
+    return;
   }
 
   // Check for duplicates
   const userEmailExists = await User.findOne({ email });
   if (userEmailExists) {
-    res.status(400);
-    throw new Error("Email already in use");
+    res.status(400).json({ message: "Email already in use" });
+    console.log("Email already in use");
+    return;
   }
   const usernameExists = await User.findOne({ username });
   if (usernameExists) {
-    res.status(400);
-    throw new Error("Username taken");
+    res.status(400).json({ message: "Username taken" });
+    console.log("Username taken");
+    return;
   }
 
   // Hash password
-  const salt = await bcrypt.genSalt(10); // <-- no idea what this does lol
+  const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
 
   // Create user
@@ -51,10 +62,10 @@ const createUser = asyncHandler(async (req, res) => {
       currentStreak: user.currentStreak,
       maxStreak: user.maxStreak,
       guessDistribution: user.guessDistribution,
+      token: generateToken(user._id),
     });
   } else {
-    res.status(400);
-    throw new Error("Invalid user data");
+    res.status(400).json({ message: "Invalid user data" });
   }
 });
 
@@ -68,8 +79,40 @@ const loginUser = asyncHandler(async (req, res) => {
   const user = await User.findOne({ username });
 
   // Compare inputted password with the hashed password stored in DB
-  if (user && (await bcrypt.compare(password, user.password))) {
-    res.json({
+  if (user) {
+    if (await bcrypt.compare(password, user.password)) {
+      res.json({
+        _id: user.id,
+        username: user.username,
+        email: user.email,
+        gamesPlayed: user.gamesPlayed,
+        gamesWon: user.gamesWon,
+        dailyPoints: user.dailyPoints,
+        weeklyPoints: user.weeklyPoints,
+        totalPoints: user.totalPoints,
+        playedYesterday: user.playedYesterday,
+        currentStreak: user.currentStreak,
+        maxStreak: user.maxStreak,
+        guessDistribution: user.guessDistribution,
+        token: generateToken(user._id),
+      });
+    } else {
+      res.status(400);
+      throw new Error("Password incorrect");
+    }
+  } else {
+    res.status(400);
+    throw new Error("User not found");
+  }
+});
+
+// @desc   Get user data (on login)
+// @route  GET /api/users/me
+// @access Private
+const getUserData = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user.id);
+  if (user) {
+    res.status(200).json({
       _id: user.id,
       username: user.username,
       email: user.email,
@@ -84,22 +127,14 @@ const loginUser = asyncHandler(async (req, res) => {
       guessDistribution: user.guessDistribution,
     });
   } else {
-    res.status(400);
-    throw new Error("Username or password incorrect");
+    res.status(404);
+    throw new Error("User not found");
   }
 });
 
-// Generate JWT
-// Seems like I won't end up needing this...
-const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: "30d",
-  });
-};
-
 // @desc   Updates user statistics after a win/loss
 // @route  PUT /api/users/
-// @access Public
+// @access Private
 const updateUser = asyncHandler(async (req, res) => {
   const {
     _id: id,
@@ -143,7 +178,7 @@ const updateUser = asyncHandler(async (req, res) => {
 
 // @desc   Returns all users sorted in descending order by weekly points
 // @route  GET /api/users/leaderboard/week
-// @access Public
+// @access Private
 const getWeeklyLeaders = asyncHandler(async (req, res) => {
   try {
     const leaders = await User.find({}).sort({ weeklyPoints: -1 }).limit(10);
@@ -155,7 +190,7 @@ const getWeeklyLeaders = asyncHandler(async (req, res) => {
 
 // @desc   Returns all users sorted in descending order by total points
 // @route  GET /api/users/leaderboard/all
-// @access Public
+// @access Private
 const getAllTimeLeaders = asyncHandler(async (req, res) => {
   try {
     const leaders = await User.find({}).sort({ totalPoints: -1 }).limit(10);
@@ -169,6 +204,7 @@ module.exports = {
   createUser,
   loginUser,
   updateUser,
+  getUserData,
   getWeeklyLeaders,
   getAllTimeLeaders,
 };

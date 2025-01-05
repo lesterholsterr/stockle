@@ -106,7 +106,7 @@ const readCSV = async (filepath) => {
 
 const chooseNewStock = async () => {
   try {
-    const tickerData = await readCSV("valid.stock");
+    const tickerData = await readCSV("./scripts/universe.csv");
     const tickers = tickerData
       .split("\n")
       .filter((ticker) => ticker.trim() !== "");
@@ -119,15 +119,27 @@ const chooseNewStock = async () => {
       todayStock = tickers[randomIndex];
       tickers.splice(randomIndex, 1); // Remove the selected stock from the list to avoid duplicates
 
-      // Check if the stock exists in the database
+      // Check if the stock exists, has decent analyst coverage, and is a large cap
       try {
-        const stockExists = await Stock.exists({ _id: todayStock });
+        const stockExists = await Stock.exists({
+          _id: todayStock,
+          $and: [
+            { "financialData.numberOfAnalystOpinions": { $gte: 25 } },
+            {
+              $or: [
+          { "summaryProfile.country": "Canada" },
+          { "summaryProfile.country": "United States" }
+              ]
+            },
+            { "price.marketCap": { $gte: 20000000000 } }
+          ]
+        });
         if (stockExists) {
           foundStock = true;
         }
       } catch (error) {
         console.error(
-          `${todayStock} is not in the database, choosing a new stock...`,
+          `${todayStock} does not exist or is too niche, choosing a new stock...`,
           error
         );
       }

@@ -34,7 +34,7 @@ const startDBAndServer = async () => {
 
 const isMonday = () => {
   const currentDate = new Date();
-  return currentDate.getDay() === 1; // Monday is represented by 1 in the getDay() method
+  return currentDate.getDay() === 1; // Monday = 1 in getDay() method
 };
 
 const scheduleReset = () => {

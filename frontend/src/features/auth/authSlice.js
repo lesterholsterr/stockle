@@ -1,16 +1,35 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import authService from "./authService";
 
-// Get user from localStorage
-const user = JSON.parse(localStorage.getItem("user"));
+const token = localStorage.getItem("token");
 
 const initialState = {
-  user: user ? user : null,
+  user: null,
+  token: token,
   isError: false,
   isSuccess: false,
   isLoading: false,
   message: "",
 };
+
+// Get updated user data from DB using JWT token
+export const getUserData = createAsyncThunk(
+  "auth/getUserData",
+  async (_, thunkAPI) => {
+    try {
+      const response = await authService.getUserData();
+      return response;
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
 
 // Register user
 export const register = createAsyncThunk(
@@ -22,7 +41,7 @@ export const register = createAsyncThunk(
       const message =
         (error.response &&
           error.response.data &&
-          error.repsponse.data.message) ||
+          error.response.data.message) ||
         error.message ||
         error.toString();
       return thunkAPI.rejectWithValue(message);
@@ -122,12 +141,25 @@ export const authSlice = createSlice({
       .addCase(register.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
+        state.token = action.payload.token;
         state.user = action.payload;
       })
       .addCase(register.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
-        state.message = action.payload;
+
+        const errorMessage = action.payload || "Registration failed";
+        if (errorMessage && typeof errorMessage === "string") {
+          if (errorMessage.includes("Email already in use")) {
+            state.message = { email: "Email already in use" };
+          } else if (errorMessage.includes("Username taken")) {
+            state.message = { username: "Username already taken" };
+          } else {
+            state.message = { general: errorMessage };
+          }
+        } else {
+          state.message = { general: "Registration failed" };
+        }
         state.user = null;
       })
       .addCase(login.pending, (state) => {
@@ -136,18 +168,31 @@ export const authSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
+        state.token = action.payload.token;
         state.user = action.payload;
       })
       .addCase(login.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
-        state.message = action.payload;
+
+        const errorMessage = action.payload;
+        if (errorMessage.includes("User not found")) {
+          state.message = { username: "User not found" };
+        } else if (errorMessage.includes("Password incorrect")) {
+          state.message = { password: "Incorrect password" };
+        } else {
+          state.message = { general: errorMessage };
+        }
         state.user = null;
       })
       .addCase(logout.fulfilled, (state) => {
         state.user = null;
+        state.token = null;
       })
       .addCase(updateUser.fulfilled, (state, action) => {
+        state.user = action.payload;
+      })
+      .addCase(getUserData.fulfilled, (state, action) => {
         state.user = action.payload;
       });
   },

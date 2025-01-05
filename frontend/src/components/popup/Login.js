@@ -15,17 +15,29 @@ function Login({ mode, trigger, setPopup }) {
     password: "",
     password2: "",
   });
+  const [fieldErrors, setFieldErrors] = useState({
+    username: "",
+    email: "",
+    password: "",
+    password2: "",
+  });
   const { username, email, password, password2 } = formData;
   const { user, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.auth
   );
+  const isValidEmail = (email) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
 
   useEffect(() => {
-    if (isError) {
+    if (isError && typeof message === "object") {
+      setFieldErrors((prev) => ({
+        ...prev,
+        ...message,
+      }));
+    } else if (isError && typeof message === "string") {
       toast.error(message);
-    }
-
-    if (isSuccess && trigger === "register") {
+    } else if (isSuccess && trigger === "register") {
       toast.success("Your account has been registered");
       setPopup("none");
     } else if (isSuccess && trigger === "login") {
@@ -41,14 +53,48 @@ function Login({ mode, trigger, setPopup }) {
       ...prevState,
       [e.target.name]: e.target.value,
     }));
+    setFieldErrors((prev) => ({
+      ...prev,
+      [e.target.name]: "",
+    }));
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
+    let newErrors = {
+      username: "",
+      email: "",
+      password: "",
+      password2: "",
+    };
+    let hasErrors = false;
 
-    if (trigger === "register" && password !== password2) {
-      toast.error("Passwords do not match");
-    } else {
+    if (!username) {
+      newErrors.username = "Username is required";
+      hasErrors = true;
+    }
+    if (!password) {
+      newErrors.password = "Password is required";
+      hasErrors = true;
+    }
+    if (trigger === "register") {
+      if (!email) {
+        newErrors.email = "Email is required";
+        hasErrors = true;
+      } else if (!isValidEmail(email)) {
+        newErrors.email = "Invalid email format";
+        hasErrors = true;
+      }
+
+      if (password !== password2) {
+        newErrors.password2 = "Passwords do not match";
+        hasErrors = true;
+      }
+    }
+
+    setFieldErrors(newErrors);
+
+    if (!hasErrors) {
       const userData = {
         username,
         email,
@@ -81,22 +127,36 @@ function Login({ mode, trigger, setPopup }) {
           <section className="form">
             <h1 className="form-group">Login</h1>
             <form onSubmit={onSubmit}>
-              <input
-                type="text"
-                id="username"
-                name="username"
-                value={username}
-                placeholder="Username"
-                onChange={onChange}
-              />
-              <input
-                type="password"
-                id="password"
-                name="password"
-                value={password}
-                placeholder="Password"
-                onChange={onChange}
-              />
+              <div>
+                <div className="label">
+                  <div>Username </div>
+                  <div className="error-message">{fieldErrors.username}</div>
+                </div>
+                <input
+                  type="text"
+                  id="username"
+                  name="username"
+                  value={username}
+                  placeholder="Username"
+                  onChange={onChange}
+                  className={`${fieldErrors.username ? "input-error" : ""}`}
+                />
+              </div>
+              <div>
+                <div className="label">
+                  <div>Password </div>
+                  <div className="error-message">{fieldErrors.password}</div>
+                </div>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  value={password}
+                  placeholder="Password"
+                  onChange={onChange}
+                  className={`${fieldErrors.password ? "input-error" : ""}`}
+                />
+              </div>
               <button className={`fancy-button-${mode}`} type="submit">
                 Login
               </button>
@@ -126,48 +186,73 @@ function Login({ mode, trigger, setPopup }) {
           <section className="form">
             <h1 className="form-group">Register</h1>
             <form onSubmit={onSubmit}>
-              <input
-                type="text"
-                id="username"
-                name="username"
-                value={username}
-                placeholder="Username"
-                onChange={onChange}
-              />
-              <input
-                type="text"
-                id="email"
-                name="email"
-                value={email}
-                placeholder="Email"
-                onChange={onChange}
-              />
-              <input
-                type="password"
-                id="password"
-                name="password"
-                value={password}
-                placeholder="Password"
-                onChange={onChange}
-              />
-              <input
-                type="password"
-                id="password2"
-                name="password2"
-                value={password2}
-                placeholder="Confirm Password"
-                onChange={onChange}
-              />
+              <div>
+                <div className="label">
+                  <div>Username </div>
+                  <div className="error-message">{fieldErrors.username}</div>
+                </div>
+                <input
+                  type="text"
+                  id="username"
+                  name="username"
+                  value={username}
+                  placeholder="Username"
+                  onChange={onChange}
+                  className={`${fieldErrors.username ? "input-error" : ""}`}
+                />
+              </div>
+              <div>
+                <div className="label">
+                  <div>Email </div>
+                  <div className="error-message">{fieldErrors.email}</div>
+                </div>
+                <input
+                  type="text"
+                  id="email"
+                  name="email"
+                  value={email}
+                  placeholder="Email"
+                  onChange={onChange}
+                  className={`${fieldErrors.email ? "input-error" : ""}`}
+                />
+              </div>
+              <div>
+                <div className="label">
+                  <div>Password </div>
+                  <div className="error-message">{fieldErrors.password}</div>
+                </div>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  value={password}
+                  placeholder="Password"
+                  onChange={onChange}
+                  className={`${fieldErrors.password ? "input-error" : ""}`}
+                />
+              </div>
+              <div>
+                <div className="label">
+                  <div>Confirm Password </div>
+                  <div className="error-message">{fieldErrors.password2}</div>
+                </div>
+                <input
+                  type="password"
+                  id="password2"
+                  name="password2"
+                  value={password2}
+                  placeholder="Confirm Password"
+                  onChange={onChange}
+                  className={`${fieldErrors.password2 ? "input-error" : ""}`}
+                />
+              </div>
               <button className={`fancy-button-${mode}`} type="submit">
                 Create Account
               </button>
             </form>
           </section>
 
-          <button
-            className="underline-btn"
-            onClick={() => setPopup("login")}
-          >
+          <button className="underline-btn" onClick={() => setPopup("login")}>
             Already have an account?
           </button>
           <div
@@ -190,10 +275,7 @@ function Login({ mode, trigger, setPopup }) {
             <button className={`fancy-button-${mode}`} onClick={onLogout}>
               Yes
             </button>
-            <button
-              className="underline-btn"
-              onClick={() => setPopup("none")}
-            >
+            <button className="underline-btn" onClick={() => setPopup("none")}>
               Cancel
             </button>
           </div>

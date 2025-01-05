@@ -1,5 +1,6 @@
 import { useCallback } from "react";
 import { useState, useEffect, createContext } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
@@ -19,11 +20,20 @@ import Search from "./components/Search";
 import { Stock } from "./features/stock/Stock.js";
 import { boardDefault } from "./features/board/BoardState";
 import { LocalStorageManipulator } from "./features/board/LocalStorageManipulator";
+import { getUserData } from "./features/auth/authSlice";
 
 export const AppContext = createContext();
 
 function App() {
   const localStorageManipulator = new LocalStorageManipulator();
+  const dispatch = useDispatch();
+  const { token } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (token) {
+      dispatch(getUserData());
+    }
+  }, [token, dispatch]);
 
   // Popup window status
   const [popup, setPopup] = useState("alpha");
@@ -49,13 +59,12 @@ function App() {
   const [gameOver, setGameOver] = useState(initialGameOver);
 
   useEffect(() => {
-    // Fetch the data and set todayStock
+    // Fetch data for today's stock
     const fetchTodayStock = async () => {
       const response = await axios.get("/api/stock/today");
       const todayTicker = response.data;
       const todayStockData = await axios.get(`/api/stock/${todayTicker}`);
-      const todayStockDataItem = todayStockData.data;
-      const stock = new Stock(todayTicker, todayStockDataItem);
+      const stock = new Stock(todayTicker, todayStockData.data);
       setTodayStock(stock);
     };
 
@@ -70,8 +79,6 @@ function App() {
         currAttempt,
         setCurrAttempt,
         todayStock,
-        shareResults,
-        setShareResults,
       }}
     >
       <div className="App">
@@ -81,6 +88,7 @@ function App() {
           popup={popup}
           setPopup={setPopup}
           toggleMode={toggleMode}
+          shareResults={shareResults}
         />
         <Graph popupState={popup} />
         <div className="game">
@@ -90,6 +98,7 @@ function App() {
             setPopup={setPopup}
             gameOver={gameOver}
             setGameOver={setGameOver}
+            setShareResults={setShareResults}
           />
         </div>
         <ToastContainer />
@@ -98,7 +107,13 @@ function App() {
   );
 }
 
-const PopupComponents = ({ mode, popup, setPopup, toggleMode }) => (
+const PopupComponents = ({
+  mode,
+  popup,
+  setPopup,
+  toggleMode,
+  shareResults,
+}) => (
   <>
     <Alpha mode={mode} trigger={popup} setPopup={setPopup} />
     <Instructions mode={mode} trigger={popup} setPopup={setPopup} />
@@ -110,7 +125,12 @@ const PopupComponents = ({ mode, popup, setPopup, toggleMode }) => (
       toggleMode={toggleMode}
     />
     <Login mode={mode} trigger={popup} setPopup={setPopup} />
-    <WinLoss mode={mode} trigger={popup} setPopup={setPopup} />
+    <WinLoss
+      mode={mode}
+      trigger={popup}
+      setPopup={setPopup}
+      shareResults={shareResults}
+    />
   </>
 );
 

@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 import { updateUser } from "../features/auth/authSlice";
 import "../css/Search.css";
 
-function Search({ mode, setPopup, gameOver, setGameOver }) {
+function Search({ mode, setPopup, gameOver, setGameOver, setShareResults }) {
   const [searchValue, setSearchValue] = useState("");
   const [stockList, setStockList] = useState([]);
   const [filteredList, setFilteredList] = useState([]);
@@ -23,7 +23,6 @@ function Search({ mode, setPopup, gameOver, setGameOver }) {
     currAttempt,
     setCurrAttempt,
     todayStock,
-    setShareResults,
   } = useContext(AppContext);
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
