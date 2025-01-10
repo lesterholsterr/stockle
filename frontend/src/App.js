@@ -16,8 +16,9 @@ import Header from "./components/Header";
 import Graph from "./components/Graph";
 import Board from "./components/Board";
 import Search from "./components/Search";
+import Hints from "./components/Hints"
 
-import { Stock } from "./features/stock/Stock.js";
+import { createStock } from "./features/stock/Stock";
 import { boardDefault } from "./features/board/BoardState";
 import { LocalStorageManipulator } from "./features/board/LocalStorageManipulator";
 import { getUserData } from "./features/auth/authSlice";
@@ -64,8 +65,7 @@ function App() {
       const response = await axios.get("/api/stock/today");
       const todayTicker = response.data;
       const todayStockData = await axios.get(`/api/stock/${todayTicker}`);
-      const stock = new Stock(todayTicker, todayStockData.data);
-      setTodayStock(stock);
+      setTodayStock(createStock(todayStockData.data));
     };
 
     fetchTodayStock();
@@ -100,6 +100,7 @@ function App() {
             setGameOver={setGameOver}
             setShareResults={setShareResults}
           />
+          <Hints mode={mode} gameOver={gameOver} />
         </div>
         <ToastContainer />
       </div>

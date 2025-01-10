@@ -32,11 +32,15 @@ v0.1.0 - Bear Trap
 - Search bar bug fixes and only show autocompletions when the text field is selected
 - Points system and daily reward bug fixes
 
-v0.1.1
+v0.1.1 (In Progress)
 - Choose daily stock based on analyst coverage and market cap to avoid obscure companies
 - JWT authentication + better error messages for user registration
+- Basic hint feature
+- Reworked points system
+    - Base points for win increased from 800 to 1000
+    - 75 points dedcted for each hint used
+    - Daily reward capped at 100 points
 
 In Progress
 - Play without creating an account
-- Reworked points system
-- Basic hint feature
+- Better graph library

@@ -6,6 +6,7 @@ class LocalStorageManipulator {
     const now = currentDate.getTime();
     if (this.getResetTime() !== null && this.getResetTime() - now < 0) {
       this.setGameOver(false);
+      this.resetHints();
       localStorage.setItem("share result", JSON.stringify(null));
       localStorage.setItem("board state", JSON.stringify(null));
     }
@@ -80,6 +81,19 @@ class LocalStorageManipulator {
   getMode() {
     const mode = JSON.parse(localStorage.getItem("mode"));
     return mode !== null ? mode : "light";
+  }
+
+  setHints(hintsData) {
+    localStorage.setItem("hints", JSON.stringify(hintsData));
+  }
+
+  getHints() {
+    const hints = JSON.parse(localStorage.getItem("hints"));
+    return hints || { hintsUsed: 0, revealedHints: {} };
+  }
+
+  resetHints() {
+    localStorage.setItem("hints", JSON.stringify({ hintsUsed: 0, revealedHints: {} }));
   }
 }
 

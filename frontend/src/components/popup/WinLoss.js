@@ -1,11 +1,14 @@
 import React, { useContext } from "react";
+import { useSelector } from "react-redux";
 import { AppContext } from "../../App";
 import { toast } from "react-toastify";
 
+import { LocalStorageManipulator } from "../../features/board/LocalStorageManipulator";
 import "../../css/Popup.css";
 
 function WinLoss({ mode, trigger, setPopup, shareResults }) {
   const { currAttempt, todayStock } = useContext(AppContext);
+  const localStorageManipulator = new LocalStorageManipulator();
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(shareResults).then(() => {
@@ -15,7 +18,7 @@ function WinLoss({ mode, trigger, setPopup, shareResults }) {
     });
   };
 
-  const user = JSON.parse(localStorage.getItem("user"));
+  const { user } = useSelector((state) => state.auth);
 
   if (trigger === "win") {
     return (
@@ -23,12 +26,24 @@ function WinLoss({ mode, trigger, setPopup, shareResults }) {
         <div className={`popup-inner ${mode}`}>
           <h1>You Win!</h1>
           <br />
-          <h3>Today's Stock: {todayStock.name}</h3>
-          <p>Guesses Used: {currAttempt}</p>
-          <p>Points Earned: {800 - currAttempt * 100}</p>
-          <p>Daily Reward: {Math.min(200, user.currentStreak * 20)}</p>
+          <p>Base Points: {1000}</p>
+          <p>Guess Penalty: -100 * {currAttempt}</p>
+          <p>
+            Hint Penalty: -75 * {localStorageManipulator.getHints().hintsUsed}
+          </p>
+          <p>Daily Reward: {Math.min(100, user.currentStreak * 20)}</p>
+          <hr />
+          <p>
+            Total:{" "}
+            {1000 -
+              100 * currAttempt -
+              75 * localStorageManipulator.getHints().hintsUsed +
+              Math.min(100, user.currentStreak * 20)}
+          </p>
           <br />
-          <p>{todayStock.summary}</p>
+          <h3>Today's Stock: {todayStock.shortName}</h3>
+          <br />
+          <p>{todayStock.longBusinessSummary}</p>
           <br />
           <button onClick={copyToClipboard} className={`fancy-button-${mode}`}>
             Share Results
@@ -49,12 +64,12 @@ function WinLoss({ mode, trigger, setPopup, shareResults }) {
         <div className={`popup-inner ${mode}`}>
           <h3>Out of Guesses!</h3>
           <br />
-          <h3>Today's Stock: {todayStock.name}</h3>
+          <h3>Today's Stock: {todayStock.shortName}</h3>
           <p>Guesses Used: {currAttempt}</p>
           <p>Points Earned: {100}</p>
           <p>Daily Reward: {Math.min(100, user.currentStreak * 20)}</p>
           <br />
-          <p>{todayStock.summary}</p>
+          <p>{todayStock.longBusinessSummary}</p>
           <br />
           <button onClick={copyToClipboard} className={`fancy-button-${mode}`}>
             Share Results

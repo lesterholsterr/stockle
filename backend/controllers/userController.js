@@ -178,7 +178,7 @@ const updateUser = asyncHandler(async (req, res) => {
 
 // @desc   Returns all users sorted in descending order by weekly points
 // @route  GET /api/users/leaderboard/week
-// @access Private
+// @access Public
 const getWeeklyLeaders = asyncHandler(async (req, res) => {
   try {
     const leaders = await User.find({}).sort({ weeklyPoints: -1 }).limit(10);
@@ -190,7 +190,7 @@ const getWeeklyLeaders = asyncHandler(async (req, res) => {
 
 // @desc   Returns all users sorted in descending order by total points
 // @route  GET /api/users/leaderboard/all
-// @access Private
+// @access Public
 const getAllTimeLeaders = asyncHandler(async (req, res) => {
   try {
     const leaders = await User.find({}).sort({ totalPoints: -1 }).limit(10);

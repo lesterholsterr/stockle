@@ -147,6 +147,10 @@ header p {
   background: rgba(0, 0, 0, 0.8);
   transition-duration: 0.5s;
 }
+.fancy-button-light:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
 
 .fancy-button-dark {
   padding: 10px 20px;
@@ -165,6 +169,11 @@ header p {
   background: whitesmoke;
   transition-duration: 0.5s;
 }
+.fancy-button-dark:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
 
 .underline-btn {
   all: unset;

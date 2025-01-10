@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { cloneDeep } from "lodash";
 
 import { AppContext } from "../App";
-import { Stock } from "../features/stock/Stock";
+import { createStock, compare } from "../features/stock/Stock";
 import { LocalStorageManipulator } from "../features/board/LocalStorageManipulator";
 import { toast } from "react-toastify";
 import { updateUser } from "../features/auth/authSlice";
@@ -17,13 +17,8 @@ function Search({ mode, setPopup, gameOver, setGameOver, setShareResults }) {
   const [clickedSuggestion, setClickedSuggestion] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const dropdownRef = useRef(null);
-  const {
-    board,
-    setBoard,
-    currAttempt,
-    setCurrAttempt,
-    todayStock,
-  } = useContext(AppContext);
+  const { board, setBoard, currAttempt, setCurrAttempt, todayStock } =
+    useContext(AppContext);
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
@@ -122,9 +117,8 @@ function Search({ mode, setPopup, gameOver, setGameOver, setShareResults }) {
       const response = await axios.get(
         `/api/stock/${searchTerm.toUpperCase()}`
       );
-      const stockData = response.data;
-      const searchedStock = new Stock(searchTerm, stockData);
-      results = searchedStock.compare(todayStock);
+      const guessedStock = createStock(response.data);
+      results = compare(todayStock, guessedStock);
     } catch (error) {
       toast.error("Failed to fetch stock data", {
         position: toast.POSITION.TOP_CENTER,
@@ -161,7 +155,7 @@ function Search({ mode, setPopup, gameOver, setGameOver, setShareResults }) {
   };
 
   const winLossCheck = (results, localStorageManipulator) => {
-    if (results[0] === todayStock.ticker) {
+    if (results[0] === todayStock.symbol) {
       setGameOver(true);
       localStorageManipulator.setGameOver(true);
       updateStats(true);
@@ -216,27 +210,26 @@ function Search({ mode, setPopup, gameOver, setGameOver, setShareResults }) {
       playedYesterday: true,
     };
 
-    console.log("Sending updated user to Redux:", updatedUser);
     await dispatch(updateUser(updatedUser)).unwrap();
   };
 
   // Scoring System:
-  // 800 - (guessesUsed * 100) +
-  // min(200, currentStreak * 20) +
-  // X if no logo hint used +
-  // Y if hard mode enabled
+  // Win: 1000 - (guessesUsed * 100) - (hintsUsed * 75)
+  // Daily bonus: min(100, currentStreak * 20)
   const calculatePoints = (isWin) => {
-    const pointsFromGuesses = isWin ? 800 - (currAttempt + 1) * 100 : 100;
+    const localStorageManipulator = new LocalStorageManipulator();
+
+    const pointsFromGuesses = isWin ? 1000 - (currAttempt + 1) * 100 : 100;
     const pointsFromStreak = user.playedYesterday
-      ? Math.min(200, user.currentStreak * 20)
+      ? Math.min(100, user.currentStreak * 20)
       : 0;
-    const pointsFromNoHint = 0; // Not implemented yet
+    const pointsFromHints = -(localStorageManipulator.getHints().hintsUsed * 75)
     const pointsFromHardMode = 0; // Not implemented yet
 
     return (
       pointsFromGuesses +
       pointsFromStreak +
-      pointsFromNoHint +
+      pointsFromHints +
       pointsFromHardMode
     );
   };
@@ -280,6 +273,7 @@ function Search({ mode, setPopup, gameOver, setGameOver, setShareResults }) {
         <button
           className={`fancy-button-${mode}`}
           onClick={() => onSearch(searchValue)}
+          disabled={gameOver}
         >
           Guess
         </button>

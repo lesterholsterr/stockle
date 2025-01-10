@@ -436,7 +436,7 @@ AXS$E|Axis Capital Holdings Limited Depositary Shares, each representing 1/100th
 AXTA|Axalta Coating Systems Ltd. Common Shares|N|AXTA|N|100|N|AXTA
 AYI|Acuity Brands, Inc. |N|AYI|N|100|N|AYI
 AZEK|The AZEK Company Inc. Class A Common Stock|N|AZEK|N|100|N|AZEK
-AZNH|AstraZeneca PLC ADRhedged AstraZeneca PLC ADRhedged|Z|AZNH|Y|100|N|AZNH
+AZNH|Precidian ETFs Trust AstraZeneca PLC ADRhedged|Z|AZNH|Y|100|N|AZNH
 AZO|AutoZone, Inc. Common Stock|N|AZO|N|100|N|AZO
 AZTD|Tidal ETF Trust Aztlan Global Stock Selection DM SMID ETF|P|AZTD|Y|100|N|AZTD
 AZTR|Azitra Inc Common Stock|A|AZTR|N|100|N|AZTR
@@ -742,6 +742,7 @@ BOXA|EA Series Trust Alpha Architect Aggregate Bond ETF|Z|BOXA|Y|100|N|BOXA
 BOXX|EA Series Trust Alpha Architect 1-3 Month Box ETF|Z|BOXX|Y|100|N|BOXX
 BP|BP p.l.c. Common Stock|N|BP|N|100|N|BP
 BPAY|iShares FinTech Active ETF|P|BPAY|Y|100|N|BPAY
+BPH|Precidian ETFs Trust BP plc ADRhedged|Z|BPH|Y|100|N|BPH
 BPT|BP Prudhoe Bay Royalty Trust Common Stock|N|BPT|N|100|N|BPT
 BQ|Boqii Holding Limited American Depositary Shares, representing Class A Ordinary Shares|A|BQ|N|100|N|BQ
 BR|Broadridge Financial Solutions, Inc. Common Stock|N|BR|N|100|N|BR
@@ -2143,7 +2144,6 @@ FLYD|Bank of Montreal MicroSectors Travel -3x Inverse Leveraged ETN|P|FLYD|Y|100
 FLYU|Bank of Montreal MicroSectors Travel 3x Leveraged ETN|P|FLYU|Y|100|N|FLYU
 FLYX|flyExclusive, Inc. Class A Common Stock|A|FLYX|N|100|N|FLYX
 FLYX.W|flyExclusive, Inc. Redeemable warrants, each whole warrant exercisable for one Class A common stock at an exercise price of $11.50 per share|A|FLYX.WS|N|100|N|FLYX+
-FM|iShares Frontier and Select EM ETF|P|FM|Y|100|N|FM
 FMAG|Fidelity Magellan ETF|Z|FMAG|Y|100|N|FMAG
 FMAR|FT Vest U.S. Equity Buffer ETF - March|Z|FMAR|Y|100|N|FMAR
 FMAT|Fidelity MSCI Materials Index ETF|P|FMAT|Y|100|N|FMAT
@@ -2348,7 +2348,6 @@ GDXJ|VanEck Junior Gold Miners ETF|P|GDXJ|Y|100|N|GDXJ
 GDXU|MicroSectors Gold Miners 3X Leveraged ETN|P|GDXU|Y|100|N|GDXU
 GDXY|Tidal Trust II YieldMax Gold Miners Option Income Strategy ETF|P|GDXY|Y|100|N|GDXY
 GE|GE Aerospace Common Stock|N|GE|N|100|N|GE
-GEAR|Revelyst, Inc. Common Stock|N|GEAR|N|100|N|GEAR
 GEF|Greif Inc. Class A Common Stock|N|GEF|N|100|N|GEF
 GEF.B|Greif, Inc. Corporation Class B Common Stock|N|GEF.B|N|100|N|GEF.B
 GEL|Genesis Energy, L.P. Common Units|N|GEL|N|100|N|GEL
@@ -2472,7 +2471,7 @@ GOEX|Global X Gold Explorers ETF|P|GOEX|Y|100|N|GOEX
 GOF|Guggenheim Strategic Opportunities Fund Common Shares of Beneficial Interest|N|GOF|N|100|N|GOF
 GOLD|Barrick Gold Corporation Common Stock (BC)|N|GOLD|N|100|N|GOLD
 GOLF|Acushnet Holdings Corp. Common Stock|N|GOLF|N|100|N|GOLF
-GOLY|Strategy Shares Gold-Hedged Bond ETF|Z|GOLY|Y|100|N|GOLY
+GOLY|Strategy Shares Gold Enhanced Yield ETF|Z|GOLY|Y|100|N|GOLY
 GOOP|Kurv Yield Premium Strategy Google (GOOGL) ETF|Z|GOOP|Y|100|N|GOOP
 GOOS|Canada Goose Holdings Inc. Subordinate Voting Shares|N|GOOS|N|100|N|GOOS
 GOOX|ETF Opportunities Trust T-Rex 2X Long Alphabet Daily Target ETF|Z|GOOX|Y|100|N|GOOX
@@ -2541,6 +2540,7 @@ GSIE|Goldman Sachs ActiveBeta International Equity ETF|P|GSIE|Y|100|N|GSIE
 GSIG|Golden Sachs ETF Trust Goldman Sachs Access Investment Grade Corporate 1-5 Year Bond ETF|P|GSIG|Y|100|N|GSIG
 GSJY|Goldman Sachs ActiveBeta Japan Equity ETF|P|GSJY|Y|100|N|GSJY
 GSK|GSK plc American Depositary Shares (Each representing two Ordinary Shares)|N|GSK|N|100|N|GSK
+GSKH|Precidian ETFs Trust GSK plc ADRhedged|Z|GSKH|Y|100|N|GSKH
 GSL|Global Ship Lease Inc New Class A Common Shares|N|GSL|N|100|N|GSL
 GSL$B|Global Ship Lease, Inc. Depository Shares Representing 1/100th Perpetual Preferred Series B% (Marshall Island)|N|GSLpB|N|100|N|GSL-B
 GSLC|Goldman Sachs ActiveBeta U.S. Large Cap Equity ETF|P|GSLC|Y|100|N|GSLC
@@ -2666,7 +2666,6 @@ HIPS|GraniteShares HIPS US High Income ETF|P|HIPS|Y|100|N|HIPS
 HIW|Highwoods Properties, Inc. Common Stock|N|HIW|N|100|N|HIW
 HIX|Western Asset High Income Fund II Inc. Common Stock|N|HIX|N|100|N|HIX
 HIYS|Invesco Actively Managed Exchange-Traded Fund Trus Invesco High Yield Select ETF|Z|HIYS|Y|100|N|HIYS
-HJAN|Innovator ETFs Trust Innovator Premium Income 9 Buffer ETF - January|Z|HJAN|Y|100|N|HJAN
 HJUL|SHL Telemedicine Ltd Innovator Premium Income 9 Buffer ETF - July|Z|HJUL|Y|100|N|HJUL
 HKD|AMTD Digital Inc. American Depositary Shares (every five of which represent two Class A Ordinary Shares)|N|HKD|N|100|N|HKD
 HKND|Humankind US Stock ETF|P|HKND|Y|100|N|HKND
@@ -2711,7 +2710,7 @@ HRI|Herc Holdings Inc. Common Stock |N|HRI|N|100|N|HRI
 HRL|Hormel Foods Corporation Common Stock|N|HRL|N|100|N|HRL
 HRTG|Heritage Insurance Holdings, Inc. Common Stock|N|HRTG|N|100|N|HRTG
 HSBC|HSBC Holdings, plc. Common Stock|N|HSBC|N|100|N|HSBC
-HSBH|AstraZeneca PLC ADRhedged HSBC Holdings plc ADRhedged|Z|HSBH|Y|100|N|HSBH
+HSBH|Precidian ETFs Trust HSBC Holdings plc ADRhedged|Z|HSBH|Y|100|N|HSBH
 HSCZ|iShares Currency Hedged MSCI EAFE Small-Cap ETF|P|HSCZ|Y|100|N|HSCZ
 HSHP|Himalaya Shipping Ltd. Common Shares|N|HSHP|N|100|N|HSHP
 HSMV|First Trust Horizon Managed Volatility Small/Mid ETF|P|HSMV|Y|100|N|HSMV
@@ -2973,6 +2972,7 @@ INTL|Northern Lights Fund Trust IV Main International ETF|Z|INTL|Y|100|N|INTL
 INTT|inTest Corporation Common Stock|A|INTT|N|100|N|INTT
 INUV|Inuvo, Inc.|A|INUV|N|100|N|INUV
 INVH|Invitation Homes Inc. Common Stock|N|INVH|N|100|N|INVH
+INVN|The Alger ETF Trust Alger Russell Innovation ETF|P|INVN|Y|100|N|INVN
 INVX|Innovex International, Inc. Common Stock|N|INVX|N|100|N|INVX
 IOCT|Innovator International Developed Power Buffer ETF - October|P|IOCT|Y|100|N|IOCT
 ION|ProShares Trust ProShares S&P Global Core Battery Metals ETF|P|ION|Y|100|N|ION
@@ -3115,11 +3115,9 @@ JAAA|Janus Henderson AAA CLO ETF|P|JAAA|Y|100|N|JAAA
 JACS.U|Jackson Acquisition Company II Units, each consisting of one Class A ordinary share and one right to acquire one-tenth (1/10) of one Class A ordinary share|N|JACS.U|N|100|N|JACS=
 JADE|J.P. Morgan Exchange-Traded Fund Trust JPMorgan Active Developing Markets Equity ETF|P|JADE|Y|100|N|JADE
 JAJL|SHL Telemedicine Ltd Innovator Equity Defined Protection ETF - 6mo Jan/Jul|Z|JAJL|Y|100|N|JAJL
-JAND|Innovator ETFs Trust Innovator Premium Income 10 Barrier ETF - January|Z|JAND|Y|100|N|JAND
 JANH|Innovator ETFs Trust Innovator Premium Income 20 Barrier ETF - January|Z|JANH|Y|100|N|JANH
 JANJ|Innovator ETFs Trust Innovator Premium Income 30 Barrier ETF - January|Z|JANJ|Y|100|N|JANJ
 JANP|PGIM US Large-Cap Buffer 12 ETF - January|Z|JANP|Y|100|N|JANP
-JANQ|Innovator ETFs Trust Innovator Premium Income 40 Barrier ETF - January|Z|JANQ|Y|100|N|JANQ
 JANT|AllianzIM U.S. Large Cap Buffer10 Jan ETF|P|JANT|Y|100|N|JANT
 JANU|AIM ETF Products Trust AllianzIM U.S. Equity Buffer15 Uncapped Jan ETF|Z|JANU|Y|100|N|JANU
 JANW|AllianzIM U.S. Large Cap Buffer20 Jan ETF|P|JANW|Y|100|N|JANW
@@ -3415,12 +3413,15 @@ LCR|Leuthold Core ETF|P|LCR|Y|100|N|LCR
 LCTD|BlackRock World ex U.S. Carbon Transition Readiness ETF|P|LCTD|Y|100|N|LCTD
 LCTU|BlackRock U.S. Carbon Transition Readiness ETF|P|LCTU|Y|100|N|LCTU
 LCTX|Lineage Cell Therapeutics, Inc. Common Stock|A|LCTX|N|100|N|LCTX
+LDDR|Stone Ridge Trust Stone Ridge 2035 Term Income ETF|Z|LDDR|Y|100|N|LDDR
+LDER|Stone Ridge Trust Stone Ridge 2040 Term Income ETF|Z|LDER|Y|100|N|LDER
 LDI|loanDepot, Inc. Class A Common Stock|N|LDI|N|100|N|LDI
 LDOS|Leidos Holdings, Inc. Common Stock|N|LDOS|N|100|N|LDOS
 LDP|Cohen & Steers Limited Duration Preferred and Income Fund, Inc.|N|LDP|N|100|N|LDP
 LDRC|iShares Trust iShares iBonds 1-5 Year Corporate Ladder ETF|P|LDRC|Y|100|N|LDRC
 LDRH|iShares Trust iShares iBonds 1-5 Year High Yield  and Income Ladder ETF|P|LDRH|Y|100|N|LDRH
 LDRI|iShares Trust iShares iBonds 1-5 Year TIPS Ladder ETF|P|LDRI|Y|100|N|LDRI
+LDRR|Stone Ridge Trust Stone Ridge 2045 Term Income ETF|Z|LDRR|Y|100|N|LDRR
 LDRT|iShares Trust iShares iBonds 1-5 Year Treasury Ladder ETF|P|LDRT|Y|100|N|LDRT
 LDUR|PIMCO Enhanced Low Duration Active Exchange-Traded Fund|P|LDUR|Y|100|N|LDUR
 LEA|Lear Corporation Common Stock|N|LEA|N|100|N|LEA
@@ -3451,6 +3452,8 @@ LFAW|Stone Ridge 2060 Longevity Income ETF|Z|LFAW|Y|100|N|LFAW
 LFAX|Stone Ridge 2061 Longevity Income ETF|Z|LFAX|Y|100|N|LFAX
 LFAZ|Stone Ridge 2062 Longevity Income ETF|Z|LFAZ|Y|100|N|LFAZ
 LFBB|Stone Ridge 2063 Longevity Income ETF|Z|LFBB|Y|100|N|LFBB
+LFBD|Stone Ridge Trust Stone Ridge 2064 Longevity Income ETF|Z|LFBD|Y|100|N|LFBD
+LFBE|Stone Ridge Trust Stone Ridge 2065 Longevity Income ETF|Z|LFBE|Y|100|N|LFBE
 LFDR|Stone Ridge Trust Stone Ridge Durable Income ETF|Z|LFDR|Y|100|N|LFDR
 LFEQ|VanEck Long/Flat Trend ETF|P|LFEQ|Y|100|N|LFEQ
 LFT|Lument Finance Trust, Inc. Common Stock|N|LFT|N|100|N|LFT
@@ -3483,6 +3486,8 @@ LIAU|Stone Ridge 2060 Inflation-Protected Longevity Income ETF|Z|LIAU|Y|100|N|LI
 LIAV|Stone Ridge 2061 Inflation-Protected Longevity Income ETF|Z|LIAV|Y|100|N|LIAV
 LIAW|Stone Ridge 2062 Inflation-Protected Longevity Income ETF|Z|LIAW|Y|100|N|LIAW
 LIAX|Stone Ridge 2063 Inflation-Protected Longevity Income ETF|Z|LIAX|Y|100|N|LIAX
+LIAY|Stone Ridge Trust Stone Ridge 2064 Inflation-Protected Longevity Income ETF|Z|LIAY|Y|100|N|LIAY
+LIBD|Stone Ridge Trust Stone Ridge 2065 Inflation-Protected Longevity Income ETF|Z|LIBD|Y|100|N|LIBD
 LICY|Li-Cycle Holdings Corp. Common Shares|N|LICY|N|100|N|LICY
 LII|Lennox International, Inc. Common Stock|N|LII|N|100|N|LII
 LIMI|Themes ETF Trust Themes Lithium & Battery Metal Miners ETF|Z|LIMI|Y|100|N|LIMI
@@ -4112,6 +4117,7 @@ NVG|Nuveen AMT-Free Municipal Credit Income Fund |N|NVG|N|100|N|NVG
 NVGS|Navigator Holdings Ltd. Ordinary Shares (Marshall Islands)|N|NVGS|N|100|N|NVGS
 NVIR|Listed Funds Trust Horizon Kinetics Energy and Remediation ETF|P|NVIR|Y|100|N|NVIR
 NVO|Novo Nordisk A/S Common Stock|N|NVO|N|100|N|NVO
+NVOH|Precidian ETFs Trust Novo Nordisk A/S B Shares ADRhedged|Z|NVOH|Y|100|N|NVOH
 NVOX|Tidal Trust II Defiance Daily Target 2X Long NVO ETF|P|NVOX|Y|100|N|NVOX
 NVR|NVR, Inc. Common Stock|N|NVR|N|10|N|NVR
 NVRI|Enviri Corporation Common Stock|N|NVRI|N|100|N|NVRI
@@ -4950,6 +4956,7 @@ SAMT|The Advisors' Inner Circle Fund III Strategas Macro Thematic Opportunities 
 SAN|Banco Santander, S.A. Sponsored ADR (Spain)|N|SAN|N|100|N|SAN
 SAND|Sandstorm Gold Ltd. Ordinary Shares (Canada)|N|SAND|N|100|N|SAND
 SAP|SAP  SE ADS|N|SAP|N|100|N|SAP
+SAPH|Precidian ETFs Trust SAP SE ADRhedged|Z|SAPH|Y|100|N|SAPH
 SAR|Saratoga Investment Corp New|N|SAR|N|100|N|SAR
 SARO|StandardAero, Inc. Common Stock|N|SARO|N|100|N|SARO
 SAT|Saratoga Investment Corp 6.00% Notes due 2027|N|SAT|N|100|N|SAT
@@ -5105,7 +5112,7 @@ SHAK|Shake Shack, Inc. Class A Common Stock|N|SHAK|N|100|N|SHAK
 SHCO|Soho House & Co Inc. Class A Common Stock|N|SHCO|N|100|N|SHCO
 SHDG|Trust For Advised Portfolios Soundwatch Hedged Equity ETF|Z|SHDG|Y|100|N|SHDG
 SHE|SPDR MSCI USA Gender Diversity ETF|P|SHE|Y|100|N|SHE
-SHEH|AstraZeneca PLC ADRhedged Shell plc ADRhedged|Z|SHEH|Y|100|N|SHEH
+SHEH|Precidian ETFs Trust Shell plc ADRhedged|Z|SHEH|Y|100|N|SHEH
 SHEL|Shell PLC American Depositary Shares (each representing two (2) Ordinary Shares) |N|SHEL|N|100|N|SHEL
 SHG|Shinhan Financial Group Co Ltd American Depositary Shares|N|SHG|N|100|N|SHG
 SHLD|Global X Funds Global X Defense Tech ETF|P|SHLD|Y|100|N|SHLD
@@ -6160,7 +6167,6 @@ XCOR|FundX Investment Trust FundX ETF|P|XCOR|Y|100|N|XCOR
 XDAP|Innovator U.S. Equity Accelerated ETF - April|Z|XDAP|Y|100|N|XDAP
 XDAT|Franklin Exponential Data ETF|Z|XDAT|Y|100|N|XDAT
 XDEC|FT Vest U.S. Equity Enhance & Moderate Buffer ETF - December|Z|XDEC|Y|100|N|XDEC
-XDJA|Innovator ETFs Trust Innovator U.S. Equity Accelerated ETF - January|Z|XDJA|Y|100|N|XDJA
 XDJL|Innovator U.S. Equity Accelerated ETF - July|Z|XDJL|Y|100|N|XDJL
 XDOC|Innovator U.S. Equity Accelerated ETF - October|Z|XDOC|Y|100|N|XDOC
 XDQQ|Innovator Growth Accelerated ETF - Quarterly|Z|XDQQ|Y|100|N|XDQQ
@@ -6345,4 +6351,4 @@ ZVOL|Volatility Premium Plus ETF|Z|ZVOL|Y|100|N|ZVOL
 ZVV|NYSE ARCA test stock|P|ZVV|N|100|Y|ZVV
 ZWS|Zurn Elkay Water Solutions Corporation Common Stock|N|ZWS|N|100|N|ZWS
 ZXIET|IEX Test Company Test Symbol Three for IEX|V|ZXIET|N|100|Y|ZXIET
-File Creation Time: 0103202506:00||||||
+File Creation Time: 0107202521:31||||||
