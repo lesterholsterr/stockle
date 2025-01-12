@@ -25,10 +25,47 @@ const Hints = ({ mode, gameOver }) => {
     { label: "Return on Assets", value: "returnOnAssets" },
     { label: "Return on Equity", value: "returnOnEquity" },
     { label: "Full Time Employees", value: "fullTimeEmployees" },
-    { label: "Dividend per Share", value: "lastDividendValue" },
+    { label: "Dividend Yield", value: "dividendYield" },
     { label: "Short % of Float", value: "shortRatio" },
     { label: "Beta", value: "beta" },
   ];
+
+  const formatMetricValue = (metric, value) => {
+    if (metric === "freeCashflow" || metric === "fullTimeEmployees") {
+      return value.toLocaleString();
+    }
+
+    if (
+      [
+        "enterpriseToRevenue",
+        "enterpriseToEbitda",
+        "priceToBook",
+        "debtToEquity",
+        "beta",
+      ].includes(metric)
+    ) {
+      return Number(value).toFixed(2);
+    }
+
+    if (
+      [
+        "grossMargins",
+        "ebitdaMargins",
+        "profitMargins",
+        "returnOnAssets",
+        "returnOnEquity",
+        "dividendYield",
+      ].includes(metric)
+    ) {
+      return Number(value * 100).toFixed(2) + "%";
+    }
+
+    if (["shortRatio"].includes(metric)) {
+      return Number(value).toFixed(2) + "%";
+    }
+
+    return value;
+  };
 
   useEffect(() => {
     const savedHints = localStorageManipulator.getHints();
@@ -103,7 +140,7 @@ const Hints = ({ mode, gameOver }) => {
           <span className="hint-label">
             {availableMetrics.find((m) => m.value === metric)?.label}:
           </span>
-          <span className="hint-value">{value}</span>
+          <span className="hint-value">{formatMetricValue(metric, value)}</span>
         </div>
       ))}
     </div>

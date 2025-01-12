@@ -22,16 +22,15 @@ function Alpha({ mode, trigger, setPopup }) {
                   create an account
                 </a>
               </b>{" "}
-              before doing anything else. Or don't, if you enjoy things not
-              working as intended.
+              to play. 
             </li>
             <li>
-              Please have the window on full screen. I haven't added any dynamic
+              Please have your browser on full screen. I haven't added any dynamic
               resizing yet.
             </li>
             <li>
-              Your passwords are hashed with bcrypt, so all I can see in the
-              database is an arbitrary string of letters and numbers.
+              Your passwords are hashed before being saved. Don't worry, I can't
+              see them.
             </li>
             <li>
               Any feedback whatsoever is appreciated. Just fill out the form

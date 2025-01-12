@@ -2,6 +2,7 @@ node_modules
 venv
 .env
 backend/.ipynb_checkpoints
+backend/scripts/__pycache__
 rootkey.csv
 stockle.pem
 .vscode

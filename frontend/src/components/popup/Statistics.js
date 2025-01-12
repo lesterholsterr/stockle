@@ -68,7 +68,7 @@ function Statistics({ mode, trigger, setPopup }) {
                 </div>
               </div>
               <br />
-              <GuessDistribution distribution={user.guessDistribution} />
+              <GuessDistribution distribution={user.guessDistribution} mode={mode} />
             </>
           ) : (
             <>

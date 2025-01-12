@@ -10,19 +10,11 @@ function Instructions({ mode, trigger, setPopup }) {
           <h4>Guess the Stock in 6 tries.</h4>
           <p>Stockle, as its name suggests, is inspired by Wordle.</p>
           <ul>
+            <li>Each guess must be a valid stock listed on NYSE or NASDAQ</li>
             <li>
-              Each guess must be a valid stock listed on an American exchange.
+              The board will show various metrics of the stock you guessed and
+              whether you are higher or lower compared to the correct stock
             </li>
-            <li>
-              The metrics of the guessed stock will show whether you are higher
-              or lower compared to the correct stock.
-            </li>
-            <li>
-              A <em>relative</em> share price chart is provided. To hide the
-              stock's true price, we assume its current price is $100 and
-              project historical performance based on this assumption.
-            </li>
-            <li>Click and drag the chart to zoom.</li>
           </ul>
           <h3>Example</h3>
           <div className="instruction-row">
@@ -52,7 +44,10 @@ function Instructions({ mode, trigger, setPopup }) {
           <p>*Slightly = within 30% of the true value.</p>
           <br />
           <br />
-          <button className="underline-btn" onClick={() => setPopup("register")}>
+          <button
+            className="underline-btn"
+            onClick={() => setPopup("register")}
+          >
             <b>Don't forget to create an account!</b>
           </button>
           <div

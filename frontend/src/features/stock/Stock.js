@@ -138,6 +138,7 @@ const createStock = (data) => {
     weekChangeSP52: data.defaultKeyStatistics["SandP52WeekChange"],
     lastDividendValue: data.defaultKeyStatistics.lastDividendValue,
     lastDividendDate: data.defaultKeyStatistics.lastDividendDate,
+    dividendYield: data.defaultKeyStatistics.lastDividendValue * 4 / data.price.regularMarketPrice,
 
     // Summary Profile
     address: data.summaryProfile.address1,

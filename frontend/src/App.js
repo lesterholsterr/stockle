@@ -16,7 +16,7 @@ import Header from "./components/Header";
 import Graph from "./components/Graph";
 import Board from "./components/Board";
 import Search from "./components/Search";
-import Hints from "./components/Hints"
+import Hints from "./components/Hints";
 
 import { createStock } from "./features/stock/Stock";
 import { boardDefault } from "./features/board/BoardState";
@@ -90,7 +90,7 @@ function App() {
           toggleMode={toggleMode}
           shareResults={shareResults}
         />
-        <Graph popupState={popup} />
+        <Graph popupState={popup} mode={mode} />
         <div className="game">
           <Board mode={mode} />
           <Search

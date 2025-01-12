@@ -1,0 +1,56 @@
+.graph-container {
+  width: 40%;
+  padding: 1rem;
+  margin: auto;
+}
+
+.timeframe-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Light mode styles */
+.timeframe-button {
+  padding: 0.25rem 0.75rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+  background: transparent;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #4b5563;
+}
+
+.timeframe-button:hover {
+  background: #f3f4f6;
+}
+
+.timeframe-button.active {
+  background: #2563eb;
+  color: white;
+  border-color: #2563eb;
+}
+
+/* Dark mode styles */
+.dark .timeframe-button {
+  border-color: #374151;
+  color: #9ca3af;
+}
+
+.dark .timeframe-button:hover {
+  background: #374151;
+}
+
+.dark .timeframe-button.active {
+  background: #60a5fa;
+  color: #111827;
+  border-color: #60a5fa;
+}
+
+.chart-container {
+  width: 100%;
+  height: 320px;
+  position: relative;
+}

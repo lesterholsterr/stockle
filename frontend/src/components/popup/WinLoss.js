@@ -36,7 +36,7 @@ function WinLoss({ mode, trigger, setPopup, shareResults }) {
           <p>
             Total:{" "}
             {1000 -
-              100 * currAttempt -
+              100 * (currAttempt) -
               75 * localStorageManipulator.getHints().hintsUsed +
               Math.min(100, user.currentStreak * 20)}
           </p>
