@@ -3,6 +3,7 @@ venv
 .env
 backend/.ipynb_checkpoints
 backend/scripts/__pycache__
+backend/scripts/today.stock
 rootkey.csv
 stockle.pem
 .vscode
