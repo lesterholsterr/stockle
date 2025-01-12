@@ -19,13 +19,15 @@ class LocalStorageManipulator {
   setResetTime() {
     const currentDate = new Date();
     const nextResetTime = new Date(
-      currentDate.getFullYear(),
-      currentDate.getMonth(),
-      currentDate.getDate() + 1,
-      0, // hour
-      0, // minute
-      0, // second
-      0 // millisecond
+      Date.UTC(
+        currentDate.getUTCFullYear(),
+        currentDate.getUTCMonth(),
+        currentDate.getUTCDate() + 1,
+        0, // hour
+        0, // minute
+        0, // second
+        0 // milliseocnd
+      )
     ).getTime();
 
     localStorage.setItem("reset", JSON.stringify({ nextResetTime }));
@@ -93,7 +95,10 @@ class LocalStorageManipulator {
   }
 
   resetHints() {
-    localStorage.setItem("hints", JSON.stringify({ hintsUsed: 0, revealedHints: {} }));
+    localStorage.setItem(
+      "hints",
+      JSON.stringify({ hintsUsed: 0, revealedHints: {} })
+    );
   }
 }
 

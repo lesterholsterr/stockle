@@ -15,6 +15,7 @@ function Instructions({ mode, trigger, setPopup }) {
               The board will show various metrics of the stock you guessed and
               whether you are higher or lower compared to the correct stock
             </li>
+            <li>The game resets at midnight UTC</li>
           </ul>
           <h3>Example</h3>
           <div className="instruction-row">
